@@ -28,6 +28,17 @@ public class CustomPlayer {
 		this.credits = MySQLUtils.getInt("players", "uuid", uuid.toString(), "credits");
 		
 	}
+	
+	public void save() {
+		
+		MySQLUtils.setString("name", "players", "uuid", uuid.toString(), name);
+		MySQLUtils.setString("rank", "players", "uuid", uuid.toString(), rank);
+		MySQLUtils.setString("staff", "players", "uuid", uuid.toString(), staff);
+		MySQLUtils.setInt("points", "players", "uuid", uuid.toString(), points);
+		MySQLUtils.setInt("tokens", "players", "uuid", uuid.toString(), tokens);
+		MySQLUtils.setInt("credits", "players", "uuid", uuid.toString(), credits);
+		
+	}
 
 	public UUID getUuid() {
 		return uuid;
