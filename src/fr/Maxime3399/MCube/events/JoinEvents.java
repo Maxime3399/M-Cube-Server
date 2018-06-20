@@ -19,8 +19,8 @@ public class JoinEvents implements Listener {
 		
 		Player p = e.getPlayer();
 		
-		if(!MySQLUtils.execute("INSERT INTO `players` (`uuid`, `name`, `rank`, `staff`, `points`, `step`, `tokens`, `credits`, `plus_color`, `legendary_steps`) VALUES "
-				+ "('"+p.getUniqueId()+"', '"+p.getName()+"', 'default', 'default', '-1', '0', '0', '0', '§2', 'false');", false)) {
+		if(MySQLUtils.execute("INSERT INTO `players` (`uuid`, `name`, `rank`, `staff`, `points`, `step`, `tokens`, `credits`, `plus_color`, `legendary_steps`) VALUES "
+				+ "('"+p.getUniqueId()+"', '"+p.getName()+"', 'default', 'default', '-1', '0', '0', '0', '§2', 'false');", true)) {
 			
 			for(Player pls : Bukkit.getOnlinePlayers()) {
 				

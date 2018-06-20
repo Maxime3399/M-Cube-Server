@@ -192,9 +192,10 @@ public class MySQLUtils {
 			if(!ignoreError) {
 				
 				e.printStackTrace();
-				result = false;
 				
 			}
+			
+			result = false;
 			
 		}
 		

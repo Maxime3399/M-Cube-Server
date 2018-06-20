@@ -6,6 +6,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
 import fr.Maxime3399.MCube.managers.EventsManager;
 import fr.Maxime3399.MCube.utils.MySQLUtils;
@@ -38,8 +40,8 @@ public class MainClass extends JavaPlugin{
 					"  `step` int(255) NOT NULL,\r\n" + 
 					"  `tokens` int(255) NOT NULL,\r\n" + 
 					"  `credits` int(255) NOT NULL,\r\n" + 
-					"  `plus_color` vachar(255) NOT NULL,\r\n" + 
-					"  `legendary_steps` vachar(255) NOT NULL,\r\n" + 
+					"  `plus_color` varchar(255) NOT NULL,\r\n" + 
+					"  `legendary_steps` varchar(255) NOT NULL,\r\n" + 
 					"  PRIMARY KEY (`uuid`),\r\n" + 
 					"  UNIQUE KEY `uuid` (`uuid`)\r\n" + 
 					") ENGINE=MyISAM DEFAULT CHARSET=latin1;", false)) {
@@ -57,6 +59,18 @@ public class MainClass extends JavaPlugin{
 			
 			Bukkit.getConsoleSender().sendMessage("§6§l[§r§3M-Cube§6§l]§r §cConnexion a la base de données impossible.");
 			disable();
+			
+		}
+		
+	}
+	
+	public void onDisable() {
+		
+		Scoreboard s = Bukkit.getScoreboardManager().getMainScoreboard();
+		
+		for(Team ts : s.getTeams()) {
+			
+			ts.unregister();
 			
 		}
 		

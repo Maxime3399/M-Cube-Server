@@ -15,13 +15,16 @@ public class DisplayUtils {
 	@SuppressWarnings("deprecation")
 	public static void setDisplay(Player p) {
 		
+		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 		String prefix = getClassPrefix(p);
-		if(!getRank(p).equalsIgnoreCase("§r")) {
+		if(getRank(p).equalsIgnoreCase("§2UltraVIP+")) {
+			prefix = "§2UltraVIP"+cp.getPlus_color()+"+"+" "+prefix;
+		}else if(!getRank(p).equalsIgnoreCase("§r")) {
 			prefix = getRank(p)+"§r "+prefix;
 		}
 		String suffix = "";
 		if(!getStep(p).equalsIgnoreCase("")) {
-			suffix = "§r"+getStep(p);
+			suffix = " "+getStep(p)+"§r";
 		}
 		
 		Scoreboard s = Bukkit.getScoreboardManager().getMainScoreboard();
@@ -39,6 +42,8 @@ public class DisplayUtils {
 		te.setPrefix(prefix);
 		te.setSuffix(suffix);
 		te.addPlayer(p);
+		
+		p.setDisplayName(prefix+p.getName()+suffix);
 		
 	}
 	
@@ -62,53 +67,53 @@ public class DisplayUtils {
 			
 		}
 		
-		if(allRanks.contains("§4§l[§r§4Créateur§l]")) {
-			allRanks.remove("§4§l[§r§4Créateur§l]");
-			allRanksOrdered.add("§4§l[§r§4Créateur§l]");
+		if(allRanks.contains("§4Créateur")) {
+			allRanks.remove("§4Créateur");
+			allRanksOrdered.add("§4Créateur");
 		}
-		if(allRanks.contains("§c§l[§r§cAdmin§l]")) {
-			allRanks.remove("§c§l[§r§cAdmin§l]");
-			allRanksOrdered.add("§c§l[§r§cAdmin§l]");
+		if(allRanks.contains("§cAdmin")) {
+			allRanks.remove("§cAdmin");
+			allRanksOrdered.add("§cAdmin");
 		}
-		if(allRanks.contains("§3§l[§r§3Resp.Dev§l]")) {
-			allRanks.remove("§3§l[§r§3Resp.Dev§l]");
-			allRanksOrdered.add("§3§l[§r§3Resp.Dev§l]");
+		if(allRanks.contains("§3Resp.Dev")) {
+			allRanks.remove("§3Resp.Dev");
+			allRanksOrdered.add("§3Resp.Dev");
 		}
-		if(allRanks.contains("§3§l[§r§3Dev§l]")) {
-			allRanks.remove("§3§l[§r§3Dev§l]");
-			allRanksOrdered.add("§3§l[§r§3Dev§l]");
+		if(allRanks.contains("§3Dev")) {
+			allRanks.remove("§3Dev");
+			allRanksOrdered.add("§3Dev");
 		}
-		if(allRanks.contains("§6§l[§r§6Resp.Mod§l]")) {
-			allRanks.remove("§6§l[§r§6Resp.Mod§l]");
-			allRanksOrdered.add("§6§l[§r§6Resp.Mod§l]");
+		if(allRanks.contains("§6Resp.Mod")) {
+			allRanks.remove("§6Resp.Mod");
+			allRanksOrdered.add("§6Resp.Mod");
 		}
-		if(allRanks.contains("§6§l[§r§6Mod§l]")) {
-			allRanks.remove("§6§l[§r§6Mod§l]");
-			allRanksOrdered.add("§6§l[§r§6Mod§l]");
+		if(allRanks.contains("§6Mod")) {
+			allRanks.remove("§6Mod");
+			allRanksOrdered.add("§6Mod");
 		}
-		if(allRanks.contains("§9§l[§r§9Helper§l]")) {
-			allRanks.remove("§9§l[§r§9Helper§l]");
-			allRanksOrdered.add("§9§l[§r§9Helper§l]");
+		if(allRanks.contains("§9Helper")) {
+			allRanks.remove("§9Helper");
+			allRanksOrdered.add("§9Helper");
 		}
-		if(allRanks.contains("§2§l[§r§2UltraVIP+§2§l]")) {
-			allRanks.remove("§2§l[§r§2UltraVIP+§2§l]");
-			allRanksOrdered.add("§2§l[§r§2UltraVIP+§2§l]");
+		if(allRanks.contains("§2UltraVIP+")) {
+			allRanks.remove("§2UltraVIP+");
+			allRanksOrdered.add("§2UltraVIP+");
 		}
-		if(allRanks.contains("§a§l[§r§aUltraVIP§l]")) {
-			allRanks.remove("§a§l[§r§aUltraVIP§l]");
-			allRanksOrdered.add("§a§l[§r§aUltraVIP§l]");
+		if(allRanks.contains("§aUltraVIP")) {
+			allRanks.remove("§aUltraVIP");
+			allRanksOrdered.add("§aUltraVIP");
 		}
-		if(allRanks.contains("§b§l[§r§bVIP+§l]")) {
-			allRanks.remove("§b§l[§r§bVIP+§l]");
-			allRanksOrdered.add("§b§l[§r§bVIP+§l]");
+		if(allRanks.contains("§bUltraVIP")) {
+			allRanks.remove("§bUltraVIP");
+			allRanksOrdered.add("§bUltraVIP");
 		}
-		if(allRanks.contains("§e§l[§r§eVIP§l]")) {
-			allRanks.remove("§e§l[§r§eVIP§l]");
-			allRanksOrdered.add("§e§l[§r§eVIP§l]");
+		if(allRanks.contains("§eVIP")) {
+			allRanks.remove("§eVIP");
+			allRanksOrdered.add("§eVIP");
 		}
-		if(allRanks.contains("§f§l[§r§fMiniVIP§l]")) {
-			allRanks.remove("§f§l[§r§fMiniVIP§l]");
-			allRanksOrdered.add("§f§l[§r§fMiniVIP§l]");
+		if(allRanks.contains("§fMiniVIP")) {
+			allRanks.remove("§fMiniVIP");
+			allRanksOrdered.add("§fMiniVIP");
 		}
 		if(allRanks.contains("§r")) {
 			allRanks.remove("§r");
@@ -159,7 +164,7 @@ public class DisplayUtils {
 	public static String getStep(Player p) {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
-		String result = "§7§l|§r§f0§7§l|";
+		String result = "0";
 		
 		if(cp.getStep() == -1) {
 			
@@ -169,11 +174,11 @@ public class DisplayUtils {
 			
 			if(cp.isLegendary_steps()) {
 				
-				result = "§6§l|§r§e"+cp.getStep()+"§6§l|";
+				result = "§e"+cp.getStep()+"";
 				
 			}else {
 				
-				result = "§7§l|§r§f"+cp.getStep()+"§7§l|";
+				result = cp.getStep()+"";
 				
 			}
 			
@@ -191,51 +196,51 @@ public class DisplayUtils {
 		
 		if(cp.getStaff().equalsIgnoreCase("créateur")) {
 			
-			result = "§4§l[§r§4Créateur§l]";
+			result = "§4Créateur";
 			
 		}else if(cp.getStaff().equalsIgnoreCase("admin")) {
 			
-			result = "§c§l[§r§cAdmin§l]";
+			result = "§cAdmin";
 			
 		}else if(cp.getStaff().equalsIgnoreCase("respdev")) {
 			
-			result = "§3§l[§r§3Resp.Dev§l]";
+			result = "§3Resp.Dev";
 			
 		}else if(cp.getStaff().equalsIgnoreCase("dev")) {
 			
-			result = "§3§l[§r§3Dev§l]";
+			result = "§3Dev";
 			
 		}else if(cp.getStaff().equalsIgnoreCase("respmod")) {
 			
-			result = "§6§l[§r§6Resp.Mod§l]";
+			result = "§6Resp.Mod";
 			
 		}else if(cp.getStaff().equalsIgnoreCase("mod")) {
 			
-			result = "§6§l[§r§6Mod§l]";
+			result = "§6Mod";
 			
 		}else if(cp.getStaff().equalsIgnoreCase("help")) {
 			
-			result = "§9§l[§r§9Helper§l]";
+			result = "§9Helper";
 			
 		}else if(cp.getRank().equalsIgnoreCase("ultravipplus")) {
 			
-			result = "§2§l[§r§2UltraVIP+§2§l]";
+			result = "§2UltraVIP+";
 			
 		}else if(cp.getRank().equalsIgnoreCase("ultravip")) {
 			
-			result = "§a§l[§r§aUltraVIP§l]";
+			result = "§aUltraVIP";
 			
 		}else if(cp.getRank().equalsIgnoreCase("vipplus")) {
 			
-			result = "§b§l[§r§bVIP+§l]";
+			result = "§bUltraVIP";
 			
 		}else if(cp.getRank().equalsIgnoreCase("vip")) {
 			
-			result = "§e§l[§r§eVIP§l]";
+			result = "§eVIP";
 			
 		}else if(cp.getRank().equalsIgnoreCase("minivip")) {
 			
-			result = "§f§l[§r§fMiniVIP§l]";
+			result = "§fMiniVIP";
 			
 		}
 		
