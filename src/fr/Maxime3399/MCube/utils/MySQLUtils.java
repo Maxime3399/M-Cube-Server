@@ -154,6 +154,29 @@ public class MySQLUtils {
 	    return values;
 	}
 	
+	public static ArrayList<String> getSortValues(String table, String sortType, String order){
+		
+	    ArrayList<String> values = new ArrayList<String>();
+	    
+	    try {
+	    	
+	        ResultSet result = state.executeQuery("SELECT * FROM `"+table+"` ORDER BY "+sortType+" "+order);
+	        
+	        while(result.next()){
+	        	
+	            values.add(result.getString(1));
+	            
+	        }
+	        
+	    }catch (SQLException e) {
+	    	
+	        e.printStackTrace();
+	        
+	    }
+	    
+	    return values;
+	}
+	
 	public static boolean execute(String command, boolean ignoreError) {
 		
 		boolean result = true;
