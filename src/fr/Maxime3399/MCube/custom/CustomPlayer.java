@@ -55,11 +55,11 @@ public class CustomPlayer {
 		
 		ArrayList<String> list = MySQLUtils.getSortValues("players", "points", "ASC");
 		
-		if(list.size() > 0) {
+		if(list.size() != 0) {
 			
 			for(String ss : list) {
 				
-				if(ss == uuid.toString()) {
+				if(ss.equalsIgnoreCase(uuid.toString())) {
 					
 					result = list.indexOf(ss)+1;
 					

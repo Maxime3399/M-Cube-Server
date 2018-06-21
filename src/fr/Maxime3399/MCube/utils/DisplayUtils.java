@@ -263,7 +263,7 @@ public class DisplayUtils {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 		int points = cp.getPoints();
-		String result = "§8Bronze";
+		String result = "§7Bronze";
 		
 		if(cp.getPointClassement() == 1) {
 			
@@ -296,6 +296,10 @@ public class DisplayUtils {
 		}else if(points >= 100) {
 			
 			result = "§fArgent";
+			
+		}else if(points == -1) {
+			
+			result = "§8Non-Classé";
 			
 		}
 		
