@@ -33,8 +33,8 @@ public class MainMenu {
 			IMranked.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
 			IMranked.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		}else {
-			ALranked.add("§7Consulte ton classement et");
-			ALranked.add("§7celui des autres !");
+			ALranked.add("§7Consulte ton classement");
+			ALranked.add("§7et celui des autres !");
 		}
 		ALranked.add(" ");
 		ALranked.add("§3Clique §7pour ouvir le menu");
@@ -58,7 +58,7 @@ public class MainMenu {
 		ALstep.add("§6Clique gauche §7pour ouvrir le menu");
 		ALstep.add("§7des palliers");
 		if(cp.isLegendary_steps()) {
-			ALstep.add("§8mClique droit§r§7§m pour acheter le");
+			ALstep.add("§8§mClique droit§r§7§m pour acheter le");
 			ALstep.add("§7§mpass légendaire");
 			IMstep.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
 			IMstep.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -66,6 +66,7 @@ public class MainMenu {
 			ALstep.add("§eClique droit §7pour acheter le");
 			ALstep.add("§7pass légendaire");
 		}
+		IMstep.setLore(ALstep);
 		ISstep.setItemMeta(IMstep);
 		i.addItem(ISstep);
 		
@@ -80,6 +81,7 @@ public class MainMenu {
 		ALsuccess.add(" ");
 		ALsuccess.add("§3Clique§7 pour ouvrir le");
 		ALsuccess.add("§7menu des succès");
+		IMsuccess.setLore(ALsuccess);
 		ISsuccess.setItemMeta(IMsuccess);
 		i.addItem(ISsuccess);
 		
@@ -102,8 +104,8 @@ public class MainMenu {
 		ItemMeta IMitems = ISitems.getItemMeta();
 		ArrayList<String> ALitems = new ArrayList<>();
 		IMitems.setDisplayName("§eObjets");
-		ALitems.add("§7Tous tes objets spéciaux sont");
-		ALitems.add("§7entreposés ici.");
+		ALitems.add("§7Tous tes objets spéciaux");
+		ALitems.add("§7sont entreposés ici.");
 		ALitems.add(" ");
 		ALitems.add("§3Clique§7 pour ouvrir le");
 		ALitems.add("§7menu des objets");
@@ -115,12 +117,12 @@ public class MainMenu {
 		ItemMeta IMchests = ISchests.getItemMeta();
 		ArrayList<String> ALchests = new ArrayList<>();
 		IMchests.setDisplayName("§eCoffres");
-		ALchests.add("§7Ouvre des coffres et obtiens de");
-		ALchests.add("§7nouveaux cosmétiques !");
+		ALchests.add("§7Ouvre des coffres et obtiens");
+		ALchests.add("§7de nouveaux cosmétiques !");
 		ALchests.add(" ");
 		ALchests.add("§7Tu as # coffres");
 		ALchests.add(" ");
-		ALchests.add("§3Clique§7pour ouvrir le");
+		ALchests.add("§3Clique §7pour ouvrir le");
 		ALchests.add("§7menu des coffres");
 		IMchests.setLore(ALchests);
 		ISchests.setItemMeta(IMchests);
@@ -130,8 +132,8 @@ public class MainMenu {
 		ItemMeta IMgift = ISgift.getItemMeta();
 		ArrayList<String> ALgift = new ArrayList<>();
 		IMgift.setDisplayName("§eCadeaux");
-		ALgift.add("§7Des cadeaux apparaîssent parfois ici");
-		ALgift.add("§7ouvre les vite !");
+		ALgift.add("§7Des cadeaux apparaîssent");
+		ALgift.add("§7parfois ici ouvre les vite !");
 		ALgift.add(" ");
 		ALgift.add("§7Tu as # cadeaux");
 		ALgift.add(" ");
@@ -151,8 +153,8 @@ public class MainMenu {
 		ALshop.add(" ");
 		ALshop.add("§6Clique gauche§7 pour ouvrir");
 		ALshop.add("§7la boutique");
-		ALshop.add("§eClique droit§7 pour obtenir le lien");
-		ALshop.add("§7de la boutique en ligne");
+		ALshop.add("§eClique droit§7 pour obtenir le");
+		ALshop.add("§7lien de la boutique en ligne");
 		IMshop.setLore(ALshop);
 		ISshop.setItemMeta(IMshop);
 		i.addItem(ISshop);

@@ -3,12 +3,15 @@ package fr.Maxime3399.MCube;
 import java.io.File;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import fr.Maxime3399.MCube.managers.CommandsManager;
 import fr.Maxime3399.MCube.managers.EventsManager;
 import fr.Maxime3399.MCube.utils.MySQLUtils;
 
@@ -91,6 +94,14 @@ public class MainClass extends JavaPlugin{
 	private static void disable() {
 		
 		Bukkit.getPluginManager().disablePlugin(plugin);
+		
+	}
+	
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		
+		CommandsManager.execute(sender, cmd, label, args);
+		
+		return true;
 		
 	}
 

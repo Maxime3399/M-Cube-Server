@@ -6,6 +6,7 @@ import org.bukkit.plugin.PluginManager;
 
 import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.events.JoinEvents;
+import fr.Maxime3399.MCube.events.menus.MainMenuEvents;
 
 public class EventsManager {
 	
@@ -15,6 +16,8 @@ public class EventsManager {
 		PluginManager pm = Bukkit.getPluginManager();
 		
 		pm.registerEvents(new JoinEvents(), p);
+		
+		pm.registerEvents(new MainMenuEvents(), p);
 		
 	}
 
