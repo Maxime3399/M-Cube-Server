@@ -3,6 +3,7 @@ package fr.Maxime3399.MCube.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class DataUtils {
 	
@@ -24,12 +25,12 @@ public class DataUtils {
 		Date dT = new Date();
 		Long result = dO.getTime()-dT.getTime();
 		
-		int y = 60*60*1000;
-		long h = result/y;
-		long m = (result-(h*y))/(y/60);
-		long s = (result-(h*y)-(m*(y/60)))/1000;
+		long d = TimeUnit.MILLISECONDS.toDays(result);
+		long h = TimeUnit.MILLISECONDS.toHours(result)-TimeUnit.DAYS.toHours(d);
+		long m = TimeUnit.MILLISECONDS.toMinutes(result)-TimeUnit.DAYS.toMinutes(d)-TimeUnit.HOURS.toMinutes(h);
+		long s = TimeUnit.MILLISECONDS.toSeconds(result)-TimeUnit.DAYS.toSeconds(d)-TimeUnit.HOURS.toSeconds(h)-TimeUnit.MINUTES.toSeconds(m);
 		
-		return h+":"+m+":"+s;
+		return d+":"+h+":"+m+":"+s;
 		
 	}
 

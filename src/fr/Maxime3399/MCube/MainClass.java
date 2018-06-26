@@ -49,6 +49,8 @@ public class MainClass extends JavaPlugin{
 					"  `credits` int(255) NOT NULL,\r\n" + 
 					"  `plus_color` varchar(255) NOT NULL,\r\n" + 
 					"  `legendary_steps` varchar(255) NOT NULL,\r\n" + 
+					"  `placement_points` int(255) NOT NULL,\r\n" + 
+					"  `placement_end` varchar(255) NOT NULL,\r\n" + 
 					"  `season_1_points` int(255) NOT NULL,\r\n" + 
 					"  PRIMARY KEY (`uuid`),\r\n" + 
 					"  UNIQUE KEY `uuid` (`uuid`)\r\n" + 

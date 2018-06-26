@@ -1,6 +1,10 @@
 package fr.Maxime3399.MCube.menus;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -29,6 +33,7 @@ public class RankedMenu {
 		Inventory i = Bukkit.createInventory(null, 27, "§8Jeu Classé");
 		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 		
+		String end = MySQLUtils.getString("infos", "type", "season_1_end", "info_string");
 		ItemStack IS1 = new ItemStack(ItemUtils.getClassItem(DisplayUtils.getClass(p, 1)));
 		ItemMeta IM1 = IS1.getItemMeta();
 		ArrayList<String> AL1 = new ArrayList<>();
@@ -42,10 +47,48 @@ public class RankedMenu {
 			IM1.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
 			IM1.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			AL1.add("§aSaison en cours !");
-			if(cp.getPointsBySeason(1) == -1) {
+			if(cp.getPlacement_points() == -1) {
 				AL1.add(" ");
-				AL1.add("§3Clique§7 pour commencer tes");
-				AL1.add("§7de placements");
+				SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+				Date dO = null;
+				try {
+					dO = sdf.parse(end);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				Date dT = new Date();
+				Long result = dO.getTime()-dT.getTime();
+				long d = TimeUnit.MILLISECONDS.toDays(result);
+				if(d < 3) {
+					AL1.add("§cTu ne peux pas te placer, la saison");
+					AL1.add("§cse termine dans moins de 3 jours");
+					AL1.add(" ");
+					AL1.add("§8§mClique§r§7§m pour commencer tes");
+					AL1.add("§7§mjours de placements");
+				}else {
+					AL1.add("§3Clique§7 pour commencer tes");
+					AL1.add("§7jours de placements");
+				}
+			}else {
+				SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+				Date dO = null;
+				try {
+					dO = sdf.parse(cp.getPlacement_end());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				Date dT = new Date();
+				Long result = dO.getTime()-dT.getTime();
+				long d = TimeUnit.MILLISECONDS.toDays(result);
+				long h = TimeUnit.MILLISECONDS.toHours(result)-TimeUnit.DAYS.toHours(d);
+				long m = TimeUnit.MILLISECONDS.toMinutes(result)-TimeUnit.DAYS.toMinutes(d)-TimeUnit.HOURS.toMinutes(h);
+				long s = TimeUnit.MILLISECONDS.toSeconds(result)-TimeUnit.DAYS.toSeconds(d)-TimeUnit.HOURS.toSeconds(h)-TimeUnit.MINUTES.toSeconds(m);
+				AL1.add(" ");
+				AL1.add("§fTemps de placement");
+				AL1.add("§frestant : §e"+d+":"+h+":"+m+":"+s);
+				AL1.add(" ");
+				AL1.add("§8§mClique§r§7§m pour commencer tes");
+				AL1.add("§7§mjours de placement");
 			}
 		}else if(DataUtils.getCurrentSeason() < 1) {
 			IM1.setDisplayName("§c§lSaison 1");
@@ -122,6 +165,8 @@ public class RankedMenu {
 		
 		new BukkitRunnable() {
 			
+			boolean plac = true;
+			
 			@Override
 			public void run() {
 				
@@ -136,6 +181,76 @@ public class RankedMenu {
 					IScl.setItemMeta(IMcl);
 					i.setItem(13, IScl);
 					
+					if(plac) {
+						
+						plac = false;
+						ItemStack IS1 = new ItemStack(ItemUtils.getClassItem(DisplayUtils.getClass(p, 1)));
+						ItemMeta IM1 = IS1.getItemMeta();
+						ArrayList<String> AL1 = new ArrayList<>();
+						AL1.add("§rRang : "+DisplayUtils.getClass(p, 1));
+						if(cp.getPointsBySeason(1) != -1) {
+							AL1.add("§rPoints : "+cp.getPointsBySeason(1));
+						}
+						AL1.add(" ");
+						if(DataUtils.getCurrentSeason() == 1) {
+							IM1.setDisplayName("§a§lSaison 1");
+							IM1.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+							IM1.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+							AL1.add("§aSaison en cours !");
+							if(cp.getPlacement_points() == -1) {
+								AL1.add(" ");
+								SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+								Date dO = null;
+								try {
+									dO = sdf.parse(end);
+								} catch (ParseException e) {
+									e.printStackTrace();
+								}
+								Date dT = new Date();
+								Long result = dO.getTime()-dT.getTime();
+								long d = TimeUnit.MILLISECONDS.toDays(result);
+								if(d < 3) {
+									AL1.add("§cTu ne peux pas te placer, la saison");
+									AL1.add("§cse termine dans moins de 3 jours");
+									AL1.add(" ");
+									AL1.add("§8&mClique§r§7§m pour commencer tes");
+									AL1.add("§7§mjours de placements");
+								}else {
+									AL1.add("§3Clique§7 pour commencer tes");
+									AL1.add("§7jours de placements");
+								}
+							}else {
+								SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+								Date dO = null;
+								try {
+									dO = sdf.parse(cp.getPlacement_end());
+								} catch (ParseException e) {
+									e.printStackTrace();
+								}
+								Date dT = new Date();
+								Long result = dO.getTime()-dT.getTime();
+								long d = TimeUnit.MILLISECONDS.toDays(result);
+								long h = TimeUnit.MILLISECONDS.toHours(result)-TimeUnit.DAYS.toHours(d);
+								long m = TimeUnit.MILLISECONDS.toMinutes(result)-TimeUnit.DAYS.toMinutes(d)-TimeUnit.HOURS.toMinutes(h);
+								long s = TimeUnit.MILLISECONDS.toSeconds(result)-TimeUnit.DAYS.toSeconds(d)-TimeUnit.HOURS.toSeconds(h)-TimeUnit.MINUTES.toSeconds(m);
+								AL1.add(" ");
+								AL1.add("§fTemps de placement");
+								AL1.add("§frestant : §e"+d+":"+h+":"+m+":"+s);
+								AL1.add(" ");
+								AL1.add("§8§mClique§r§7§m pour commencer tes");
+								AL1.add("§7§mjours de placement");
+								plac = true;
+							}
+						}else if(DataUtils.getCurrentSeason() < 1) {
+							IM1.setDisplayName("§c§lSaison 1");
+							AL1.add("§cSaison a venir !");
+						}
+						IM1.setLore(AL1);
+						IS1.setItemMeta(IM1);
+						i.setItem(4, IS1);
+						
+					}
+					
 				}else {
 					
 					this.cancel();
@@ -144,7 +259,7 @@ public class RankedMenu {
 				
 			}
 			
-		}.runTaskTimerAsynchronously(MainClass.getInstance(), 10, 10);
+		}.runTaskTimerAsynchronously(MainClass.getInstance(), 5, 5);
 		
 	}
 
