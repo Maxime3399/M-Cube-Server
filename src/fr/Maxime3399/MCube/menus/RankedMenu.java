@@ -47,52 +47,62 @@ public class RankedMenu {
 			IM1.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
 			IM1.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			AL1.add("§aSaison en cours !");
-			if(cp.getPlacement_points() == -1) {
-				AL1.add(" ");
-				SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-				Date dO = null;
-				try {
-					dO = sdf.parse(end);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				Date dT = new Date();
-				Long result = dO.getTime()-dT.getTime();
-				long d = TimeUnit.MILLISECONDS.toDays(result);
-				if(d < 3) {
-					AL1.add("§cTu ne peux pas te placer, la saison");
-					AL1.add("§cse termine dans moins de 3 jours");
+			if(cp.getPoints() == -1) {
+				if(cp.getPlacement_points() != -1){
+					SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+					Date dO = null;
+					try {
+						dO = sdf.parse(cp.getPlacement_end());
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					Date dT = new Date();
+					Long result = dO.getTime()-dT.getTime();
+					long d = TimeUnit.MILLISECONDS.toDays(result);
+					long h = TimeUnit.MILLISECONDS.toHours(result)-TimeUnit.DAYS.toHours(d);
+					long m = TimeUnit.MILLISECONDS.toMinutes(result)-TimeUnit.DAYS.toMinutes(d)-TimeUnit.HOURS.toMinutes(h);
+					long s = TimeUnit.MILLISECONDS.toSeconds(result)-TimeUnit.DAYS.toSeconds(d)-TimeUnit.HOURS.toSeconds(h)-TimeUnit.MINUTES.toSeconds(m);
+					AL1.add(" ");
+					AL1.add("§fTemps de placement");
+					AL1.add("§frestant : §e"+d+":"+h+":"+m+":"+s);
 					AL1.add(" ");
 					AL1.add("§8§mClique§r§7§m pour commencer tes");
-					AL1.add("§7§mjours de placements");
+					AL1.add("§7§mjours de placement");
 				}else {
-					AL1.add("§3Clique§7 pour commencer tes");
-					AL1.add("§7jours de placements");
+					AL1.add(" ");
+					SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+					Date dO = null;
+					try {
+						dO = sdf.parse(end);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					Date dT = new Date();
+					Long result = dO.getTime()-dT.getTime();
+					long d = TimeUnit.MILLISECONDS.toDays(result);
+					if(d < 3) {
+						AL1.add("§cTu ne peux pas te placer, la saison");
+						AL1.add("§cse termine dans moins de 3 jours");
+						AL1.add(" ");
+						AL1.add("§8§mClique§r§7§m pour commencer tes");
+						AL1.add("§7§mjours de placements");
+					}else {
+						AL1.add("§3Clique§7 pour commencer tes");
+						AL1.add("§7jours de placements");
+					}
 				}
 			}else {
-				SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-				Date dO = null;
-				try {
-					dO = sdf.parse(cp.getPlacement_end());
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				Date dT = new Date();
-				Long result = dO.getTime()-dT.getTime();
-				long d = TimeUnit.MILLISECONDS.toDays(result);
-				long h = TimeUnit.MILLISECONDS.toHours(result)-TimeUnit.DAYS.toHours(d);
-				long m = TimeUnit.MILLISECONDS.toMinutes(result)-TimeUnit.DAYS.toMinutes(d)-TimeUnit.HOURS.toMinutes(h);
-				long s = TimeUnit.MILLISECONDS.toSeconds(result)-TimeUnit.DAYS.toSeconds(d)-TimeUnit.HOURS.toSeconds(h)-TimeUnit.MINUTES.toSeconds(m);
 				AL1.add(" ");
-				AL1.add("§fTemps de placement");
-				AL1.add("§frestant : §e"+d+":"+h+":"+m+":"+s);
-				AL1.add(" ");
-				AL1.add("§8§mClique§r§7§m pour commencer tes");
-				AL1.add("§7§mjours de placement");
+				AL1.add("§fPoints : "+cp.getPoints());
 			}
 		}else if(DataUtils.getCurrentSeason() < 1) {
 			IM1.setDisplayName("§c§lSaison 1");
 			AL1.add("§cSaison a venir !");
+		}else {
+			IM1.setDisplayName("§6§lSaison 1");
+			AL1.add("§eSaison terminée !");
+			AL1.add(" ");
+			AL1.add("§fPoints : "+cp.getPointsBySeason(1));
 		}
 		IM1.setLore(AL1);
 		IS1.setItemMeta(IM1);
@@ -197,53 +207,63 @@ public class RankedMenu {
 							IM1.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
 							IM1.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 							AL1.add("§aSaison en cours !");
-							if(cp.getPlacement_points() == -1) {
-								AL1.add(" ");
-								SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-								Date dO = null;
-								try {
-									dO = sdf.parse(end);
-								} catch (ParseException e) {
-									e.printStackTrace();
-								}
-								Date dT = new Date();
-								Long result = dO.getTime()-dT.getTime();
-								long d = TimeUnit.MILLISECONDS.toDays(result);
-								if(d < 3) {
-									AL1.add("§cTu ne peux pas te placer, la saison");
-									AL1.add("§cse termine dans moins de 3 jours");
+							if(cp.getPoints() == -1) {
+								if(cp.getPlacement_points() != -1){
+									SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+									Date dO = null;
+									try {
+										dO = sdf.parse(cp.getPlacement_end());
+									} catch (ParseException e) {
+										e.printStackTrace();
+									}
+									Date dT = new Date();
+									Long result = dO.getTime()-dT.getTime();
+									long d = TimeUnit.MILLISECONDS.toDays(result);
+									long h = TimeUnit.MILLISECONDS.toHours(result)-TimeUnit.DAYS.toHours(d);
+									long m = TimeUnit.MILLISECONDS.toMinutes(result)-TimeUnit.DAYS.toMinutes(d)-TimeUnit.HOURS.toMinutes(h);
+									long s = TimeUnit.MILLISECONDS.toSeconds(result)-TimeUnit.DAYS.toSeconds(d)-TimeUnit.HOURS.toSeconds(h)-TimeUnit.MINUTES.toSeconds(m);
 									AL1.add(" ");
-									AL1.add("§8&mClique§r§7§m pour commencer tes");
-									AL1.add("§7§mjours de placements");
+									AL1.add("§fTemps de placement");
+									AL1.add("§frestant : §e"+d+":"+h+":"+m+":"+s);
+									AL1.add(" ");
+									AL1.add("§8§mClique§r§7§m pour commencer tes");
+									AL1.add("§7§mjours de placement");
+									plac = true;
 								}else {
-									AL1.add("§3Clique§7 pour commencer tes");
-									AL1.add("§7jours de placements");
+									AL1.add(" ");
+									SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+									Date dO = null;
+									try {
+										dO = sdf.parse(end);
+									} catch (ParseException e) {
+										e.printStackTrace();
+									}
+									Date dT = new Date();
+									Long result = dO.getTime()-dT.getTime();
+									long d = TimeUnit.MILLISECONDS.toDays(result);
+									if(d < 3) {
+										AL1.add("§cTu ne peux pas te placer, la saison");
+										AL1.add("§cse termine dans moins de 3 jours");
+										AL1.add(" ");
+										AL1.add("§8§mClique§r§7§m pour commencer tes");
+										AL1.add("§7§mjours de placements");
+									}else {
+										AL1.add("§3Clique§7 pour commencer tes");
+										AL1.add("§7jours de placements");
+									}
 								}
 							}else {
-								SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-								Date dO = null;
-								try {
-									dO = sdf.parse(cp.getPlacement_end());
-								} catch (ParseException e) {
-									e.printStackTrace();
-								}
-								Date dT = new Date();
-								Long result = dO.getTime()-dT.getTime();
-								long d = TimeUnit.MILLISECONDS.toDays(result);
-								long h = TimeUnit.MILLISECONDS.toHours(result)-TimeUnit.DAYS.toHours(d);
-								long m = TimeUnit.MILLISECONDS.toMinutes(result)-TimeUnit.DAYS.toMinutes(d)-TimeUnit.HOURS.toMinutes(h);
-								long s = TimeUnit.MILLISECONDS.toSeconds(result)-TimeUnit.DAYS.toSeconds(d)-TimeUnit.HOURS.toSeconds(h)-TimeUnit.MINUTES.toSeconds(m);
 								AL1.add(" ");
-								AL1.add("§fTemps de placement");
-								AL1.add("§frestant : §e"+d+":"+h+":"+m+":"+s);
-								AL1.add(" ");
-								AL1.add("§8§mClique§r§7§m pour commencer tes");
-								AL1.add("§7§mjours de placement");
-								plac = true;
+								AL1.add("§fPoints : "+cp.getPoints());
 							}
 						}else if(DataUtils.getCurrentSeason() < 1) {
 							IM1.setDisplayName("§c§lSaison 1");
 							AL1.add("§cSaison a venir !");
+						}else {
+							IM1.setDisplayName("§6§lSaison 1");
+							AL1.add("§eSaison terminée !");
+							AL1.add(" ");
+							AL1.add("§fPoints : "+cp.getPointsBySeason(1));
 						}
 						IM1.setLore(AL1);
 						IS1.setItemMeta(IM1);
