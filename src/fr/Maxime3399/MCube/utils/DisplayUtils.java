@@ -251,7 +251,7 @@ public class DisplayUtils {
 	public static String getClassPrefix(Player p) {
 		
 		String result = "§8";
-		String clas = getClass(p);
+		String clas = getClass(p, DataUtils.getCurrentSeason());
 		
 		result = clas.charAt(0)+""+clas.charAt(1);
 		
@@ -259,21 +259,25 @@ public class DisplayUtils {
 		
 	}
 	
-	public static String getClass(Player p) {
+	public static String getClass(Player p, int season) {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 		int points = cp.getPoints();
 		String result = "§7Bronze";
 		
-		if(cp.getPointClassement() == 1) {
+		if(points == -1) {
+			
+			result = "§8Non-Classé";
+			
+		}else if(cp.getPointClassement(season) == 1) {
 			
 			result = "§1Top 1";
 			
-		}else if(cp.getPointClassement() == 2) {
+		}else if(cp.getPointClassement(season) == 2) {
 			
 			result = "§9Top 2";
 			
-		}else if(cp.getPointClassement() == 3) {
+		}else if(cp.getPointClassement(season) == 3) {
 			
 			result = "§bTop 3";
 			
@@ -296,10 +300,6 @@ public class DisplayUtils {
 		}else if(points >= 100) {
 			
 			result = "§fArgent";
-			
-		}else if(points == -1) {
-			
-			result = "§8Non-Classé";
 			
 		}
 		

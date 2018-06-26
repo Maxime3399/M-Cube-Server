@@ -13,6 +13,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
+import fr.Maxime3399.MCube.utils.DataUtils;
 import fr.Maxime3399.MCube.utils.DisplayUtils;
 import fr.Maxime3399.MCube.utils.ItemUtils;
 
@@ -23,7 +24,7 @@ public class MainMenu {
 		Inventory i = Bukkit.createInventory(null, 18, "§8Menu Principal");
 		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 		
-		ItemStack ISranked = ItemUtils.getClassItem(DisplayUtils.getClass(p));
+		ItemStack ISranked = ItemUtils.getClassItem(DisplayUtils.getClass(p, DataUtils.getCurrentSeason()));
 		ItemMeta IMranked = ISranked.getItemMeta();
 		ArrayList<String> ALranked = new ArrayList<>();
 		IMranked.setDisplayName("§eJeu classé");

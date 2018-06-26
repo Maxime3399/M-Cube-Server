@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
+import fr.Maxime3399.MCube.utils.DataUtils;
 import fr.Maxime3399.MCube.utils.MySQLUtils;
 
 public class CustomPlayer {
@@ -19,6 +20,7 @@ public class CustomPlayer {
 	private int credits;
 	private String plus_color;
 	private boolean legendary_steps;
+	private int season_1_points;
 	
 	public CustomPlayer(Player p) {
 		
@@ -32,6 +34,7 @@ public class CustomPlayer {
 		this.credits = MySQLUtils.getInt("players", "uuid", uuid.toString(), "credits");
 		this.plus_color = MySQLUtils.getString("players", "uuid", uuid.toString(), "plus_color");
 		this.setLegendary_steps(Boolean.parseBoolean(MySQLUtils.getString("players", "uuid", uuid.toString(), "legendary_steps")));
+		this.setSeason_1_points(MySQLUtils.getInt("players", "uuid", uuid.toString(), "season_1_points"));
 		
 	}
 	
@@ -45,17 +48,36 @@ public class CustomPlayer {
 		MySQLUtils.setInt("players", "uuid", uuid.toString(), "credits", credits);
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "plus_color", plus_color);
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "legendary_steps", String.valueOf(legendary_steps));
+		MySQLUtils.setInt("players", "uuid", uuid.toString(), "season_1_points", season_1_points);
 		
 	}
 	
-	public int getPointClassement() {
+	public void refreshPoints() {
+		
+		if(DataUtils.getCurrentSeason() == 1) {
+			season_1_points = points;
+		}
+		
+	}
+	
+	public int getPointClassement(int season) {
 		
 		int result = 0;
 		save();
 		
-		ArrayList<String> list = MySQLUtils.getSortValues("players", "points", "ASC");
+		ArrayList<String> list = MySQLUtils.getSortValues("players", "season_"+season+"_points", "ASC");
 		
 		if(list.size() != 0) {
+			
+			for(String pla : list) {
+				
+				if(MySQLUtils.getInt("players", "uuid", pla, "points") == -1) {
+					
+					list.remove(pla);
+					
+				}
+				
+			}
 			
 			for(String ss : list) {
 				
@@ -70,6 +92,29 @@ public class CustomPlayer {
 		}
 		
 		return result;
+		
+	}
+	
+	public int getPointsBySeason(int season) {
+		
+		int result = 0;
+		refreshPoints();
+		
+		if(season == 1) {
+			result = season_1_points;
+		}
+		
+		return result;
+		
+	}
+	
+	public void setPointsBySeason(int season, int points) {
+		
+		if(season == 1) {
+			season_1_points = points;
+		}
+		
+		refreshPoints();
 		
 	}
 
@@ -111,6 +156,7 @@ public class CustomPlayer {
 
 	public void setPoints(int points) {
 		this.points = points;
+		refreshPoints();
 	}
 
 	public int getStep() {
@@ -151,6 +197,14 @@ public class CustomPlayer {
 
 	public void setLegendary_steps(boolean legendary_steps) {
 		this.legendary_steps = legendary_steps;
+	}
+
+	public int getSeason_1_points() {
+		return season_1_points;
+	}
+
+	public void setSeason_1_points(int season_1_points) {
+		this.season_1_points = season_1_points;
 	}
 
 }

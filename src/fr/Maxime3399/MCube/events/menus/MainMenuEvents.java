@@ -1,10 +1,13 @@
 package fr.Maxime3399.MCube.events.menus;
 
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+
+import fr.Maxime3399.MCube.menus.RankedMenu;
 
 public class MainMenuEvents implements Listener {
 	
@@ -26,7 +29,12 @@ public class MainMenuEvents implements Listener {
 				String item = e.getCurrentItem().getItemMeta().getDisplayName();
 				Player p = (Player) e.getWhoClicked();
 				
-				//suite
+				if(item.equalsIgnoreCase("§eJeu classé")) {
+					
+					RankedMenu.openMenu(p);
+					p.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 100, 1);
+					
+				}
 				
 			}
 			

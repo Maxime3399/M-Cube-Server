@@ -6,13 +6,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.CommandsManager;
 import fr.Maxime3399.MCube.managers.EventsManager;
+import fr.Maxime3399.MCube.managers.PlayersManager;
+import fr.Maxime3399.MCube.utils.DisplayUtils;
 import fr.Maxime3399.MCube.utils.MySQLUtils;
 
 public class MainClass extends JavaPlugin{
@@ -45,11 +49,29 @@ public class MainClass extends JavaPlugin{
 					"  `credits` int(255) NOT NULL,\r\n" + 
 					"  `plus_color` varchar(255) NOT NULL,\r\n" + 
 					"  `legendary_steps` varchar(255) NOT NULL,\r\n" + 
+					"  `season_1_points` int(255) NOT NULL,\r\n" + 
 					"  PRIMARY KEY (`uuid`),\r\n" + 
 					"  UNIQUE KEY `uuid` (`uuid`)\r\n" + 
 					") ENGINE=MyISAM DEFAULT CHARSET=latin1;", false)) {
 				
-				EventsManager.registerEvents();
+				if(MySQLUtils.execute("CREATE TABLE IF NOT EXISTS `infos` (\r\n" + 
+						"  `type` varchar(255) NOT NULL,\r\n" + 
+						"  `info_int` int(255) NOT NULL,\r\n" + 
+						"  `info_string` int(255) NOT NULL,\r\n" + 
+						"  PRIMARY KEY (`type`),\r\n" + 
+						"  UNIQUE KEY `type` (`type`)\r\n" + 
+						") ENGINE=MyISAM DEFAULT CHARSET=latin1;", false)) {
+					
+					EventsManager.registerEvents();
+					
+					for(Player pls : Bukkit.getOnlinePlayers()) {
+						
+						PlayersManager.addPlayer(pls);
+						DisplayUtils.setDisplay(pls);
+						
+					}
+					
+				}
 				
 			}else {
 				
@@ -74,6 +96,19 @@ public class MainClass extends JavaPlugin{
 		for(Team ts : s.getTeams()) {
 			
 			ts.unregister();
+			
+		}
+		
+		for(Player pls : Bukkit.getOnlinePlayers()) {
+			
+			if(pls.getOpenInventory() != null) {
+				
+				pls.closeInventory();
+				
+			}
+			
+			CustomPlayer cps = PlayersManager.getCustomPlayer(pls);
+			PlayersManager.removePlayer(cps);
 			
 		}
 		
