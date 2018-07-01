@@ -19,8 +19,8 @@ public class JoinEvents implements Listener {
 		
 		Player p = e.getPlayer();
 		
-		if(MySQLUtils.execute("INSERT INTO `players` (`uuid`, `name`, `rank`, `staff`, `points`, `step`, `tokens`, `credits`, `plus_color`, `legendary_steps`, `placement_points`, `placement_end`, `season_1_points`) VALUES "
-				+ "('"+p.getUniqueId()+"', '"+p.getName()+"', 'default', 'default', '-1', '0', '0', '0', '§2', 'false', '-1', '', '-1');", true)) {
+		if(MySQLUtils.execute("INSERT INTO `players` (`uuid`, `name`, `rank`, `staff`, `points`, `step`, `tokens`, `credits`, `plus_color`, `legendary_steps`, `placement_points`, `placement_end`, `season_1_points`, `r_time_seconds`, `r_time_minutes`, `r_time_hours`, `r_blocks_place`, `r_blocs_break`, `r_chunks`, `r_damages_take`, `r_damages_give`, `r_jump`, `r_drop`, `r_pickup`, `r_deaths`, `r_kill_animals`, `r_kill_monsters`, `r_kill_players`, `r_food`, `r_craft`, `r_chat`, `r_exp`, `r_portal`, `r_shear`, `r_commands`, `r_advancement`, `r_bed`, `r_armorstand`, `r_enchant`) VALUES "
+				+ "('"+p.getUniqueId().toString()+"', '"+p.getName()+"', 'default', 'default', '-1', '0', '0', '0', '§2', 'false', '-1', 'none', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');", true)) {
 			
 			for(Player pls : Bukkit.getOnlinePlayers()) {
 				

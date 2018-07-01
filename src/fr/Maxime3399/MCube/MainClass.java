@@ -52,6 +52,32 @@ public class MainClass extends JavaPlugin{
 					"  `placement_points` int(255) NOT NULL,\r\n" + 
 					"  `placement_end` varchar(255) NOT NULL,\r\n" + 
 					"  `season_1_points` int(255) NOT NULL,\r\n" + 
+					"  `r_time_seconds` int(255) NOT NULL,\r\n" + 
+					"  `r_time_minutes` int(255) NOT NULL,\r\n" + 
+					"  `r_time_hours` int(255) NOT NULL,\r\n" + 
+					"  `r_blocks_place` int(255) NOT NULL,\r\n" + 
+					"  `r_blocs_break` int(255) NOT NULL,\r\n" + 
+					"  `r_chunks` int(255) NOT NULL,\r\n" + 
+					"  `r_damages_take` int(255) NOT NULL,\r\n" + 
+					"  `r_damages_give` int(255) NOT NULL,\r\n" + 
+					"  `r_jump` int(255) NOT NULL,\r\n" + 
+					"  `r_drop` int(255) NOT NULL,\r\n" + 
+					"  `r_pickup` int(255) NOT NULL,\r\n" + 
+					"  `r_deaths` int(255) NOT NULL,\r\n" + 
+					"  `r_kill_animals` int(255) NOT NULL,\r\n" + 
+					"  `r_kill_monsters` int(255) NOT NULL,\r\n" + 
+					"  `r_kill_players` int(255) NOT NULL,\r\n" + 
+					"  `r_food` int(255) NOT NULL,\r\n" + 
+					"  `r_craft` int(255) NOT NULL,\r\n" + 
+					"  `r_chat` int(255) NOT NULL,\r\n" + 
+					"  `r_exp` int(255) NOT NULL,\r\n" + 
+					"  `r_portal` int(255) NOT NULL,\r\n" + 
+					"  `r_shear` int(255) NOT NULL,\r\n" + 
+					"  `r_commands` int(255) NOT NULL,\r\n" + 
+					"  `r_advancement` int(255) NOT NULL,\r\n" + 
+					"  `r_bed` int(255) NOT NULL,\r\n" + 
+					"  `r_armorstand` int(255) NOT NULL,\r\n" + 
+					"  `r_enchant` int(255) NOT NULL,\r\n" + 
 					"  PRIMARY KEY (`uuid`),\r\n" + 
 					"  UNIQUE KEY `uuid` (`uuid`)\r\n" + 
 					") ENGINE=MyISAM DEFAULT CHARSET=latin1;", false)) {
