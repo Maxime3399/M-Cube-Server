@@ -7,12 +7,17 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import fr.Maxime3399.MCube.commands.MenuCMD;
+import fr.Maxime3399.MCube.custom.CustomPlayer;
 
 public class CommandsManager {
 	
 	public static void execute(CommandSender sender, Command cmd, String label, String[] args) {
 		
 		if(sender instanceof Player) {
+			
+			CustomPlayer cp = PlayersManager.getCustomPlayer((Player) sender);
+			cp.setR_commands(cp.getR_commands()+1);
+			//#TEST#
 			
 			if(cmd.getName().equalsIgnoreCase("menu")) {
 				
