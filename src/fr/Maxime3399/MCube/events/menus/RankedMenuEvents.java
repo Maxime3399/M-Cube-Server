@@ -42,7 +42,7 @@ public class RankedMenuEvents implements Listener {
 					
 					if(cp.getPoints() == -1) {
 						
-						if(cp.getPlacement_points() == -1) {
+						if(cp.getPlacement_end().equalsIgnoreCase("none")) {
 							
 							SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
 							Date dO = null;
@@ -68,7 +68,6 @@ public class RankedMenuEvents implements Listener {
 								cal.add(Calendar.DAY_OF_MONTH, 3);
 								dC.setTime(cal.getTimeInMillis());
 								cp.setPlacement_end(sdf.format(dC));
-								cp.setPlacement_points(0);
 								p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_USE, 100, 1);
 								p.sendMessage("§a§lTu as commancé tes jours de placement !§r\n§eJoue un maximum durant les trois prochains jours afin d'obtenir un haut classement !");
 								p.closeInventory();

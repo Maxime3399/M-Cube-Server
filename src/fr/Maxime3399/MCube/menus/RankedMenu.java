@@ -48,7 +48,7 @@ public class RankedMenu {
 			IM1.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			AL1.add("§aSaison en cours !");
 			if(cp.getPoints() == -1) {
-				if(cp.getPlacement_points() != -1){
+				if(!cp.getPlacement_end().equalsIgnoreCase("none")){
 					SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
 					Date dO = null;
 					try {
@@ -208,7 +208,7 @@ public class RankedMenu {
 							IM1.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 							AL1.add("§aSaison en cours !");
 							if(cp.getPoints() == -1) {
-								if(cp.getPlacement_points() != -1){
+								if(!cp.getPlacement_end().equalsIgnoreCase("none")){
 									SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
 									Date dO = null;
 									try {

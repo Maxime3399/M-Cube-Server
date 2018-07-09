@@ -20,7 +20,6 @@ public class CustomPlayer {
 	private int credits;
 	private String plus_color;
 	private boolean legendary_steps;
-	private int placement_points;
 	private String placement_end;
 	private int season_1_points;
 	//here ==============================================
@@ -63,7 +62,6 @@ public class CustomPlayer {
 		this.setCredits(MySQLUtils.getInt("players", "uuid", uuid.toString(), "credits"));
 		this.setPlus_color(MySQLUtils.getString("players", "uuid", uuid.toString(), "plus_color"));
 		this.setLegendary_steps(Boolean.parseBoolean(MySQLUtils.getString("players", "uuid", uuid.toString(), "legendary_steps")));
-		this.setPlacement_points(MySQLUtils.getInt("players", "uuid", uuid.toString(), "placement_points"));
 		this.setPlacement_end(MySQLUtils.getString("players", "uuid", uuid.toString(), "placement_end"));
 		this.setSeason_1_points(MySQLUtils.getInt("players", "uuid", uuid.toString(), "season_1_points"));
 		//here ==============================================
@@ -106,7 +104,6 @@ public class CustomPlayer {
 		MySQLUtils.setInt("players", "uuid", uuid.toString(), "credits", credits);
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "plus_color", plus_color);
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "legendary_steps", String.valueOf(legendary_steps));
-		MySQLUtils.setInt("players", "uuid", uuid.toString(), "placement_points", placement_points);
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "placement_end", placement_end);
 		MySQLUtils.setInt("players", "uuid", uuid.toString(), "season_1_points", season_1_points);
 		//here ===============================================
@@ -283,14 +280,6 @@ public class CustomPlayer {
 
 	public void setLegendary_steps(boolean legendary_steps) {
 		this.legendary_steps = legendary_steps;
-	}
-
-	public int getPlacement_points() {
-		return placement_points;
-	}
-
-	public void setPlacement_points(int placement_points) {
-		this.placement_points = placement_points;
 	}
 
 	public String getPlacement_end() {

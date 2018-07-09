@@ -175,7 +175,11 @@ public class SystemEvents implements Listener {
 	@EventHandler
 	public void onEDeath(EntityDeathEvent e) {
 		
-		if(e.getEntity().getKiller().getType() == EntityType.PLAYER) {
+		if(e.getEntity().getKiller() == null) {
+			
+			return;
+			
+		}else if(e.getEntity().getKiller().getType() == EntityType.PLAYER) {
 			
 			if(e.getEntity().getType() == EntityType.PLAYER) {
 				

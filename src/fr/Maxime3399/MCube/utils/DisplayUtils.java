@@ -178,7 +178,7 @@ public class DisplayUtils {
 				
 			}else {
 				
-				result = cp.getStep()+"";
+				result = "§f"+cp.getStep()+"";
 				
 			}
 			

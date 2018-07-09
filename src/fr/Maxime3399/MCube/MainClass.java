@@ -16,6 +16,7 @@ import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.CommandsManager;
 import fr.Maxime3399.MCube.managers.EventsManager;
 import fr.Maxime3399.MCube.managers.PlayersManager;
+import fr.Maxime3399.MCube.managers.SchedulersManager;
 import fr.Maxime3399.MCube.utils.DisplayUtils;
 import fr.Maxime3399.MCube.utils.MySQLUtils;
 
@@ -49,14 +50,13 @@ public class MainClass extends JavaPlugin{
 					"  `credits` int(255) NOT NULL,\r\n" + 
 					"  `plus_color` varchar(255) NOT NULL,\r\n" + 
 					"  `legendary_steps` varchar(255) NOT NULL,\r\n" + 
-					"  `placement_points` int(255) NOT NULL,\r\n" + 
 					"  `placement_end` varchar(255) NOT NULL,\r\n" + 
 					"  `season_1_points` int(255) NOT NULL,\r\n" + 
 					"  `r_time_seconds` int(255) NOT NULL,\r\n" + 
 					"  `r_time_minutes` int(255) NOT NULL,\r\n" + 
 					"  `r_time_hours` int(255) NOT NULL,\r\n" + 
 					"  `r_blocks_place` int(255) NOT NULL,\r\n" + 
-					"  `r_blocs_break` int(255) NOT NULL,\r\n" + 
+					"  `r_blocks_break` int(255) NOT NULL,\r\n" + 
 					"  `r_chunks` int(255) NOT NULL,\r\n" + 
 					"  `r_damages_take` int(255) NOT NULL,\r\n" + 
 					"  `r_damages_give` int(255) NOT NULL,\r\n" + 
@@ -91,6 +91,7 @@ public class MainClass extends JavaPlugin{
 						") ENGINE=MyISAM DEFAULT CHARSET=latin1;", false)) {
 					
 					EventsManager.registerEvents();
+					SchedulersManager.registerSchedulers();
 					
 					for(Player pls : Bukkit.getOnlinePlayers()) {
 						
