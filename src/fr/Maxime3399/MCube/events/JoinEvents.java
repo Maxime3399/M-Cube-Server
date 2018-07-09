@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
+import fr.Maxime3399.MCube.schedulers.GeneralSheduler;
 import fr.Maxime3399.MCube.utils.DisplayUtils;
 import fr.Maxime3399.MCube.utils.MySQLUtils;
 import fr.Maxime3399.MCube.utils.PointsUtils;
@@ -60,6 +61,8 @@ public class JoinEvents implements Listener {
 		}
 		
 		e.setJoinMessage("§a§l+§r "+p.getDisplayName());
+		
+		GeneralSheduler.action(p);
 		
 		Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
 			

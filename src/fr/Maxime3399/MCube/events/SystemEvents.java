@@ -3,6 +3,7 @@ package fr.Maxime3399.MCube.events;
 import java.util.HashMap;
 
 import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -16,6 +17,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
@@ -32,38 +34,101 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
+import fr.Maxime3399.MCube.schedulers.GeneralSheduler;
 
 @SuppressWarnings("deprecation")
 public class SystemEvents implements Listener {
 	
+	HashMap<Player, Location> place = new HashMap<>();
+	
 	@EventHandler
 	public void onPlace(BlockPlaceEvent e) {
 		
-		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
-		cp.setR_blocks_place(cp.getR_blocks_place()+1);
-		//#TEST#
+		boolean event = false;
+		if(!place.containsKey(e.getPlayer())) {
+			place.put(e.getPlayer(), e.getBlock().getLocation());
+			event = true;
+		}else {
+			if(place.get(e.getPlayer()) != e.getBlock().getLocation()) {
+				place.put(e.getPlayer(), e.getBlock().getLocation());
+				event = true;
+			}
+		}
+		
+		if(event) {
+			
+			GeneralSheduler.action(e.getPlayer());
+			CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
+			cp.setR_blocks_place(cp.getR_blocks_place()+1);
+			//#TEST#
+			
+		}
 		
 	}
+	
+	HashMap<Player, Location> brea = new HashMap<>();
 	
 	@EventHandler
 	public void onBreak(BlockBreakEvent e) {
 		
-		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
-		cp.setR_blocks_break(cp.getR_blocks_break()+1);
-		//#TEST#
+		boolean event = false;
+		if(!brea.containsKey(e.getPlayer())) {
+			brea.put(e.getPlayer(), e.getBlock().getLocation());
+			event = true;
+		}else {
+			if(brea.get(e.getPlayer()) != e.getBlock().getLocation()) {
+				brea.put(e.getPlayer(), e.getBlock().getLocation());
+				event = true;
+			}
+		}
+		
+		if(event) {
+			
+			GeneralSheduler.action(e.getPlayer());
+			CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
+			cp.setR_blocks_break(cp.getR_blocks_break()+1);
+			//#TEST#
+			
+		}
 		
 	}
 	
 	HashMap<Player, Chunk> chunks = new HashMap<>();
 	
+	HashMap<Player, Location> bl = new HashMap<>();
+	
 	@EventHandler
 	public void onMoove(PlayerMoveEvent e) {
 		
 		Player p = e.getPlayer();
+		boolean moove = false;
 		
-		if(chunks.containsKey(p)) {
+		if(!bl.containsKey(p)) {
+			bl.put(p, p.getLocation());
+			moove = true;
+		}else {
+			if(p.getLocation().distance(bl.get(p)) > 1.5) {
+				moove = true;
+				bl.put(p, p.getLocation());
+			}
+		}
+		
+		if(moove) {
 			
-			if(p.getLocation().getChunk() != chunks.get(p)) {
+			GeneralSheduler.action(e.getPlayer());
+			
+			if(chunks.containsKey(p)) {
+				
+				if(p.getLocation().getChunk() != chunks.get(p)) {
+					
+					CustomPlayer cp = PlayersManager.getCustomPlayer(p);
+					cp.setR_chunks(cp.getR_chunks()+1);
+					chunks.put(p, p.getLocation().getChunk());
+					//#TEST#
+					
+				}
+				
+			}else {
 				
 				CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 				cp.setR_chunks(cp.getR_chunks()+1);
@@ -72,22 +137,15 @@ public class SystemEvents implements Listener {
 				
 			}
 			
-		}else {
+			final double STILL = -0.0784000015258789;
 			
-			CustomPlayer cp = PlayersManager.getCustomPlayer(p);
-			cp.setR_chunks(cp.getR_chunks()+1);
-			chunks.put(p, p.getLocation().getChunk());
-			//#TEST#
-			
-		}
-		
-		final double STILL = -0.0784000015258789;
-		
-		if(!p.isFlying() && p.getVelocity().getY() > STILL) {
-			
-			CustomPlayer cp = PlayersManager.getCustomPlayer(p);
-			cp.setR_jump(cp.getR_jump()+1);
-			//#TEST#
+			if(!p.isFlying() && p.getVelocity().getY() > STILL) {
+				
+				CustomPlayer cp = PlayersManager.getCustomPlayer(p);
+				cp.setR_jump(cp.getR_jump()+1);
+				//#TEST#
+				
+			}
 			
 		}
 		
@@ -103,6 +161,7 @@ public class SystemEvents implements Listener {
 				CustomPlayer cp = PlayersManager.getCustomPlayer((Player) e.getEntity());
 				cp.setR_damages_take((int) (cp.getR_damages_take()+e.getDamage()));
 				//#TEST#
+				GeneralSheduler.action((Player) e.getEntity());
 				
 			}
 			
@@ -122,6 +181,7 @@ public class SystemEvents implements Listener {
 					CustomPlayer cp = PlayersManager.getCustomPlayer((Player) e.getEntity());
 					cp.setR_damages_take((int) (cp.getR_damages_take()+e.getDamage()));
 					//#TEST#
+					GeneralSheduler.action((Player) e.getEntity());
 					
 				}
 				
@@ -136,6 +196,7 @@ public class SystemEvents implements Listener {
 					CustomPlayer cp = PlayersManager.getCustomPlayer((Player) e.getDamager());
 					cp.setR_damages_give((int) (cp.getR_damages_give()+e.getDamage()));
 					//#TEST#
+					GeneralSheduler.action((Player) e.getDamager());
 					
 				}
 				
@@ -151,6 +212,7 @@ public class SystemEvents implements Listener {
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_drop(cp.getR_drop()+1);
 		//#TEST#
+		GeneralSheduler.action(e.getPlayer());
 		
 	}
 	
@@ -160,6 +222,7 @@ public class SystemEvents implements Listener {
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_pickup(cp.getR_pickup()+1);
 		//#TEST#
+		GeneralSheduler.action(e.getPlayer());
 		
 	}
 	
@@ -169,6 +232,7 @@ public class SystemEvents implements Listener {
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getEntity());
 		cp.setR_deaths(cp.getR_deaths()+1);
 		//#TEST#
+		GeneralSheduler.action(e.getEntity());
 		
 	}
 	
@@ -227,6 +291,7 @@ public class SystemEvents implements Listener {
 			CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 			cp.setR_food(cp.getR_food()+e.getFoodLevel()-food.get(p));
 			//#TEST#
+			GeneralSheduler.action((Player) e.getEntity());
 			
 		}
 		
@@ -240,6 +305,7 @@ public class SystemEvents implements Listener {
 		CustomPlayer cp = PlayersManager.getCustomPlayer((Player) e.getWhoClicked());
 		cp.setR_craft(cp.getR_craft()+1);
 		//#TEST#
+		GeneralSheduler.action((Player) e.getWhoClicked());
 		
 	}
 	
@@ -249,6 +315,7 @@ public class SystemEvents implements Listener {
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_chat(cp.getR_chat()+1);
 		//#TEST#
+		GeneralSheduler.action(e.getPlayer());
 		
 	}
 	
@@ -275,6 +342,7 @@ public class SystemEvents implements Listener {
 			CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 			cp.setR_portal(cp.getR_portal()+1);
 			//#TEST#
+			GeneralSheduler.action(e.getPlayer());
 			
 		}
 		
@@ -286,6 +354,7 @@ public class SystemEvents implements Listener {
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_shear(cp.getR_shear()+1);
 		//#TEST#
+		GeneralSheduler.action(e.getPlayer());
 		
 	}
 	
@@ -295,6 +364,7 @@ public class SystemEvents implements Listener {
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_advancement(cp.getR_advancement());
 		//#TEST#
+		GeneralSheduler.action(e.getPlayer());
 		
 	}
 	
@@ -304,6 +374,7 @@ public class SystemEvents implements Listener {
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_bed(cp.getR_bed()+1);
 		//#TEST#
+		GeneralSheduler.action(e.getPlayer());
 		
 	}
 	
@@ -313,6 +384,7 @@ public class SystemEvents implements Listener {
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_armorstand(cp.getR_armorstand()+1);
 		//#TEST#
+		GeneralSheduler.action(e.getPlayer());
 		
 	}
 	
@@ -321,6 +393,15 @@ public class SystemEvents implements Listener {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getEnchanter());
 		cp.setR_enchant(cp.getR_enchant()+1);
+		//#TEST#
+		GeneralSheduler.action(e.getEnchanter());
+		
+	}
+	
+	@EventHandler
+	public void invClick(InventoryClickEvent e) {
+		
+		GeneralSheduler.action((Player) e.getWhoClicked());
 		
 	}
 

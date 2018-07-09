@@ -50,6 +50,8 @@ public class CustomPlayer {
 	private int r_armorstand;
 	private int r_enchant;
 	
+	private boolean afk;
+	
 	public CustomPlayer(Player p) {
 		
 		this.setUuid(p.getUniqueId());
@@ -91,6 +93,8 @@ public class CustomPlayer {
 		this.setR_bed(MySQLUtils.getInt("players", "uuid", uuid.toString(), "r_bed"));
 		this.setR_armorstand(MySQLUtils.getInt("players", "uuid", uuid.toString(), "r_armorstand"));
 		this.setR_enchant(MySQLUtils.getInt("players", "uuid", uuid.toString(), "r_enchant"));
+		
+		this.setAfk(false);
 		
 	}
 	
@@ -504,6 +508,14 @@ public class CustomPlayer {
 
 	public void setR_enchant(int r_enchant) {
 		this.r_enchant = r_enchant;
+	}
+
+	public boolean isAfk() {
+		return afk;
+	}
+
+	public void setAfk(boolean afk) {
+		this.afk = afk;
 	}
 
 }
