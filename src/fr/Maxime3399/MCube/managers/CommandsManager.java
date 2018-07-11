@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import fr.Maxime3399.MCube.commands.MenuCMD;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
+import fr.Maxime3399.MCube.schedulers.GeneralSheduler;
 
 public class CommandsManager {
 	
@@ -18,6 +19,7 @@ public class CommandsManager {
 			CustomPlayer cp = PlayersManager.getCustomPlayer((Player) sender);
 			cp.setR_commands(cp.getR_commands()+1);
 			//#TEST#
+			GeneralSheduler.action((Player) sender);
 			
 			if(cmd.getName().equalsIgnoreCase("menu")) {
 				

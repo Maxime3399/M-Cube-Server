@@ -21,6 +21,8 @@ public class GeneralSheduler {
 	public static void action(Player p) {
 		
 		afk.put(p, 0);
+		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
+		cp.setAfk(false);
 		
 	}
 	

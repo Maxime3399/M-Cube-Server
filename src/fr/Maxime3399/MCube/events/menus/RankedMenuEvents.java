@@ -68,6 +68,36 @@ public class RankedMenuEvents implements Listener {
 								cal.add(Calendar.DAY_OF_MONTH, 3);
 								dC.setTime(cal.getTimeInMillis());
 								cp.setPlacement_end(sdf.format(dC));
+								
+								cp.setR_time_seconds(0);
+								cp.setR_time_minutes(0);
+								cp.setR_time_hours(0);
+								cp.setR_blocks_place(0);
+								cp.setR_blocks_break(0);
+								cp.setR_chunks(0);
+								cp.setR_damages_take(0);
+								cp.setR_damages_give(0);
+								cp.setR_jump(0);
+								cp.setR_drop(0);
+								cp.setR_pickup(0);
+								cp.setR_deaths(0);
+								cp.setR_kill_animals(0);
+								cp.setR_kill_monsters(0);
+								cp.setR_kill_players(0);
+								cp.setR_food(0);
+								cp.setR_craft(0);
+								cp.setR_chat(0);
+								cp.setR_exp(0);
+								cp.setR_portal(0);
+								cp.setR_shear(0);
+								cp.setR_commands(0);
+								cp.setR_advancement(0);
+								cp.setR_bed(0);
+								cp.setR_armorstand(0);
+								cp.setR_enchant(0);
+								
+								cp.save();
+								
 								p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_USE, 100, 1);
 								p.sendMessage("§a§lTu as commancé tes jours de placement !§r\n§eJoue un maximum durant les trois prochains jours afin d'obtenir un haut classement !");
 								p.closeInventory();

@@ -35,6 +35,7 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
 import fr.Maxime3399.MCube.schedulers.GeneralSheduler;
+import fr.Maxime3399.MCube.utils.PointsUtils;
 
 @SuppressWarnings("deprecation")
 public class SystemEvents implements Listener {
@@ -60,7 +61,7 @@ public class SystemEvents implements Listener {
 			GeneralSheduler.action(e.getPlayer());
 			CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 			cp.setR_blocks_place(cp.getR_blocks_place()+1);
-			//#TEST#
+			PointsUtils.addPoints(e.getPlayer());
 			
 		}
 		
@@ -87,7 +88,7 @@ public class SystemEvents implements Listener {
 			GeneralSheduler.action(e.getPlayer());
 			CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 			cp.setR_blocks_break(cp.getR_blocks_break()+1);
-			//#TEST#
+			PointsUtils.addPoints(e.getPlayer());
 			
 		}
 		
@@ -124,7 +125,7 @@ public class SystemEvents implements Listener {
 					CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 					cp.setR_chunks(cp.getR_chunks()+1);
 					chunks.put(p, p.getLocation().getChunk());
-					//#TEST#
+					PointsUtils.addPoints(e.getPlayer());
 					
 				}
 				
@@ -133,7 +134,7 @@ public class SystemEvents implements Listener {
 				CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 				cp.setR_chunks(cp.getR_chunks()+1);
 				chunks.put(p, p.getLocation().getChunk());
-				//#TEST#
+				PointsUtils.addPoints(e.getPlayer());
 				
 			}
 			
@@ -143,7 +144,7 @@ public class SystemEvents implements Listener {
 				
 				CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 				cp.setR_jump(cp.getR_jump()+1);
-				//#TEST#
+				PointsUtils.addPoints(e.getPlayer());
 				
 			}
 			
@@ -160,7 +161,7 @@ public class SystemEvents implements Listener {
 				
 				CustomPlayer cp = PlayersManager.getCustomPlayer((Player) e.getEntity());
 				cp.setR_damages_take((int) (cp.getR_damages_take()+e.getDamage()));
-				//#TEST#
+				PointsUtils.addPoints((Player) e.getEntity());
 				GeneralSheduler.action((Player) e.getEntity());
 				
 			}
@@ -180,7 +181,7 @@ public class SystemEvents implements Listener {
 					
 					CustomPlayer cp = PlayersManager.getCustomPlayer((Player) e.getEntity());
 					cp.setR_damages_take((int) (cp.getR_damages_take()+e.getDamage()));
-					//#TEST#
+					PointsUtils.addPoints((Player) e.getEntity());
 					GeneralSheduler.action((Player) e.getEntity());
 					
 				}
@@ -195,7 +196,7 @@ public class SystemEvents implements Listener {
 					
 					CustomPlayer cp = PlayersManager.getCustomPlayer((Player) e.getDamager());
 					cp.setR_damages_give((int) (cp.getR_damages_give()+e.getDamage()));
-					//#TEST#
+					PointsUtils.addPoints((Player) e.getDamager());
 					GeneralSheduler.action((Player) e.getDamager());
 					
 				}
@@ -211,7 +212,7 @@ public class SystemEvents implements Listener {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_drop(cp.getR_drop()+1);
-		//#TEST#
+		PointsUtils.addPoints(e.getPlayer());
 		GeneralSheduler.action(e.getPlayer());
 		
 	}
@@ -221,7 +222,7 @@ public class SystemEvents implements Listener {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_pickup(cp.getR_pickup()+1);
-		//#TEST#
+		PointsUtils.addPoints(e.getPlayer());
 		GeneralSheduler.action(e.getPlayer());
 		
 	}
@@ -231,7 +232,7 @@ public class SystemEvents implements Listener {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getEntity());
 		cp.setR_deaths(cp.getR_deaths()+1);
-		//#TEST#
+		PointsUtils.addPoints(e.getEntity());
 		GeneralSheduler.action(e.getEntity());
 		
 	}
@@ -249,7 +250,7 @@ public class SystemEvents implements Listener {
 				
 				CustomPlayer cp = PlayersManager.getCustomPlayer(e.getEntity().getKiller());
 				cp.setR_kill_players(cp.getR_kill_players()+1);
-				//#TEST#
+				PointsUtils.addPoints(e.getEntity().getKiller());
 				
 			}else {
 				
@@ -257,13 +258,13 @@ public class SystemEvents implements Listener {
 					
 					CustomPlayer cp = PlayersManager.getCustomPlayer(e.getEntity().getKiller());
 					cp.setR_kill_animals(cp.getR_kill_animals()+1);
-					//#TEST#
+					PointsUtils.addPoints(e.getEntity().getKiller());
 					
 				}else {
 					
 					CustomPlayer cp = PlayersManager.getCustomPlayer(e.getEntity().getKiller());
 					cp.setR_kill_monsters(cp.getR_kill_monsters()+1);
-					//#TEST#
+					PointsUtils.addPoints(e.getEntity().getKiller());
 					
 				}
 				
@@ -290,7 +291,7 @@ public class SystemEvents implements Listener {
 			
 			CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 			cp.setR_food(cp.getR_food()+e.getFoodLevel()-food.get(p));
-			//#TEST#
+			PointsUtils.addPoints((Player) e.getEntity());
 			GeneralSheduler.action((Player) e.getEntity());
 			
 		}
@@ -303,8 +304,8 @@ public class SystemEvents implements Listener {
 	public void onCraft(CraftItemEvent e) {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer((Player) e.getWhoClicked());
-		cp.setR_craft(cp.getR_craft()+1);
-		//#TEST#
+		cp.setR_craft(cp.getR_craft()+e.getCurrentItem().getAmount());
+		PointsUtils.addPoints((Player) e.getWhoClicked());
 		GeneralSheduler.action((Player) e.getWhoClicked());
 		
 	}
@@ -314,7 +315,7 @@ public class SystemEvents implements Listener {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_chat(cp.getR_chat()+1);
-		//#TEST#
+		PointsUtils.addPoints(e.getPlayer());
 		GeneralSheduler.action(e.getPlayer());
 		
 	}
@@ -327,8 +328,8 @@ public class SystemEvents implements Listener {
 		if(e.getAmount() > 0) {
 			
 			CustomPlayer cp = PlayersManager.getCustomPlayer(p);
-			cp.setR_food(cp.getR_food()+e.getAmount());
-			//#TEST#
+			cp.setR_exp(cp.getR_exp()+e.getAmount());
+			PointsUtils.addPoints(e.getPlayer());
 			
 		}
 		
@@ -341,7 +342,7 @@ public class SystemEvents implements Listener {
 			
 			CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 			cp.setR_portal(cp.getR_portal()+1);
-			//#TEST#
+			PointsUtils.addPoints(e.getPlayer());
 			GeneralSheduler.action(e.getPlayer());
 			
 		}
@@ -353,7 +354,7 @@ public class SystemEvents implements Listener {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_shear(cp.getR_shear()+1);
-		//#TEST#
+					PointsUtils.addPoints(e.getPlayer());
 		GeneralSheduler.action(e.getPlayer());
 		
 	}
@@ -363,7 +364,7 @@ public class SystemEvents implements Listener {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_advancement(cp.getR_advancement());
-		//#TEST#
+					PointsUtils.addPoints(e.getPlayer());
 		GeneralSheduler.action(e.getPlayer());
 		
 	}
@@ -373,7 +374,7 @@ public class SystemEvents implements Listener {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_bed(cp.getR_bed()+1);
-		//#TEST#
+		PointsUtils.addPoints(e.getPlayer());
 		GeneralSheduler.action(e.getPlayer());
 		
 	}
@@ -383,7 +384,7 @@ public class SystemEvents implements Listener {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getPlayer());
 		cp.setR_armorstand(cp.getR_armorstand()+1);
-		//#TEST#
+		PointsUtils.addPoints(e.getPlayer());
 		GeneralSheduler.action(e.getPlayer());
 		
 	}
@@ -393,7 +394,7 @@ public class SystemEvents implements Listener {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(e.getEnchanter());
 		cp.setR_enchant(cp.getR_enchant()+1);
-		//#TEST#
+		PointsUtils.addPoints(e.getEnchanter());
 		GeneralSheduler.action(e.getEnchanter());
 		
 	}
