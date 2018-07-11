@@ -202,5 +202,25 @@ public class MySQLUtils {
 		return result;
 		
 	}
+	
+	public static boolean isConnected(String tryCommand) {
+		
+		boolean result = true;
+		
+		try{
+			
+			ResultSet r = state.executeQuery(tryCommand);
+			r.next();
+			
+		}catch(SQLException e){
+			
+			result = false;
+			
+		}
+		
+		
+		return result;
+		
+	}
 
 }

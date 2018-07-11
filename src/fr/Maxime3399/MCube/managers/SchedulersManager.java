@@ -7,6 +7,7 @@ public class SchedulersManager {
 	public static void registerSchedulers() {
 		
 		GeneralSheduler.start1();
+		GeneralSheduler.start30();
 		
 	}
 

@@ -12,6 +12,7 @@ import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
 import fr.Maxime3399.MCube.utils.ChatUtils;
+import fr.Maxime3399.MCube.utils.MySQLUtils;
 import fr.Maxime3399.MCube.utils.PointsUtils;
 
 public class GeneralSheduler {
@@ -100,6 +101,32 @@ public class GeneralSheduler {
 			}
 			
 		}, 20, 20);
+		
+	}
+	
+	public static void start30() {
+		
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(MainClass.getInstance(), new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				if(!MySQLUtils.isConnected("SELECT * FROM `players`")) {
+					
+					MySQLUtils.connect();
+					
+					for(Player pls : Bukkit.getOnlinePlayers()) {
+						
+						CustomPlayer cps = PlayersManager.getCustomPlayer(pls);
+						cps.save();
+						
+					}
+					
+				}
+				
+			}
+			
+		}, 600, 600);
 		
 	}
 
