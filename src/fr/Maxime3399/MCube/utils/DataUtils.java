@@ -39,5 +39,11 @@ public class DataUtils {
 		return d+":"+h+":"+m+":"+s;
 		
 	}
+	
+	public static boolean getMaintenance() {
+		
+		return Boolean.parseBoolean(MySQLUtils.getString("infos", "type", "maintenance", "info_string"));
+		
+	}
 
 }

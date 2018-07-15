@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
+import fr.Maxime3399.MCube.utils.DataUtils;
 import fr.Maxime3399.MCube.utils.DisplayUtils;
 
 public class QuitEvents implements Listener {
@@ -21,22 +22,41 @@ public class QuitEvents implements Listener {
 		
 		PlayersManager.removePlayer(cp);
 		
-		e.setQuitMessage("§c§l-§r "+p.getDisplayName());
-		
-		Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+		boolean mes = true;
+		if(DataUtils.getMaintenance()) {
 			
-			@Override
-			public void run() {
+			if(!p.hasPermission("mcube.maintenance")) {
 				
-				for(Player pls : Bukkit.getOnlinePlayers()) {
-					
-					DisplayUtils.setDisplay(pls);
-					
-				}
+				mes = false;
 				
 			}
 			
-		}, 10);
+		}
+		
+		if(mes) {
+			
+			e.setQuitMessage("§c§l-§r "+p.getDisplayName());
+			
+			Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+				
+				@Override
+				public void run() {
+					
+					for(Player pls : Bukkit.getOnlinePlayers()) {
+						
+						DisplayUtils.setDisplay(pls);
+						
+					}
+					
+				}
+				
+			}, 10);
+			
+		}else {
+			
+			e.setQuitMessage(null);
+			
+		}
 		
 	}
 

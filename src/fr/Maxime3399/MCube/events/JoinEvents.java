@@ -48,57 +48,79 @@ public class JoinEvents implements Listener {
 		}
 		
 		CustomPlayer cp = PlayersManager.addPlayer(p);
+		boolean join = true;
+		String reason = "";
 		
-		if(!cp.getName().equalsIgnoreCase(p.getName())) {
+		if(DataUtils.getMaintenance()) {
 			
-			for(Player pls : Bukkit.getOnlinePlayers()) {
+			if(!p.hasPermission("mcube.maintenance")) {
 				
-				pls.sendMessage("§b§l"+cp.getName()+"§r§e est désormais connu sous le nom de §a§l"+p.getName()+"§r §e!");
-				pls.playSound(pls.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 1);
+				join = false;
+				reason = "§cLe serveur est en maintenance !";
 				
 			}
 			
-			cp.setName(p.getName());
-			
 		}
 		
-		for(Player pls : Bukkit.getOnlinePlayers()) {
+		if(!join) {
 			
-			DisplayUtils.setDisplay(pls);
+			e.setJoinMessage(null);
+			p.kickPlayer(reason);
 			
-		}
-		
-		e.setJoinMessage("§a§l+§r "+p.getDisplayName());
-		
-		GeneralSheduler.action(p);
-		
-		Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+		}else {
 			
-			@Override
-			public void run() {
+			if(!cp.getName().equalsIgnoreCase(p.getName())) {
 				
-				if(!cp.getPlacement_end().equalsIgnoreCase("none")) {
+				for(Player pls : Bukkit.getOnlinePlayers()) {
 					
-					SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-					Date dO = null;
-					try {
-						dO = sdf.parse(cp.getPlacement_end());
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-					Date dT = new Date();
+					pls.sendMessage("§b§l"+cp.getName()+"§r§e est désormais connu sous le nom de §a§l"+p.getName()+"§r §e!");
+					pls.playSound(pls.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 1);
 					
-					if(dO.getTime() < dT.getTime()) {
+				}
+				
+				cp.setName(p.getName());
+				
+			}
+			
+			for(Player pls : Bukkit.getOnlinePlayers()) {
+				
+				DisplayUtils.setDisplay(pls);
+				
+			}
+			
+			e.setJoinMessage("§a§l+§r "+p.getDisplayName());
+			
+			GeneralSheduler.action(p);
+			
+			Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+				
+				@Override
+				public void run() {
+					
+					if(!cp.getPlacement_end().equalsIgnoreCase("none")) {
 						
-						PointsUtils.placePlayer(p);
+						SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+						Date dO = null;
+						try {
+							dO = sdf.parse(cp.getPlacement_end());
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+						Date dT = new Date();
+						
+						if(dO.getTime() < dT.getTime()) {
+							
+							PointsUtils.placePlayer(p);
+							
+						}
 						
 					}
 					
 				}
 				
-			}
+			}, 10);
 			
-		}, 10);
+		}
 		
 	}
 

@@ -4,3 +4,4 @@ name: M-Cube
 version: 1.0.0-a1.0
 commands:
     menu:
+    maintenance:
