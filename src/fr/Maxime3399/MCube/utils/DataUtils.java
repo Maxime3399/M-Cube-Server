@@ -13,6 +13,12 @@ public class DataUtils {
 		
 	}
 	
+	public static int getData() {
+		
+		return MySQLUtils.getInt("infos", "type", "data", "info_int");
+		
+	}
+	
 	public static String getEndSeason() {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
