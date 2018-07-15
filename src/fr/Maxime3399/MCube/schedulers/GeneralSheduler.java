@@ -2,16 +2,20 @@ package fr.Maxime3399.MCube.schedulers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
 import fr.Maxime3399.MCube.utils.ChatUtils;
+import fr.Maxime3399.MCube.utils.DataUtils;
+import fr.Maxime3399.MCube.utils.DisplayUtils;
 import fr.Maxime3399.MCube.utils.MySQLUtils;
 import fr.Maxime3399.MCube.utils.PointsUtils;
 
@@ -34,63 +38,170 @@ public class GeneralSheduler {
 			@Override
 			public void run() {
 				
-				for(Player pls : Bukkit.getOnlinePlayers()) {
+				String seasonEnd = null;
+				if(seasonEnd == null) {
+					seasonEnd = MySQLUtils.getString("infos", "type", "season_"+DataUtils.getCurrentSeason()+"_end", "info_string");
+				}
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+				Date dEnd = null;
+				try {
+					dEnd = sdf.parse(seasonEnd);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				Date dCurrent = new Date();
+				boolean d = true;
+				
+				if(dEnd.getTime() < dCurrent.getTime()) {
 					
-					CustomPlayer cps = PlayersManager.getCustomPlayer(pls);
-					
-					if(afk.containsKey(pls)) {
+					d = false;
+					for(Player pls : Bukkit.getOnlinePlayers()) {
 						
-						afk.put(pls, afk.get(pls)+1);
-						
-						if(afk.get(pls) >= 60) {
-							
-							cps.setAfk(true);
-							
+						if(pls.getOpenInventory() != null) {
+							pls.closeInventory();
 						}
+						
+						PlayersManager.removePlayer(pls);
 						
 					}
 					
-					if(!cps.isAfk()) {
+					int lastSeason = DataUtils.getCurrentSeason();
+					int order = 0;
+					for(String st : MySQLUtils.getSortValues("players", "points", "ASC")) {
 						
-						if(!cps.getPlacement_end().equalsIgnoreCase("none")) {
+						order = order+1;
+						int points = MySQLUtils.getInt("players", "uuid", st, "points");
+						if(order == 1) {
 							
-							SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-							Date dO = null;
-							try {
-								dO = sdf.parse(cps.getPlacement_end());
-							} catch (ParseException e) {
-								e.printStackTrace();
-							}
-							Date dT = new Date();
+							//gift TOP 1
 							
-							if(dO.getTime() < dT.getTime()) {
-								
-								PointsUtils.placePlayer(pls);
-								
-							}
+						}else if(order == 2) {
 							
-						}
-						
-						cps.setR_time_seconds(cps.getR_time_seconds()+1);
-						if(cps.getR_time_seconds() == 60) {
-							cps.setR_time_seconds(0);
-							cps.setR_time_minutes(cps.getR_time_minutes()+1);
-						}
-						if(cps.getR_time_minutes() == 60) {
-							cps.setR_time_minutes(0);
-							cps.setR_time_hours(cps.getR_time_hours()+1);
-						}
-						//#TEST#
-						
-					}else {
-						
-						if(pls.hasPermission("mcube.afk")) {
+							//gift TOP 2
 							
-							ChatUtils.sendTitle(pls, "§c§lAFK", 5, 12, 5);
+						}else if(order == 3) {
+							
+							//gift TOP 3
 							
 						}else {
 							
-							pls.kickPlayer("§c§lVous ne pouvez pas rester AFK !§r\n§eLes §f§lMiniVIP§r§e et §l+§r§e ne sont pas déconnectés.");
+							if(points >= 500) {
+								
+								//gift Legend
+								
+							}else if(points >= 400) {
+								
+								//gift Master
+								
+							}else if(points >= 300) {
+								
+								//gift Platinum
+								
+							}else if(points >= 200) {
+								
+								//gift Gold
+								
+							}else if(points >= 100) {
+								
+								//gift Silver
+								
+							}else {
+								
+								//gift Bronze
+								
+							}
+							
+						}
+						
+						MySQLUtils.setInt("players", "uuid", st, "points", -1);
+						MySQLUtils.setInt("players", "uuid", st, "season_"+lastSeason+"_points", points);
+						
+					}
+					
+					int newSeason = lastSeason+1;
+					
+					Date dNew = new Date();
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(dNew);
+					cal.add(Calendar.DAY_OF_MONTH, 45);
+					dNew.setTime(cal.getTimeInMillis());
+					String nd = sdf.format(dNew);
+					
+					MySQLUtils.execute("INSERT INTO `infos` (`type`, `info_int`, `info_string`) VALUES ('season_"+newSeason+"_end', '0', '"+nd+"');", false);
+					MySQLUtils.execute("UPDATE `infos` SET `info_int` = '"+newSeason+"' WHERE `infos`.`type` = 'currentSeason';", false);
+					
+					for(Player pls : Bukkit.getOnlinePlayers()) {
+						
+						PlayersManager.addPlayer(pls);
+						pls.sendMessage(" \n     §b§l§k||§r  §a§lDébut de la saison §r§6§l"+newSeason+"§r  §b§l§l||§r\n ");
+						pls.playSound(pls.getLocation(), Sound.ENTITY_ENDERDRAGON_DEATH, 100, 2);
+						DisplayUtils.setDisplay(pls);
+						
+					}
+					
+				}
+				
+				if(d) {
+					
+					for(Player pls : Bukkit.getOnlinePlayers()) {
+						
+						CustomPlayer cps = PlayersManager.getCustomPlayer(pls);
+						
+						if(afk.containsKey(pls)) {
+							
+							afk.put(pls, afk.get(pls)+1);
+							
+							if(afk.get(pls) >= 60) {
+								
+								cps.setAfk(true);
+								
+							}
+							
+						}
+						
+						if(!cps.isAfk()) {
+							
+							if(!cps.getPlacement_end().equalsIgnoreCase("none")) {
+								
+								Date dO = null;
+								try {
+									dO = sdf.parse(cps.getPlacement_end());
+								} catch (ParseException e) {
+									e.printStackTrace();
+								}
+								Date dT = new Date();
+								
+								if(dO.getTime() < dT.getTime()) {
+									
+									PointsUtils.placePlayer(pls);
+									
+								}
+								
+							}
+							
+							cps.setR_time_seconds(cps.getR_time_seconds()+1);
+							if(cps.getR_time_seconds() == 60) {
+								cps.setR_time_seconds(0);
+								cps.setR_time_minutes(cps.getR_time_minutes()+1);
+							}
+							if(cps.getR_time_minutes() == 60) {
+								cps.setR_time_minutes(0);
+								cps.setR_time_hours(cps.getR_time_hours()+1);
+							}
+							//#TEST#
+							
+						}else {
+							
+							if(pls.hasPermission("mcube.afk")) {
+								
+								ChatUtils.sendTitle(pls, "§c§lAFK", 5, 12, 5);
+								
+							}else {
+								
+								pls.kickPlayer("§c§lVous ne pouvez pas rester AFK !§r\n§eLes §f§lMiniVIP§r§e et §l+§r§e ne sont pas déconnectés.");
+								
+							}
 							
 						}
 						

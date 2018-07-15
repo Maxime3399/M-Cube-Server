@@ -52,6 +52,7 @@ public class MainClass extends JavaPlugin{
 					"  `legendary_steps` varchar(255) NOT NULL,\r\n" + 
 					"  `placement_end` varchar(255) NOT NULL,\r\n" + 
 					"  `season_1_points` int(255) NOT NULL,\r\n" + 
+					"  `season_2_points` int(255) NOT NULL,\r\n" + 
 					"  `r_time_seconds` int(255) NOT NULL,\r\n" + 
 					"  `r_time_minutes` int(255) NOT NULL,\r\n" + 
 					"  `r_time_hours` int(255) NOT NULL,\r\n" + 
