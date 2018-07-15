@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import fr.Maxime3399.MCube.commands.MaintenanceCMD;
 import fr.Maxime3399.MCube.commands.MenuCMD;
+import fr.Maxime3399.MCube.commands.PlayercountCMD;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.schedulers.GeneralSheduler;
 import fr.Maxime3399.MCube.utils.PointsUtils;
@@ -31,6 +32,10 @@ public class CommandsManager {
 				
 				MaintenanceCMD.commandPlayer(sender, cmd, label, args);
 				
+			}else if(cmd.getName().equalsIgnoreCase("playercount") || cmd.getName().equalsIgnoreCase("pc")) {
+				
+				PlayercountCMD.commandPlayer(sender, cmd, label, args);
+				
 			}
 			
 		}
@@ -44,6 +49,10 @@ public class CommandsManager {
 			}else if(cmd.getName().equalsIgnoreCase("maintenance")) {
 				
 				MaintenanceCMD.commandConsole(sender, cmd, label, args);
+				
+			}else if(cmd.getName().equalsIgnoreCase("playercount") || cmd.getName().equalsIgnoreCase("pc")) {
+				
+				PlayercountCMD.commandConsole(sender, cmd, label, args);
 				
 			}
 			
