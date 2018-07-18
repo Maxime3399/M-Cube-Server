@@ -149,6 +149,17 @@ public class RankedMenu {
 			
 		}
 		
+		ItemStack ISback = new ItemStack(Material.ARROW);
+		ItemMeta IMback = ISback.getItemMeta();
+		ArrayList<String> ALback = new ArrayList<>();
+		IMback.setDisplayName("§8§oRetour");
+		ALback.add(" ");
+		ALback.add("§3Clique §7pour retourner au");
+		ALback.add("§7menu principal");
+		IMback.setLore(ALback);
+		ISback.setItemMeta(IMback);
+		i.setItem(17, ISback);
+		
 		ItemStack ISsep = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 15);
 		ItemMeta IMsep = ISsep.getItemMeta();
 		IMsep.setDisplayName(" ");
@@ -160,7 +171,6 @@ public class RankedMenu {
 		i.setItem(14, ISsep);
 		i.setItem(15, ISsep);
 		i.setItem(16, ISsep);
-		i.setItem(17, ISsep);
 		
 		ItemStack IScl = new ItemStack(Material.WATCH);
 		ItemMeta IMcl = IScl.getItemMeta();

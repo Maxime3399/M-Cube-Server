@@ -15,6 +15,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
+import fr.Maxime3399.MCube.menus.MainMenu;
 import fr.Maxime3399.MCube.utils.MySQLUtils;
 
 public class RankedMenuEvents implements Listener {
@@ -107,6 +108,11 @@ public class RankedMenuEvents implements Listener {
 						}
 						
 					}
+					
+				}else if(item.equalsIgnoreCase("§8§oRetour")) {
+					
+					MainMenu.openMenu(p);
+					p.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 100, 1);
 					
 				}
 				
