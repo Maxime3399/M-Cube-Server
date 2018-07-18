@@ -134,6 +134,10 @@ public class StringChangerUtils {
 			}else if(type.equalsIgnoreCase("minivip")) {
 				result = "Grade : MiniVIP";
 			}
+		}else {
+			
+			result = null;
+			
 		}
 		
 		return result;

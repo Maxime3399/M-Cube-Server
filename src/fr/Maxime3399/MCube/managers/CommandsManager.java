@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
+import fr.Maxime3399.MCube.commands.GiftCMD;
 import fr.Maxime3399.MCube.commands.MaintenanceCMD;
 import fr.Maxime3399.MCube.commands.MenuCMD;
 import fr.Maxime3399.MCube.commands.PlayercountCMD;
@@ -36,6 +37,10 @@ public class CommandsManager {
 				
 				PlayercountCMD.commandPlayer(sender, cmd, label, args);
 				
+			}else if(cmd.getName().equalsIgnoreCase("gift")) {
+				
+				GiftCMD.commandPlayer(sender, cmd, label, args);
+				
 			}
 			
 		}
@@ -53,6 +58,10 @@ public class CommandsManager {
 			}else if(cmd.getName().equalsIgnoreCase("playercount") || cmd.getName().equalsIgnoreCase("pc")) {
 				
 				PlayercountCMD.commandConsole(sender, cmd, label, args);
+				
+			}else if(cmd.getName().equalsIgnoreCase("gift")) {
+				
+				GiftCMD.commandConsole(sender, cmd, label, args);
 				
 			}
 			
