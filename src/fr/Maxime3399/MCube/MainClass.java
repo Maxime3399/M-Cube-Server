@@ -15,12 +15,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
-import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.CommandsManager;
 import fr.Maxime3399.MCube.managers.EventsManager;
-import fr.Maxime3399.MCube.managers.PlayersManager;
 import fr.Maxime3399.MCube.managers.SchedulersManager;
-import fr.Maxime3399.MCube.utils.DisplayUtils;
 import fr.Maxime3399.MCube.utils.MySQLUtils;
 
 public class MainClass extends JavaPlugin{
@@ -171,13 +168,6 @@ public class MainClass extends JavaPlugin{
 					EventsManager.registerEvents();
 					SchedulersManager.registerSchedulers();
 					
-					for(Player pls : Bukkit.getOnlinePlayers()) {
-						
-						PlayersManager.addPlayer(pls);
-						DisplayUtils.setDisplay(pls);
-						
-					}
-					
 				}
 				
 			}else {
@@ -208,14 +198,7 @@ public class MainClass extends JavaPlugin{
 		
 		for(Player pls : Bukkit.getOnlinePlayers()) {
 			
-			if(pls.getOpenInventory() != null) {
-				
-				pls.closeInventory();
-				
-			}
-			
-			CustomPlayer cps = PlayersManager.getCustomPlayer(pls);
-			PlayersManager.removePlayer(cps);
+			pls.kickPlayer("§6Redémarrage du serveur...");
 			
 		}
 		

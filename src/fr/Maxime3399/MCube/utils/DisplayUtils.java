@@ -103,9 +103,9 @@ public class DisplayUtils {
 			allRanks.remove("§aUltraVIP");
 			allRanksOrdered.add("§aUltraVIP");
 		}
-		if(allRanks.contains("§bUltraVIP")) {
-			allRanks.remove("§bUltraVIP");
-			allRanksOrdered.add("§bUltraVIP");
+		if(allRanks.contains("§bVIP+")) {
+			allRanks.remove("§bVIP+");
+			allRanksOrdered.add("§bVIP+");
 		}
 		if(allRanks.contains("§eVIP")) {
 			allRanks.remove("§eVIP");
@@ -232,7 +232,7 @@ public class DisplayUtils {
 			
 		}else if(cp.getRank().equalsIgnoreCase("vipplus")) {
 			
-			result = "§bUltraVIP";
+			result = "§bVIP+";
 			
 		}else if(cp.getRank().equalsIgnoreCase("vip")) {
 			
