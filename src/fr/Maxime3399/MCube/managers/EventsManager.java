@@ -8,6 +8,7 @@ import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.events.JoinEvents;
 import fr.Maxime3399.MCube.events.QuitEvents;
 import fr.Maxime3399.MCube.events.SystemEvents;
+import fr.Maxime3399.MCube.events.menus.GiftMenuEvents;
 import fr.Maxime3399.MCube.events.menus.MainMenuEvents;
 import fr.Maxime3399.MCube.events.menus.RankedMenuEvents;
 
@@ -24,6 +25,7 @@ public class EventsManager {
 		
 		pm.registerEvents(new MainMenuEvents(), p);
 		pm.registerEvents(new RankedMenuEvents(), p);
+		pm.registerEvents(new GiftMenuEvents(), p);
 		
 	}
 

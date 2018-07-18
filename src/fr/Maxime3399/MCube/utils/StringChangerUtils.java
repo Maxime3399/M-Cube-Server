@@ -1,6 +1,66 @@
 package fr.Maxime3399.MCube.utils;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
+import fr.Maxime3399.MCube.custom.CustomPlayer;
+import fr.Maxime3399.MCube.managers.PlayersManager;
+
 public class StringChangerUtils {
+	
+	public static void giveGift(Player p, String content) {
+		
+		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
+		
+		if(content.startsWith("tokens")) {
+			content = content.replaceAll("tokens", "");
+			int tokens = 0;
+			tokens = Integer.parseInt(content);
+			cp.setTokens(cp.getTokens()+tokens);
+		}else if(content.startsWith("credits")) {
+			content = content.replaceAll("credits", "");
+			int credits = 0;
+			credits = Integer.parseInt(content);
+			cp.setTokens(cp.getTokens()+credits);
+		}else if(content.startsWith("crystals")) {
+			content = content.replaceAll("crystals", "");
+			int crystals = 0;
+			crystals = Integer.parseInt(content);
+			cp.setTokens(cp.getTokens()+crystals);
+		}else if(content.startsWith("legendarypass")) {
+			cp.setLegendary_steps(true);
+		}else if(content.startsWith("rank")) {
+			content = content.replaceAll("rank", "");
+			cp.setRank(content);
+			for(Player pls : Bukkit.getOnlinePlayers()) {
+				DisplayUtils.setDisplay(pls);
+			}
+			//#PERMISSIONS#
+		}else if(content.startsWith("staff")) {
+			content = content.replaceAll("staff", "");
+			cp.setStaff(content);
+			for(Player pls : Bukkit.getOnlinePlayers()) {
+				DisplayUtils.setDisplay(pls);
+			}
+			//#PERMISSIONS#
+		}else if(content.startsWith("otherrank")) {
+			if(!cp.getOther_ranks().contains(content)) {
+				cp.setOther_ranks(cp.getOther_ranks()+","+content);
+				for(Player pls : Bukkit.getOnlinePlayers()) {
+					DisplayUtils.setDisplay(pls);
+				}
+				//#PERMISSIONS#
+			}
+		}
+		
+	}
+	
+	/*else if(type.startsWith("chests")) {
+		type = type.replaceAll("chests", "");
+		type = type.replaceAll("true", "");
+		type = type.replaceAll("false", "");
+		result = "Coffre "+type+" étoiles";
+	}*/
 	
 	public static String getGift(String type) {
 		
@@ -15,17 +75,9 @@ public class StringChangerUtils {
 		}else if(type.startsWith("crystals")) {
 			type = type.replaceAll("crystals", "");
 			result = type+" cristaux";
-		}else if(type.startsWith("pluscolors")) {
-			type = type.replaceAll("pluscolor", "");
-			result = "Couleur : §"+type+"§l+";
 		}else if(type.startsWith("legendarypass")) {
 			type = type.replaceAll("legendarypass", "");
 			result = "Pass légendaire";
-		}else if(type.startsWith("chests")) {
-			type = type.replaceAll("chests", "");
-			type = type.replaceAll("true", "");
-			type = type.replaceAll("false", "");
-			result = "Coffre "+type+" étoiles";
 		}else if(type.startsWith("points")) {
 			type = type.replaceAll("points", "");
 			result = type+" points";

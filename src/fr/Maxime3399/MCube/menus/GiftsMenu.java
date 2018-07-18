@@ -78,7 +78,7 @@ public class GiftsMenu {
 		ItemStack ISback = new ItemStack(Material.ARROW);
 		ItemMeta IMback = ISback.getItemMeta();
 		ArrayList<String> ALback = new ArrayList<>();
-		IMback.setDisplayName("§7§oRetour");
+		IMback.setDisplayName("§8§oRetour");
 		ALback.add(" ");
 		ALback.add("§3Clique §7pour retourner au");
 		ALback.add("§7menu principal");

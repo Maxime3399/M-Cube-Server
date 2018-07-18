@@ -17,6 +17,7 @@ import org.bukkit.scoreboard.Team;
 
 import fr.Maxime3399.MCube.managers.CommandsManager;
 import fr.Maxime3399.MCube.managers.EventsManager;
+import fr.Maxime3399.MCube.managers.PlayersManager;
 import fr.Maxime3399.MCube.managers.SchedulersManager;
 import fr.Maxime3399.MCube.utils.MySQLUtils;
 
@@ -198,6 +199,7 @@ public class MainClass extends JavaPlugin{
 		
 		for(Player pls : Bukkit.getOnlinePlayers()) {
 			
+			PlayersManager.getCustomPlayer(pls).save();
 			pls.kickPlayer("§6Redémarrage du serveur...");
 			
 		}
