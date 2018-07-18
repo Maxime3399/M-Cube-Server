@@ -136,12 +136,26 @@ public class MainMenu {
 		ALgift.add("§7Des cadeaux apparaîssent");
 		ALgift.add("§7parfois ici ouvre les vite !");
 		ALgift.add(" ");
-		ALgift.add("§7Tu as # cadeaux");
+		int gifts = 0;
+		int giftC = 1;
+		if(!cp.getGifts().equalsIgnoreCase("")) {
+			String g[] = cp.getGifts().split(",");
+			gifts = g.length;
+			IMgift.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+			IMgift.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+			if(gifts > 64) {
+				giftC = 64;
+			}else {
+				giftC = gifts;
+			}
+		}
+		ALgift.add("§7Tu as "+gifts+" cadeaux");
 		ALgift.add(" ");
 		ALgift.add("§3Clique§7 pour ouvrir le");
 		ALgift.add("§7menu des cadeaux");
 		IMgift.setLore(ALgift);
 		ISgift.setItemMeta(IMgift);
+		ISgift.setAmount(giftC);
 		i.addItem(ISgift);
 		
 		ItemStack ISshop = new ItemStack(Material.GOLD_INGOT);
