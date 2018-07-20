@@ -9,6 +9,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import fr.Maxime3399.MCube.cosmetics.CosCount;
+
 public class CosMainMenu {
 	
 	public static void openMenu(Player p) {
@@ -22,7 +24,7 @@ public class CosMainMenu {
 		ALp.add("§7Modifie le \"+\" de ton");
 		ALp.add("§7grade UltraVIP+ !");
 		ALp.add(" ");
-		ALp.add("§7Débloqué : #/#");
+		ALp.add("§7Débloqué : "+CosCount.getPlusColorCount(p)+"/"+CosCount.getCosPlusColorMax());
 		ALp.add(" ");
 		if(p.hasPermission("mcube.menu.+")) {
 			ALp.add("§3Clique§7 pour ouvrir le menu");

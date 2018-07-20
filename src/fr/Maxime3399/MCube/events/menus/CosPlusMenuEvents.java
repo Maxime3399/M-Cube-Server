@@ -40,7 +40,7 @@ public class CosPlusMenuEvents implements Listener {
 					
 				}else if(item.contains("+")) {
 					
-					String color = item.replaceAll("§l+", "");
+					String color = item.substring(0, 2);
 					String equi = "§2";
 					CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 					if(!cp.getCos_active().equalsIgnoreCase("")) {
@@ -79,9 +79,14 @@ public class CosPlusMenuEvents implements Listener {
 							
 							if(cp.getCrystals() >= price) {
 								
-								cp.setCos_plus_color(cp.getCos_plus_color()+","+color);
+								if(cp.getCos_plus_color().equalsIgnoreCase("")) {
+									cp.setCos_plus_color(cp.getCos_plus_color()+color);
+								}else {
+									cp.setCos_plus_color(cp.getCos_plus_color()+","+color);
+								}
 								cp.setCos_active(cp.getCos_active().replaceAll(equi, color));
 								p.sendMessage("§aAchat effectué ! Le cosmétique a été équippé.");
+								cp.setCrystals(cp.getCrystals()-price);
 								p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 100, 2);
 								DisplayUtils.setDisplay(p);
 								CosPlusMenu.openMenu(p);

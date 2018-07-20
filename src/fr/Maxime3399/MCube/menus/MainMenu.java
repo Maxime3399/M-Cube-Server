@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import fr.Maxime3399.MCube.cosmetics.CosCount;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
 import fr.Maxime3399.MCube.utils.DataUtils;
@@ -93,7 +94,7 @@ public class MainMenu {
 		ALcos.add("§7Active tes effets pour en mettre");
 		ALcos.add("§7pleins la vue aux autres joueurs !");
 		ALcos.add(" ");
-		ALcos.add("§7Débloqué : #/#");
+		ALcos.add("§7Débloqué : "+CosCount.getGeneralCount(p)+"/"+CosCount.getCosPlusColorMax());
 		ALcos.add(" ");
 		ALcos.add("§3Clique§7 pour ouvrir le menu");
 		ALcos.add("§7des cosmétiques");
