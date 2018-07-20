@@ -21,12 +21,12 @@ public class StringChangerUtils {
 			content = content.replaceAll("credits", "");
 			int credits = 0;
 			credits = Integer.parseInt(content);
-			cp.setTokens(cp.getTokens()+credits);
+			cp.setCredits(cp.getCredits()+credits);
 		}else if(content.startsWith("crystals")) {
 			content = content.replaceAll("crystals", "");
 			int crystals = 0;
 			crystals = Integer.parseInt(content);
-			cp.setTokens(cp.getTokens()+crystals);
+			cp.setCrystals(cp.getCrystals()+crystals);
 		}else if(content.startsWith("legendarypass")) {
 			cp.setLegendary_steps(true);
 		}else if(content.startsWith("rank")) {

@@ -17,8 +17,17 @@ public class DisplayUtils {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 		String prefix = getClassPrefix(p);
+		String plco = "§2";
+		if(!cp.getCos_active().equalsIgnoreCase("")) {
+			String g[] = cp.getCos_active().split(",");
+			for(String ss : g) {
+				if(ss.startsWith("§")) {
+					plco = ss;
+				}
+			}
+		}
 		if(getRank(p).equalsIgnoreCase("§2UltraVIP+")) {
-			prefix = "§2UltraVIP"+cp.getPlus_color()+"+"+" "+prefix;
+			prefix = "§2UltraVIP"+plco+"+"+" "+prefix;
 		}else if(!getRank(p).equalsIgnoreCase("§r")) {
 			prefix = getRank(p)+"§r "+prefix;
 		}
@@ -94,6 +103,18 @@ public class DisplayUtils {
 		if(allRanks.contains("§9Helper")) {
 			allRanks.remove("§9Helper");
 			allRanksOrdered.add("§9Helper");
+		}
+		if(allRanks.contains("§dPart")) {
+			allRanks.remove("§dPart");
+			allRanksOrdered.add("§dPart");
+		}
+		if(allRanks.contains("§5YT")) {
+			allRanks.remove("§5YT");
+			allRanksOrdered.add("§5YT");
+		}
+		if(allRanks.contains("§5Stream")) {
+			allRanks.remove("§5Stream");
+			allRanksOrdered.add("§5Stream");
 		}
 		if(allRanks.contains("§2UltraVIP+")) {
 			allRanks.remove("§2UltraVIP+");
@@ -221,6 +242,18 @@ public class DisplayUtils {
 		}else if(cp.getStaff().equalsIgnoreCase("help")) {
 			
 			result = "§9Helper";
+			
+		}else if(cp.getStaff().equalsIgnoreCase("part")) {
+			
+			result = "§dPart";
+			
+		}else if(cp.getStaff().equalsIgnoreCase("yt")) {
+			
+			result = "§5YT";
+			
+		}else if(cp.getStaff().equalsIgnoreCase("stream")) {
+			
+			result = "§5Stream";
 			
 		}else if(cp.getRank().equalsIgnoreCase("ultravipplus")) {
 			

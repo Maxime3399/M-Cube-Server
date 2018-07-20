@@ -21,13 +21,14 @@ public class CustomPlayer {
 	private int tokens;
 	private int credits;
 	private int crystals;
-	private String plus_color;
 	private boolean legendary_steps;
 	private String placement_end;
 	private String gifts;
 	private String chests;
 	private String last_connection;
 	private int connection_streak;
+	private String cos_active;
+	private String cos_plus_color;
 	private int season_1_points;
 	private int season_2_points;
 	private int season_3_points;
@@ -119,13 +120,14 @@ public class CustomPlayer {
 		this.setTokens(MySQLUtils.getInt("players", "uuid", uuid.toString(), "tokens"));
 		this.setCredits(MySQLUtils.getInt("players", "uuid", uuid.toString(), "credits"));
 		this.setCrystals(MySQLUtils.getInt("players", "uuid", uuid.toString(), "crystals"));
-		this.setPlus_color(MySQLUtils.getString("players", "uuid", uuid.toString(), "plus_color"));
 		this.setLegendary_steps(Boolean.parseBoolean(MySQLUtils.getString("players", "uuid", uuid.toString(), "legendary_steps")));
 		this.setPlacement_end(MySQLUtils.getString("players", "uuid", uuid.toString(), "placement_end"));
 		this.setGifts(MySQLUtils.getString("players", "uuid", uuid.toString(), "gifts"));
 		this.setChests(MySQLUtils.getString("players", "uuid", uuid.toString(), "chests"));
 		this.setLast_connection(MySQLUtils.getString("players", "uuid", uuid.toString(), "last_connection"));
 		this.setConnection_streak(MySQLUtils.getInt("players", "uuid", uuid.toString(), "connection_streak"));
+		this.setCos_active(MySQLUtils.getString("players", "uuid", uuid.toString(), "cos_active"));
+		this.setCos_plus_color(MySQLUtils.getString("players", "uuid", uuid.toString(), "cos_plus_color"));
 		this.setSeason_1_points(MySQLUtils.getInt("players", "uuid", uuid.toString(), "season_1_points"));
 		this.setSeason_2_points(MySQLUtils.getInt("players", "uuid", uuid.toString(), "season_2_points"));
 		this.setSeason_3_points(MySQLUtils.getInt("players", "uuid", uuid.toString(), "season_3_points"));
@@ -216,13 +218,14 @@ public class CustomPlayer {
 		MySQLUtils.setInt("players", "uuid", uuid.toString(), "tokens", tokens);
 		MySQLUtils.setInt("players", "uuid", uuid.toString(), "credits", credits);
 		MySQLUtils.setInt("players", "uuid", uuid.toString(), "crystals", crystals);
-		MySQLUtils.setString("players", "uuid", uuid.toString(), "plus_color", plus_color);
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "legendary_steps", String.valueOf(legendary_steps));
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "placement_end", placement_end);
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "gifts", gifts);
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "chests", chests);
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "last_connection", last_connection);
 		MySQLUtils.setInt("players", "uuid", uuid.toString(), "connection_streak", connection_streak);
+		MySQLUtils.setString("players", "uuid", uuid.toString(), "cos_active", cos_active);
+		MySQLUtils.setString("players", "uuid", uuid.toString(), "cos_plus_color", cos_plus_color);
 		MySQLUtils.setInt("players", "uuid", uuid.toString(), "season_1_points", season_1_points);
 		MySQLUtils.setInt("players", "uuid", uuid.toString(), "season_2_points", season_2_points);
 		MySQLUtils.setInt("players", "uuid", uuid.toString(), "season_3_points", season_3_points);
@@ -470,14 +473,6 @@ public class CustomPlayer {
 		this.crystals = crystals;
 	}
 
-	public String getPlus_color() {
-		return plus_color;
-	}
-
-	public void setPlus_color(String plus_color) {
-		this.plus_color = plus_color;
-	}
-
 	public boolean isLegendary_steps() {
 		return legendary_steps;
 	}
@@ -524,6 +519,22 @@ public class CustomPlayer {
 
 	public void setConnection_streak(int connection_streak) {
 		this.connection_streak = connection_streak;
+	}
+
+	public String getCos_active() {
+		return cos_active;
+	}
+
+	public void setCos_active(String cos_active) {
+		this.cos_active = cos_active;
+	}
+
+	public String getCos_plus_color() {
+		return cos_plus_color;
+	}
+
+	public void setCos_plus_color(String cos_plus_color) {
+		this.cos_plus_color = cos_plus_color;
 	}
 
 	public int getSeason_1_points() {

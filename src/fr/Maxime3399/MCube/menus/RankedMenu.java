@@ -101,8 +101,10 @@ public class RankedMenu {
 		}else {
 			IM1.setDisplayName("§6§lSaison 1");
 			AL1.add("§eSaison terminée !");
-			AL1.add(" ");
-			AL1.add("§fPoints : "+cp.getPointsBySeason(1));
+			if(cp.getPointsBySeason(1) != -1) {
+				AL1.add(" ");
+				AL1.add("§fPoints : "+cp.getPointsBySeason(1));
+			}
 		}
 		IM1.setLore(AL1);
 		IS1.setItemMeta(IM1);
@@ -272,8 +274,10 @@ public class RankedMenu {
 						}else {
 							IM1.setDisplayName("§6§lSaison 1");
 							AL1.add("§eSaison terminée !");
-							AL1.add(" ");
-							AL1.add("§fPoints : "+cp.getPointsBySeason(1));
+							if(cp.getPointsBySeason(1) != -1) {
+								AL1.add(" ");
+								AL1.add("§fPoints : "+cp.getPointsBySeason(1));
+							}
 						}
 						IM1.setLore(AL1);
 						IS1.setItemMeta(IM1);

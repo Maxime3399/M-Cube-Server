@@ -28,15 +28,15 @@ public class JoinEvents implements Listener {
 		Player p = e.getPlayer();
 		SystemEvents.registerFood(p);
 		
-		if(MySQLUtils.execute("INSERT INTO `players` (`uuid`, `name`, `data`, `rank`, `staff`, `other_ranks`, `points`, `step`, `tokens`, `credits`, `crystals`, `plus_color`, `legendary_steps`, `placement_end`,"
-				+ " `gifts`, `chests`, `last_connection`, `connection_streak`, `season_1_points`, `season_2_points`, `season_3_points`, `season_4_points`, `season_5_points`, `s_time_seconds`, `s_time_minutes`,"
-				+ " `s_time_hours`, `r_time_seconds`, `r_time_minutes`, `r_time_hours`, `r_blocks_place`, `r_blocks_break`, `r_chunks`, `r_damages_take`, `r_damages_give`, `r_jump`, `r_drop`, `r_pickup`, `r_deaths`,"
-				+ " `r_kill_animals`, `r_kill_monsters`, `r_kill_players`, `r_food`, `r_craft`, `r_chat`, `r_exp`, `r_portal`, `r_shear`, `r_commands`, `r_advancement`, `r_bed`, `r_armorstand`, `r_enchant`, `home1`,"
-				+ " `home2`, `home3`, `home4`, `home5`, `home6`, `home7`, `home8`, `home9`, `home10`, `home11`, `home12`, `home13`, `home14`, `home15`, `home16`, `home17`, `home18`, `home19`, `home20`, `home21`,"
-				+ " `home22`, `home23`, `home24`, `home25`, `home26`, `home27`, `home28`, `home29`, `home30`, `home31`, `home32`, `home33`, `home34`, `home35`, `home36`, `home37`, `home38`, `home39`, `home40`)"
-				+ " VALUES ('"+p.getUniqueId().toString()+"', '"+p.getName()+"', '"+DataUtils.getData()+"', 'default', 'default', '', '-1', '0', '0', '0', '0', '§2', 'false', 'none', '', '', 'none', '0', '-1', '-1', '-1', '-1', '-1', '0', '0', '0', '0', '0', '0',"
-				+ " '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',"
-				+ " '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');", true)) {
+		if(MySQLUtils.execute("INSERT INTO `players` (`uuid`, `name`, `data`, `rank`, `staff`, `other_ranks`, `points`, `step`, `tokens`, `credits`, `crystals`, `legendary_steps`, `placement_end`,"
+				+ " `gifts`, `chests`, `last_connection`, `connection_streak`, `cos_active`, `cos_plus_color`, `season_1_points`, `season_2_points`, `season_3_points`, `season_4_points`, `season_5_points`,"
+				+ " `s_time_seconds`, `s_time_minutes`, `s_time_hours`, `r_time_seconds`, `r_time_minutes`, `r_time_hours`, `r_blocks_place`, `r_blocks_break`, `r_chunks`, `r_damages_take`, `r_damages_give`,"
+				+ " `r_jump`, `r_drop`, `r_pickup`, `r_deaths`, `r_kill_animals`, `r_kill_monsters`, `r_kill_players`, `r_food`, `r_craft`, `r_chat`, `r_exp`, `r_portal`, `r_shear`, `r_commands`,"
+				+ " `r_advancement`, `r_bed`, `r_armorstand`, `r_enchant`, `home1`, `home2`, `home3`, `home4`, `home5`, `home6`, `home7`, `home8`, `home9`, `home10`, `home11`, `home12`, `home13`, `home14`,"
+				+ " `home15`, `home16`, `home17`, `home18`, `home19`, `home20`, `home21`, `home22`, `home23`, `home24`, `home25`, `home26`, `home27`, `home28`, `home29`, `home30`, `home31`, `home32`,"
+				+ " `home33`, `home34`, `home35`, `home36`, `home37`, `home38`, `home39`, `home40`) VALUES ('"+p.getUniqueId().toString()+"', '"+p.getName()+"', '"+DataUtils.getData()+"', 'default', 'default', '', '-1', '0', '0', '0', '0', 'false', 'none',"
+				+ " '', '', 'none', '0', '§2', '', '-1', '-1', '-1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',"
+				+ " '0', '0', '0', '0', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');", true)) {
 			
 			for(Player pls : Bukkit.getOnlinePlayers()) {
 				

@@ -13,7 +13,7 @@ public class PointsUtils {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 		
-		if(cp.getPlacement_end().equalsIgnoreCase("none")) {
+		if(cp.getPlacement_end().equalsIgnoreCase("none") && cp.getPoints() != -1) {
 			
 			if(cp.getPoints() >= 500) {
 				
