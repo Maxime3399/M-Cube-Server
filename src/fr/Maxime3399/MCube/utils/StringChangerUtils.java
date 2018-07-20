@@ -27,6 +27,19 @@ public class StringChangerUtils {
 			int crystals = 0;
 			crystals = Integer.parseInt(content);
 			cp.setCrystals(cp.getCrystals()+crystals);
+		}else if(content.startsWith("points")) {
+			content = content.replaceAll("points", "");
+			int points = 0;
+			points = Integer.parseInt(content);
+			cp.setPoints(cp.getPoints()+points);
+		}else if(content.startsWith("+")) {
+			content = content.substring(1, content.length());
+			content = content.replaceAll("&", "§");
+			if(cp.getCos_plus_color().equalsIgnoreCase("")) {
+				cp.setCos_plus_color(content);
+			}else {
+				cp.setCos_plus_color(cp.getCos_plus_color()+","+content);
+			}
 		}else if(content.startsWith("legendarypass")) {
 			cp.setLegendary_steps(true);
 		}else if(content.startsWith("rank")) {
@@ -81,6 +94,10 @@ public class StringChangerUtils {
 		}else if(type.startsWith("points")) {
 			type = type.replaceAll("points", "");
 			result = type+" points";
+		}else if(type.startsWith("+")) {
+			type = type.substring(1, type.length());
+			type = type.replaceAll("&", "§");
+			result = "Préfixe : "+type+"§l+";
 		}else if(type.startsWith("rank")) {
 			type = type.replaceAll("rank", "");
 			if(type.equalsIgnoreCase("ultravipplus")) {
