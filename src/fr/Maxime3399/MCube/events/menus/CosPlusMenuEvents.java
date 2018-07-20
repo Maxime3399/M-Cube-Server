@@ -1,12 +1,15 @@
 package fr.Maxime3399.MCube.events.menus;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
 import fr.Maxime3399.MCube.menus.CosPlusMenu;
@@ -79,17 +82,54 @@ public class CosPlusMenuEvents implements Listener {
 							
 							if(cp.getCrystals() >= price) {
 								
-								if(cp.getCos_plus_color().equalsIgnoreCase("")) {
-									cp.setCos_plus_color(cp.getCos_plus_color()+color);
-								}else {
-									cp.setCos_plus_color(cp.getCos_plus_color()+","+color);
-								}
-								cp.setCos_active(cp.getCos_active().replaceAll(equi, color));
-								p.sendMessage("§aAchat effectué ! Le cosmétique a été équippé.");
-								cp.setCrystals(cp.getCrystals()-price);
-								p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 100, 2);
-								DisplayUtils.setDisplay(p);
-								CosPlusMenu.openMenu(p);
+								ConfirmMenu.confirm(p);
+								new BukkitRunnable() {
+									@Override
+									public void run() {
+										if(ConfirmMenu.getPlayer(p) == 1) {
+											ConfirmMenu.removePlayer(p);
+											this.cancel();
+											Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+												@Override
+												public void run() {
+													
+													String equi = "§2";
+													if(!cp.getCos_active().equalsIgnoreCase("")) {
+														String g[] = cp.getCos_active().split(",");
+														for(String ss : g) {
+															if(ss.startsWith("§")) {
+																equi = ss;
+															}
+														}
+													}
+													if(cp.getCos_plus_color().equalsIgnoreCase("")) {
+														cp.setCos_plus_color(cp.getCos_plus_color()+color);
+													}else {
+														cp.setCos_plus_color(cp.getCos_plus_color()+","+color);
+													}
+													cp.setCos_active(cp.getCos_active().replaceAll(equi, color));
+													p.sendMessage("§aAchat effectué ! Le cosmétique a été équippé.");
+													cp.setCrystals(cp.getCrystals()-price);
+													p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 100, 2);
+													DisplayUtils.setDisplay(p);
+													CosPlusMenu.openMenu(p);
+													
+												}
+											}, 1);
+										}else if(ConfirmMenu.getPlayer(p) == 2) {
+											ConfirmMenu.removePlayer(p);
+											this.cancel();
+											Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+												@Override
+												public void run() {
+													CosPlusMenu.openMenu(p);
+													p.sendMessage("§cAchat annulé !");
+													p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_DEATH, 100, 1);
+												}
+											}, 1);
+										}
+									}
+								}.runTaskTimerAsynchronously(MainClass.getInstance(), 1, 1);
 								
 							}else {
 								
