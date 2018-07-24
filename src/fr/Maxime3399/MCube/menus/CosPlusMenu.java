@@ -30,7 +30,7 @@ public class CosPlusMenu {
 			}
 		}
 		
-		ItemStack IS2 = new ItemStack(Material.WOOL, 1, (short) 13);
+		ItemStack IS2 = new ItemStack(Material.GREEN_WOOL);
 		ItemMeta IM2 = IS2.getItemMeta();
 		ArrayList<String> AL2 = new ArrayList<>();
 		IM2.setDisplayName("§2§l+");
@@ -52,7 +52,7 @@ public class CosPlusMenu {
 		IS2.setItemMeta(IM2);
 		i.setItem(0, IS2);
 		
-		ItemStack ISa = new ItemStack(Material.WOOL, 1, (short) 5);
+		ItemStack ISa = new ItemStack(Material.LIME_WOOL);
 		ItemMeta IMa = ISa.getItemMeta();
 		ArrayList<String> ALa = new ArrayList<>();
 		IMa.setDisplayName("§a§l+");
@@ -90,7 +90,7 @@ public class CosPlusMenu {
 		ISa.setItemMeta(IMa);
 		i.setItem(1, ISa);
 		
-		ItemStack IS5 = new ItemStack(Material.WOOL, 1, (short) 10);
+		ItemStack IS5 = new ItemStack(Material.PURPLE_WOOL);
 		ItemMeta IM5 = IS5.getItemMeta();
 		ArrayList<String> AL5 = new ArrayList<>();
 		IM5.setDisplayName("§5§l+");
@@ -128,7 +128,7 @@ public class CosPlusMenu {
 		IS5.setItemMeta(IM5);
 		i.setItem(2, IS5);
 		
-		ItemStack ISd = new ItemStack(Material.WOOL, 1, (short) 2);
+		ItemStack ISd = new ItemStack(Material.MAGENTA_WOOL);
 		ItemMeta IMd = ISd.getItemMeta();
 		ArrayList<String> ALd = new ArrayList<>();
 		IMd.setDisplayName("§d§l+");
@@ -204,7 +204,7 @@ public class CosPlusMenu {
 		IS4.setItemMeta(IM4);
 		i.setItem(4, IS4);
 		
-		ItemStack ISc = new ItemStack(Material.WOOL, 1, (short) 14);
+		ItemStack ISc = new ItemStack(Material.RED_WOOL);
 		ItemMeta IMc = ISc.getItemMeta();
 		ArrayList<String> ALc = new ArrayList<>();
 		IMc.setDisplayName("§c§l+");
@@ -233,7 +233,7 @@ public class CosPlusMenu {
 		ISc.setItemMeta(IMc);
 		i.setItem(5, ISc);
 		
-		ItemStack IS6 = new ItemStack(Material.WOOL, 1, (short) 1);
+		ItemStack IS6 = new ItemStack(Material.ORANGE_WOOL);
 		ItemMeta IM6 = IS6.getItemMeta();
 		ArrayList<String> AL6 = new ArrayList<>();
 		IM6.setDisplayName("§6§l+");
@@ -262,7 +262,7 @@ public class CosPlusMenu {
 		IS6.setItemMeta(IM6);
 		i.setItem(6, IS6);
 		
-		ItemStack ISe = new ItemStack(Material.WOOL, 1, (short) 4);
+		ItemStack ISe = new ItemStack(Material.YELLOW_WOOL);
 		ItemMeta IMe = ISe.getItemMeta();
 		ArrayList<String> ALe = new ArrayList<>();
 		IMe.setDisplayName("§e§l+");
@@ -320,7 +320,7 @@ public class CosPlusMenu {
 		IS1.setItemMeta(IM1);
 		i.setItem(8, IS1);
 		
-		ItemStack IS9 = new ItemStack(Material.WOOL, 1, (short) 11);
+		ItemStack IS9 = new ItemStack(Material.BLUE_WOOL);
 		ItemMeta IM9 = IS9.getItemMeta();
 		ArrayList<String> AL9 = new ArrayList<>();
 		IM9.setDisplayName("§9§l+");
@@ -349,7 +349,7 @@ public class CosPlusMenu {
 		IS9.setItemMeta(IM9);
 		i.setItem(9, IS9);
 		
-		ItemStack IS3 = new ItemStack(Material.WOOL, 1, (short) 9);
+		ItemStack IS3 = new ItemStack(Material.CYAN_WOOL);
 		ItemMeta IM3 = IS3.getItemMeta();
 		ArrayList<String> AL3 = new ArrayList<>();
 		IM3.setDisplayName("§3§l+");
@@ -378,7 +378,7 @@ public class CosPlusMenu {
 		IS3.setItemMeta(IM3);
 		i.setItem(10, IS3);
 		
-		ItemStack ISb = new ItemStack(Material.WOOL, 1, (short) 3);
+		ItemStack ISb = new ItemStack(Material.LIGHT_BLUE_WOOL);
 		ItemMeta IMb = ISb.getItemMeta();
 		ArrayList<String> ALb = new ArrayList<>();
 		IMb.setDisplayName("§b§l+");
@@ -406,7 +406,7 @@ public class CosPlusMenu {
 		ISb.setItemMeta(IMb);
 		i.setItem(11, ISb);
 		
-		ItemStack IS0 = new ItemStack(Material.WOOL, 1, (short) 15);
+		ItemStack IS0 = new ItemStack(Material.BLACK_WOOL);
 		ItemMeta IM0 = IS0.getItemMeta();
 		ArrayList<String> AL0 = new ArrayList<>();
 		IM0.setDisplayName("§0§l+");
@@ -434,7 +434,7 @@ public class CosPlusMenu {
 		IS0.setItemMeta(IM0);
 		i.setItem(12, IS0);
 		
-		ItemStack IS8 = new ItemStack(Material.WOOL, 1, (short) 7);
+		ItemStack IS8 = new ItemStack(Material.GRAY_WOOL);
 		ItemMeta IM8 = IS8.getItemMeta();
 		ArrayList<String> AL8 = new ArrayList<>();
 		IM8.setDisplayName("§8§l+");
@@ -462,7 +462,7 @@ public class CosPlusMenu {
 		IS8.setItemMeta(IM8);
 		i.setItem(13, IS8);
 		
-		ItemStack IS7 = new ItemStack(Material.WOOL, 1, (short) 8);
+		ItemStack IS7 = new ItemStack(Material.LIGHT_GRAY_WOOL);
 		ItemMeta IM7 = IS7.getItemMeta();
 		ArrayList<String> AL7 = new ArrayList<>();
 		IM7.setDisplayName("§7§l+");
@@ -491,7 +491,7 @@ public class CosPlusMenu {
 		IS7.setItemMeta(IM7);
 		i.setItem(14, IS7);
 		
-		ItemStack ISf = new ItemStack(Material.WOOL);
+		ItemStack ISf = new ItemStack(Material.WHITE_WOOL);
 		ItemMeta IMf = ISf.getItemMeta();
 		ArrayList<String> ALf = new ArrayList<>();
 		IMf.setDisplayName("§f§l+");

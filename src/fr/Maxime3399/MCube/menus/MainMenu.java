@@ -29,7 +29,7 @@ public class MainMenu {
 		ItemMeta IMranked = ISranked.getItemMeta();
 		ArrayList<String> ALranked = new ArrayList<>();
 		IMranked.setDisplayName("§eJeu classé");
-		if(DisplayUtils.getClassPrefix(p).equalsIgnoreCase("§8")) {
+		if(cp.getPoints() == -1) {
 			ALranked.add("§cTu n'es pas classé, participe à la saison");
 			ALranked.add("§cpour obtenir des récompenses exclusives !");
 			IMranked.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);

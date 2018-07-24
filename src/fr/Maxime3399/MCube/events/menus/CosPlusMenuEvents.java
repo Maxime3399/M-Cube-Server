@@ -110,7 +110,7 @@ public class CosPlusMenuEvents implements Listener {
 													cp.setCos_active(cp.getCos_active().replaceAll(equi, color));
 													p.sendMessage("§aAchat effectué ! Le cosmétique a été équippé.");
 													cp.setCrystals(cp.getCrystals()-price);
-													p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 100, 2);
+													p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100, 2);
 													DisplayUtils.setDisplay(p);
 													CosPlusMenu.openMenu(p);
 													

@@ -24,10 +24,13 @@ import fr.Maxime3399.MCube.utils.MySQLUtils;
 public class MainClass extends JavaPlugin{
 	
 	private static Plugin plugin;
+	private static boolean enable;
 	
 	public void onEnable() {
 		
 		plugin = this;
+		enable = false;
+		PlayersManager.use = true;
 		
 		File f = new File(getDataFolder(), "config.yml");
 		if(!f.exists()) {
@@ -167,6 +170,7 @@ public class MainClass extends JavaPlugin{
 						
 					}
 					
+					enable = true;
 					EventsManager.registerEvents();
 					SchedulersManager.registerSchedulers();
 					
@@ -190,18 +194,22 @@ public class MainClass extends JavaPlugin{
 	
 	public void onDisable() {
 		
-		Scoreboard s = Bukkit.getScoreboardManager().getMainScoreboard();
-		
-		for(Team ts : s.getTeams()) {
+		if(enable) {
 			
-			ts.unregister();
+			Scoreboard s = Bukkit.getScoreboardManager().getMainScoreboard();
 			
-		}
-		
-		for(Player pls : Bukkit.getOnlinePlayers()) {
+			for(Team ts : s.getTeams()) {
+				
+				ts.unregister();
+				
+			}
 			
-			PlayersManager.getCustomPlayer(pls).save();
-			pls.kickPlayer("§6Redémarrage du serveur...");
+			for(Player pls : Bukkit.getOnlinePlayers()) {
+				
+				PlayersManager.getCustomPlayer(pls).save();
+				pls.kickPlayer("§6Redémarrage du serveur...");
+				
+			}
 			
 		}
 		

@@ -3,6 +3,7 @@ package fr.Maxime3399.MCube.menus;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -20,7 +21,7 @@ public class CosMainMenu {
 		ItemStack ISp = new ItemStack(Material.BEACON);
 		ItemMeta IMp = ISp.getItemMeta();
 		ArrayList<String> ALp = new ArrayList<>();
-		IMp.setDisplayName("§ePréfixe UltraVIP+");
+		IMp.setDisplayName(ChatColor.BLUE+""+ChatColor.BOLD+"Name");
 		ALp.add("§7Modifie le \"+\" de ton");
 		ALp.add("§7grade UltraVIP+ !");
 		ALp.add(" ");
@@ -43,7 +44,7 @@ public class CosMainMenu {
 		ItemStack ISback = new ItemStack(Material.ARROW);
 		ItemMeta IMback = ISback.getItemMeta();
 		ArrayList<String> ALback = new ArrayList<>();
-		IMback.setDisplayName("§8§oRetour");
+		IMback.setDisplayName("§r§8§oRetour");
 		ALback.add(" ");
 		ALback.add("§3Clique §7pour retourner au");
 		ALback.add("§7menu principal");

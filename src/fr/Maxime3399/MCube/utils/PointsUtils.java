@@ -1259,7 +1259,7 @@ public class PointsUtils {
 		}
 		
 		p.sendMessage(" \n     §b§l§k||§r  §a§lPlacement terminé !§r §dTu es "+DisplayUtils.getClass(p, currentSeason)+"§r §e!   §b§l§k||§r\n ");
-		p.playSound(p.getLocation(), Sound.ENTITY_ENDERDRAGON_DEATH, 100, 2);
+		p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_DEATH, 100, 2);
 		
 	}
 

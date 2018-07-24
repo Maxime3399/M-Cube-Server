@@ -168,7 +168,7 @@ public class GeneralSheduler {
 							
 							PlayersManager.addPlayer(pls);
 							pls.sendMessage(" \n     §b§l§k||§r  §a§lDébut de la saison §r§6§l"+newSeason+"§r  §b§l§l||§r\n ");
-							pls.playSound(pls.getLocation(), Sound.ENTITY_ENDERDRAGON_DEATH, 100, 2);
+							pls.playSound(pls.getLocation(), Sound.ENTITY_ENDER_DRAGON_DEATH, 100, 2);
 							DisplayUtils.setDisplay(pls);
 							
 						}

@@ -136,7 +136,7 @@ public class RankedMenu {
 		for(int it = 0; it <= 8; it++) {
 			
 			if(players.size() > it) {
-				ItemStack IS = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+				ItemStack IS = new ItemStack(Material.PLAYER_HEAD);
 				SkullMeta SM = (SkullMeta) IS.getItemMeta();
 				ArrayList<String> AL = new ArrayList<>();
 				String name = MySQLUtils.getString("players", "uuid", players.get(it), "name");
@@ -162,7 +162,7 @@ public class RankedMenu {
 		ISback.setItemMeta(IMback);
 		i.setItem(17, ISback);
 		
-		ItemStack ISsep = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 15);
+		ItemStack ISsep = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
 		ItemMeta IMsep = ISsep.getItemMeta();
 		IMsep.setDisplayName(" ");
 		ISsep.setItemMeta(IMsep);
@@ -174,7 +174,7 @@ public class RankedMenu {
 		i.setItem(15, ISsep);
 		i.setItem(16, ISsep);
 		
-		ItemStack IScl = new ItemStack(Material.WATCH);
+		ItemStack IScl = new ItemStack(Material.CLOCK);
 		ItemMeta IMcl = IScl.getItemMeta();
 		ArrayList<String> ALcl = new ArrayList<>();
 		IMcl.setDisplayName("§3Fin de saison :");
@@ -194,7 +194,7 @@ public class RankedMenu {
 				
 				if(p.getOpenInventory().getTopInventory().equals(i)) {
 					
-					ItemStack IScl = new ItemStack(Material.WATCH);
+					ItemStack IScl = new ItemStack(Material.CLOCK);
 					ItemMeta IMcl = IScl.getItemMeta();
 					ArrayList<String> ALcl = new ArrayList<>();
 					IMcl.setDisplayName("§3Fin de saison :");

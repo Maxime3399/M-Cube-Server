@@ -1,12 +1,65 @@
 package fr.Maxime3399.MCube.utils;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
 
 public class StringChangerUtils {
+	
+	public static ChatColor TxTColorToChatColor(String TxTColor) {
+		
+		ChatColor result = ChatColor.WHITE;
+		
+		if(TxTColor.equalsIgnoreCase("§0") || TxTColor.equalsIgnoreCase("&0")) {
+			result = ChatColor.BLACK;
+		}else if(TxTColor.equalsIgnoreCase("§2") || TxTColor.equalsIgnoreCase("&2")) {
+			result = ChatColor.DARK_GREEN;
+		}else if(TxTColor.equalsIgnoreCase("§4") || TxTColor.equalsIgnoreCase("&4")) {
+			result = ChatColor.DARK_RED;
+		}else if(TxTColor.equalsIgnoreCase("§6") || TxTColor.equalsIgnoreCase("&6")) {
+			result = ChatColor.GOLD;
+		}else if(TxTColor.equalsIgnoreCase("§8") || TxTColor.equalsIgnoreCase("&8")) {
+			result = ChatColor.DARK_GRAY;
+		}else if(TxTColor.equalsIgnoreCase("§a") || TxTColor.equalsIgnoreCase("&a")) {
+			result = ChatColor.GREEN;
+		}else if(TxTColor.equalsIgnoreCase("§c") || TxTColor.equalsIgnoreCase("&c")) {
+			result = ChatColor.RED;
+		}else if(TxTColor.equalsIgnoreCase("§e") || TxTColor.equalsIgnoreCase("&e")) {
+			result = ChatColor.YELLOW;
+		}else if(TxTColor.equalsIgnoreCase("§1") || TxTColor.equalsIgnoreCase("&1")) {
+			result = ChatColor.DARK_BLUE;
+		}else if(TxTColor.equalsIgnoreCase("§3") || TxTColor.equalsIgnoreCase("&3")) {
+			result = ChatColor.DARK_AQUA;
+		}else if(TxTColor.equalsIgnoreCase("§5") || TxTColor.equalsIgnoreCase("&5")) {
+			result = ChatColor.DARK_PURPLE;
+		}else if(TxTColor.equalsIgnoreCase("§7") || TxTColor.equalsIgnoreCase("&7")) {
+			result = ChatColor.GRAY;
+		}else if(TxTColor.equalsIgnoreCase("§9") || TxTColor.equalsIgnoreCase("&9")) {
+			result = ChatColor.BLUE;
+		}else if(TxTColor.equalsIgnoreCase("§b") || TxTColor.equalsIgnoreCase("&b")) {
+			result = ChatColor.AQUA;
+		}else if(TxTColor.equalsIgnoreCase("§d") || TxTColor.equalsIgnoreCase("&d")) {
+			result = ChatColor.LIGHT_PURPLE;
+		}else if(TxTColor.equalsIgnoreCase("§r") || TxTColor.equalsIgnoreCase("&r")) {
+			result = ChatColor.RESET;
+		}else if(TxTColor.equalsIgnoreCase("§k") || TxTColor.equalsIgnoreCase("&k")) {
+			result = ChatColor.MAGIC;
+		}else if(TxTColor.equalsIgnoreCase("§m") || TxTColor.equalsIgnoreCase("&m")) {
+			result = ChatColor.STRIKETHROUGH;
+		}else if(TxTColor.equalsIgnoreCase("§o") || TxTColor.equalsIgnoreCase("&o")) {
+			result = ChatColor.ITALIC;
+		}else if(TxTColor.equalsIgnoreCase("§l") || TxTColor.equalsIgnoreCase("&l")) {
+			result = ChatColor.BOLD;
+		}else if(TxTColor.equalsIgnoreCase("§n") || TxTColor.equalsIgnoreCase("&n")) {
+			result = ChatColor.UNDERLINE;
+		}
+		
+		return result;
+		
+	}
 	
 	public static void giveGift(Player p, String content) {
 		

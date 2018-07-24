@@ -3,6 +3,7 @@ package fr.Maxime3399.MCube.utils;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
@@ -16,7 +17,7 @@ public class DisplayUtils {
 	public static void setDisplay(Player p) {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
-		String prefix = getClassPrefix(p);
+		String prefix = "";
 		String plco = "§2";
 		if(!cp.getCos_active().equalsIgnoreCase("")) {
 			String g[] = cp.getCos_active().split(",");
@@ -27,9 +28,9 @@ public class DisplayUtils {
 			}
 		}
 		if(getRank(p).equalsIgnoreCase("§2UltraVIP+")) {
-			prefix = "§2UltraVIP"+plco+"+"+" "+prefix;
+			prefix = "§2UltraVIP"+plco+"+"+"§r ";
 		}else if(!getRank(p).equalsIgnoreCase("§r")) {
-			prefix = getRank(p)+"§r "+prefix;
+			prefix = getRank(p)+"§r ";
 		}
 		String suffix = "";
 		if(!getStep(p).equalsIgnoreCase("")) {
@@ -50,9 +51,10 @@ public class DisplayUtils {
 		Team te = s.registerNewTeam(calculTeamsOrder(p)+p.getName());
 		te.setPrefix(prefix);
 		te.setSuffix(suffix);
+		te.setColor(getClassPrefix(p));
 		te.addPlayer(p);
 		
-		p.setDisplayName(prefix+p.getName()+suffix);
+		p.setDisplayName(prefix+getClassPrefix(p)+p.getName()+suffix);
 		
 	}
 	
@@ -281,12 +283,12 @@ public class DisplayUtils {
 		
 	}
 	
-	public static String getClassPrefix(Player p) {
+	public static ChatColor getClassPrefix(Player p) {
 		
-		String result = "§8";
+		ChatColor result = ChatColor.DARK_GRAY;
 		String clas = getClass(p, DataUtils.getCurrentSeason());
 		
-		result = clas.charAt(0)+""+clas.charAt(1);
+		result = StringChangerUtils.TxTColorToChatColor(clas.charAt(0)+""+clas.charAt(1));
 		
 		return result;
 		
