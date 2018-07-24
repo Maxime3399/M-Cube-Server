@@ -138,7 +138,17 @@ public class CosPlusMenuEvents implements Listener {
 								
 							}
 							
+						}else {
+							
+							p.sendMessage("§cTu n'as pas ce cosmétique !");
+							p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
+							
 						}
+						
+					}else {
+						
+						p.sendMessage("§cTu n'as pas ce cosmétique !");
+						p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
 						
 					}
 					

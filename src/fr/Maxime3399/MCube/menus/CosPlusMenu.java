@@ -227,6 +227,9 @@ public class CosPlusMenu {
 			ALc.add("§7Récompense de la");
 			ALc.add("§7ligue bronze");
 			ALc.add(" ");
+			ALc.add("§cTu n'as pas ce");
+			ALc.add("§ccosmétique !");
+			ALc.add(" ");
 			ALc.add("§8§mClique§7§m pour équipper");
 		}
 		IMc.setLore(ALc);
@@ -255,6 +258,9 @@ public class CosPlusMenu {
 		}else {
 			AL6.add("§7Récompense de la");
 			AL6.add("§7ligue argent");
+			AL6.add(" ");
+			AL6.add("§cTu n'as pas ce");
+			AL6.add("§ccosmétique !");
 			AL6.add(" ");
 			AL6.add("§8§mClique§7§m pour équipper");
 		}
@@ -285,6 +291,9 @@ public class CosPlusMenu {
 			ALe.add("§7Récompense de la");
 			ALe.add("§7ligue or");
 			ALe.add(" ");
+			ALe.add(" ");
+			ALe.add("§cTu n'as pas ce");
+			ALe.add("§ccosmétique !");
 			ALe.add("§8§mClique§7§m pour équipper");
 		}
 		IMe.setLore(ALe);
@@ -313,6 +322,9 @@ public class CosPlusMenu {
 		}else {
 			AL1.add("§7Récompense de la");
 			AL1.add("§7ligue platine");
+			AL1.add(" ");
+			AL1.add("§cTu n'as pas ce");
+			AL1.add("§ccosmétique !");
 			AL1.add(" ");
 			AL1.add("§8§mClique§7§m pour équipper");
 		}
@@ -343,6 +355,9 @@ public class CosPlusMenu {
 			AL9.add("§7Récompense de la");
 			AL9.add("§7ligue maître");
 			AL9.add(" ");
+			AL9.add("§cTu n'as pas ce");
+			AL9.add("§ccosmétique !");
+			AL9.add(" ");
 			AL9.add("§8§mClique§7§m pour équipper");
 		}
 		IM9.setLore(AL9);
@@ -372,6 +387,9 @@ public class CosPlusMenu {
 			AL3.add("§7Récompense de la");
 			AL3.add("§7ligue légende");
 			AL3.add(" ");
+			AL3.add("§cTu n'as pas ce");
+			AL3.add("§ccosmétique !");
+			AL3.add(" ");
 			AL3.add("§8§mClique§7§m pour équipper");
 		}
 		IM3.setLore(AL3);
@@ -399,6 +417,9 @@ public class CosPlusMenu {
 			}
 		}else {
 			ALb.add("§7Terminer top 3");
+			ALb.add(" ");
+			ALb.add("§cTu n'as pas ce");
+			ALb.add("§ccosmétique !");
 			ALb.add(" ");
 			ALb.add("§8§mClique§7§m pour équipper");
 		}
@@ -428,6 +449,9 @@ public class CosPlusMenu {
 		}else {
 			AL0.add("§7Terminer top 2");
 			AL0.add(" ");
+			AL0.add("§cTu n'as pas ce");
+			AL0.add("§ccosmétique !");
+			AL0.add(" ");
 			AL0.add("§8§mClique§7§m pour équipper");
 		}
 		IM0.setLore(AL0);
@@ -455,6 +479,9 @@ public class CosPlusMenu {
 			}
 		}else {
 			AL8.add("§7Terminer top 1");
+			AL8.add(" ");
+			AL8.add("§cTu n'as pas ce");
+			AL8.add("§ccosmétique !");
 			AL8.add(" ");
 			AL8.add("§8§mClique§7§m pour équipper");
 		}
@@ -485,6 +512,9 @@ public class CosPlusMenu {
 			AL7.add("§7Obtenable lors d'un achat");
 			AL7.add("§7dans le boutique en ligne");
 			AL7.add(" ");
+			AL7.add("§cTu n'as pas ce");
+			AL7.add("§ccosmétique !");
+			AL7.add(" ");
 			AL7.add("§8§mClique§7§m pour équipper");
 		}
 		IM7.setLore(AL7);
@@ -512,6 +542,9 @@ public class CosPlusMenu {
 			}
 		}else {
 			ALf.add("§7Récompense spéciale");
+			ALf.add(" ");
+			ALf.add("§cTu n'as pas ce");
+			ALf.add("§ccosmétique !");
 			ALf.add(" ");
 			ALf.add("§8§mClique§7§m pour équipper");
 		}
