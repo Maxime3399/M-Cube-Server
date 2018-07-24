@@ -144,7 +144,7 @@ public class MainClass extends JavaPlugin{
 				if(MySQLUtils.execute("CREATE TABLE IF NOT EXISTS `infos` (\r\n" + 
 						"  `type` varchar(255) NOT NULL,\r\n" + 
 						"  `info_int` int(255) NOT NULL,\r\n" + 
-						"  `info_string` int(255) NOT NULL,\r\n" + 
+						"  `info_string` varchar(255) NOT NULL,\r\n" + 
 						"  PRIMARY KEY (`type`),\r\n" + 
 						"  UNIQUE KEY `type` (`type`)\r\n" + 
 						") ENGINE=MyISAM DEFAULT CHARSET=latin1;", false)) {
