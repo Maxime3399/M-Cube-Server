@@ -162,11 +162,9 @@ public class MainClass extends JavaPlugin{
 						MySQLUtils.execute("INSERT INTO `infos` (`type`, `info_int`, `info_string`) VALUES\r\n" + 
 								"('currentSeason', 1, ''),\r\n" + 
 								"('season_1_end', 0, '"+nd+"'),\r\n" + 
-								"('m_time_seconds', 0, ''),\r\n" + 
 								"('maintenance', 0, 'false'),\r\n" + 
 								"('data', 0, ''),\r\n" + 
-								"('m_time_minutes', 0, ''),\r\n" + 
-								"('m_time_hours', 0, '');", false);
+								"('maintenance_start', 0, '');", false);
 						
 					}
 					

@@ -35,16 +35,13 @@ public class GeneralSheduler {
 		
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(MainClass.getInstance(), new Runnable() {
 			
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
 			boolean mai = DataUtils.getMaintenance();
-			int m_time_seconds = MySQLUtils.getInt("infos", "type", "m_time_seconds", "info_int");
-			int m_time_minutes = MySQLUtils.getInt("infos", "type", "m_time_minutes", "info_int");
-			int m_time_hours = MySQLUtils.getInt("infos", "type", "m_time_hours", "info_int");
 			
 			@Override
 			public void run() {
 				
 				boolean d = true;
-				SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
 				
 				if(!DataUtils.getMaintenance()) {
 					
@@ -58,17 +55,19 @@ public class GeneralSheduler {
 						} catch (ParseException e) {
 							e.printStackTrace();
 						}
-						Calendar cal = Calendar.getInstance();
-						cal.setTime(dEnd);
-						cal.add(Calendar.SECOND, m_time_seconds);
-						cal.add(Calendar.MINUTE, m_time_minutes);
-						cal.add(Calendar.HOUR, m_time_hours);
-						dEnd.setTime(cal.getTimeInMillis());
+						Date dS = null;
+						try {
+							dS = sdf.parse(MySQLUtils.getString("infos", "type", "maintenance_start", "info_string"));
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						Date dC = new Date();
+						long dif = dC.getTime()-dS.getTime();
+						dEnd.setTime(dEnd.getTime()+dif);
 						String e = sdf.format(dEnd);
 						MySQLUtils.setString("infos", "type", "season_"+DataUtils.getCurrentSeason()+"_end", "info_string", e);
-						MySQLUtils.setInt("infos", "type", "m_time_seconds", "info_int", 0);
-						MySQLUtils.setInt("infos", "type", "m_time_minutes", "info_int", 0);
-						MySQLUtils.setInt("infos", "type", "m_time_hours", "info_int", 0);
+						MySQLUtils.setString("infos", "type", "maintenance_start", "info_string", "");
 						
 					}
 					
@@ -190,23 +189,10 @@ public class GeneralSheduler {
 						}
 						
 						mai = DataUtils.getMaintenance();
+						Date dStart = new Date();
+						MySQLUtils.setString("infos", "type", "maintenance_start", "info_string", sdf.format(dStart));
 						
 					}
-					
-					m_time_seconds++;
-					
-					if(m_time_seconds >= 60) {
-						m_time_seconds = m_time_seconds-60;
-						m_time_minutes = m_time_minutes+1;
-						if(m_time_minutes >= 60) {
-							m_time_minutes = m_time_minutes-60;
-							m_time_hours = m_time_hours+1;
-						}
-					}
-					
-					MySQLUtils.setInt("infos", "type", "m_time_seconds", "info_int", m_time_seconds);
-					MySQLUtils.setInt("infos", "type", "m_time_minutes", "info_int", m_time_minutes);
-					MySQLUtils.setInt("infos", "type", "m_time_hours", "info_int", m_time_hours);
 					
 				}
 				
