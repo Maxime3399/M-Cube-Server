@@ -13,9 +13,18 @@ public class PlayercountCMD {
 		
 		Player p = (Player) sender;
 		
-		int count = MySQLUtils.getValues("players").size();
-		p.sendMessage("§eIl y a §a"+count+"§e joueurs uniques inscrits sur §6M-Cube§e.");
-		p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_EGG, 100, 1);
+		if(p.hasPermission("mcube.command.playercount")) {
+			
+			int count = MySQLUtils.getValues("players").size();
+			p.sendMessage("§eIl y a §a"+count+"§e joueurs uniques inscrits sur §6M-Cube§e.");
+			p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_EGG, 100, 1);
+			
+		}else {
+			
+			p.sendMessage("§cTu n'as pas la permission !");
+			p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
+			
+		}
 		
 	}
 	
