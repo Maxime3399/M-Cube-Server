@@ -297,7 +297,7 @@ public class DisplayUtils {
 	public static String getClass(Player p, int season) {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
-		int points = cp.getPoints();
+		int points = cp.getPointsBySeason(season);
 		String result = "§7Bronze";
 		
 		if(points == -1) {

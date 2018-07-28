@@ -59,7 +59,6 @@ public class GeneralSheduler {
 						try {
 							dS = sdf.parse(MySQLUtils.getString("infos", "type", "maintenance_start", "info_string"));
 						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						Date dC = new Date();

@@ -19,6 +19,7 @@ import fr.Maxime3399.MCube.managers.CommandsManager;
 import fr.Maxime3399.MCube.managers.EventsManager;
 import fr.Maxime3399.MCube.managers.PlayersManager;
 import fr.Maxime3399.MCube.managers.SchedulersManager;
+import fr.Maxime3399.MCube.utils.DataUtils;
 import fr.Maxime3399.MCube.utils.MySQLUtils;
 
 public class MainClass extends JavaPlugin{
@@ -31,6 +32,7 @@ public class MainClass extends JavaPlugin{
 		plugin = this;
 		enable = false;
 		PlayersManager.use = true;
+		DataUtils.use = 1;
 		
 		File f = new File(getDataFolder(), "config.yml");
 		if(!f.exists()) {

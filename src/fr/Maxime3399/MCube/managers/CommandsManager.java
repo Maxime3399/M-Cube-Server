@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
+import fr.Maxime3399.MCube.commands.CcmdCMD;
 import fr.Maxime3399.MCube.commands.GiftCMD;
 import fr.Maxime3399.MCube.commands.MaintenanceCMD;
 import fr.Maxime3399.MCube.commands.MenuCMD;
@@ -41,6 +42,10 @@ public class CommandsManager {
 				
 				GiftCMD.commandPlayer(sender, cmd, label, args);
 				
+			}else if(cmd.getName().equalsIgnoreCase("ccmd")) {
+				
+				CcmdCMD.commandPlayer(sender, cmd, label, args);
+				
 			}
 			
 		}
@@ -62,6 +67,10 @@ public class CommandsManager {
 			}else if(cmd.getName().equalsIgnoreCase("gift")) {
 				
 				GiftCMD.commandConsole(sender, cmd, label, args);
+				
+			}else if(cmd.getName().equalsIgnoreCase("ccmd")) {
+				
+				Bukkit.getConsoleSender().sendMessage("§6§l[§r§3M-Cube§6§l]§r §cCette commande n'est utilisable que par les joueurs !");
 				
 			}
 			

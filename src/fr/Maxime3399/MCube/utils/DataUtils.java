@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 public class DataUtils {
 	
+	public static int use = 0;
+	
 	public static int getCurrentSeason() {
 		
 		return MySQLUtils.getInt("infos", "type", "currentSeason", "info_int");

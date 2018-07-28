@@ -106,6 +106,7 @@ public class CustomPlayer {
 	private String home40;
 	
 	private boolean afk;
+	private String confirm;
 	
 	public CustomPlayer(Player p) {
 		
@@ -204,6 +205,7 @@ public class CustomPlayer {
 		this.setHome40(MySQLUtils.getString("players", "uuid", uuid.toString(), "home40"));
 		
 		this.setAfk(false);
+		this.setConfirm(null);
 		
 	}
 	
@@ -1135,6 +1137,14 @@ public class CustomPlayer {
 
 	public void setAfk(boolean afk) {
 		this.afk = afk;
+	}
+
+	public String getConfirm() {
+		return confirm;
+	}
+
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
 	}
 
 }

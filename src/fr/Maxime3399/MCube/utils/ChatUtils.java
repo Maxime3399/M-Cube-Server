@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 
 import net.minecraft.server.v1_13_R1.IChatBaseComponent;
 import net.minecraft.server.v1_13_R1.IChatBaseComponent.ChatSerializer;
+import net.minecraft.server.v1_13_R1.PacketPlayOutChat;
 import net.minecraft.server.v1_13_R1.PacketPlayOutTitle;
 import net.minecraft.server.v1_13_R1.PacketPlayOutTitle.EnumTitleAction;
 
@@ -19,6 +20,14 @@ public class ChatUtils {
 		
 		((CraftPlayer) p).getHandle().playerConnection.sendPacket(Ptitle);
 		((CraftPlayer) p).getHandle().playerConnection.sendPacket(Ptime);
+		
+	}
+	
+	public static void sendMessage(Player p, String JSONMessage) {
+		
+		IChatBaseComponent comp = ChatSerializer.a(JSONMessage);
+		PacketPlayOutChat packet = new PacketPlayOutChat(comp);
+		((CraftPlayer)p).getHandle().playerConnection.sendPacket(packet);		
 		
 	}
 
