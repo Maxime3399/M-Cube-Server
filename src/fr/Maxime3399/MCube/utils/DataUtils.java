@@ -11,7 +11,14 @@ public class DataUtils {
 	
 	public static int getCurrentSeason() {
 		
-		return MySQLUtils.getInt("infos", "type", "currentSeason", "info_int");
+		int result = 0;
+		
+		try {
+			result = MySQLUtils.getInt("infos", "type", "currentSeason", "info_int");
+		}catch (Exception e) {
+		}
+		
+		return result;
 		
 	}
 	
