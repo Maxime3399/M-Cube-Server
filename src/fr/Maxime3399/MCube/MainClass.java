@@ -170,9 +170,30 @@ public class MainClass extends JavaPlugin{
 						
 					}
 					
-					enable = true;
-					EventsManager.registerEvents();
-					SchedulersManager.registerSchedulers();
+					if(MySQLUtils.execute("CREATE TABLE IF NOT EXISTS `gifts` (\r\n" + 
+							"  `id` varchar(255) NOT NULL,\r\n" + 
+							"  `item` varchar(255) NOT NULL DEFAULT 'STONE',\r\n" + 
+							"  `description` varchar(255) NOT NULL DEFAULT 'none',\r\n" + 
+							"  `content` varchar(255) NOT NULL,\r\n" + 
+							"  PRIMARY KEY (`id`),\r\n" + 
+							"  UNIQUE KEY `id` (`id`)\r\n" + 
+							") ENGINE=MyISAM DEFAULT CHARSET=latin1;", false)) {
+						
+						enable = true;
+						EventsManager.registerEvents();
+						SchedulersManager.registerSchedulers();
+						
+					}else {
+						
+						Bukkit.getConsoleSender().sendMessage("§6§l[§r§3Bropocalypse§6§l]§r §cLa création de la table \"gifts\" a échouée.");
+						disable();
+						
+					}
+					
+				}else {
+					
+					Bukkit.getConsoleSender().sendMessage("§6§l[§r§3Bropocalypse§6§l]§r §cLa création de la table \"infos\" a échouée.");
+					disable();
 					
 				}
 				
