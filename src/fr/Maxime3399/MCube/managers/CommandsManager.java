@@ -11,6 +11,7 @@ import fr.Maxime3399.MCube.commands.GiftCMD;
 import fr.Maxime3399.MCube.commands.MaintenanceCMD;
 import fr.Maxime3399.MCube.commands.MenuCMD;
 import fr.Maxime3399.MCube.commands.PlayercountCMD;
+import fr.Maxime3399.MCube.commands.StopCMD;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.schedulers.GeneralSheduler;
 import fr.Maxime3399.MCube.utils.PointsUtils;
@@ -46,6 +47,10 @@ public class CommandsManager {
 				
 				CcmdCMD.commandPlayer(sender, cmd, label, args);
 				
+			}else if(cmd.getName().equalsIgnoreCase("stop")) {
+				
+				StopCMD.commandPlayer(sender, cmd, label, args);
+				
 			}
 			
 		}
@@ -71,6 +76,10 @@ public class CommandsManager {
 			}else if(cmd.getName().equalsIgnoreCase("ccmd")) {
 				
 				Bukkit.getConsoleSender().sendMessage("§6§l[§r§3M-Cube§6§l]§r §cCette commande n'est utilisable que par les joueurs !");
+				
+			}else if(cmd.getName().equalsIgnoreCase("stop")) {
+				
+				StopCMD.commandConsole(sender, cmd, label, args);
 				
 			}
 			
