@@ -1,13 +1,13 @@
 package fr.Maxime3399.MCube.utils;
 
-import org.bukkit.craftbukkit.v1_13_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import net.minecraft.server.v1_13_R1.IChatBaseComponent;
-import net.minecraft.server.v1_13_R1.IChatBaseComponent.ChatSerializer;
-import net.minecraft.server.v1_13_R1.PacketPlayOutChat;
-import net.minecraft.server.v1_13_R1.PacketPlayOutTitle;
-import net.minecraft.server.v1_13_R1.PacketPlayOutTitle.EnumTitleAction;
+import net.minecraft.server.v1_13_R2.IChatBaseComponent;
+import net.minecraft.server.v1_13_R2.IChatBaseComponent.ChatSerializer;
+import net.minecraft.server.v1_13_R2.PacketPlayOutChat;
+import net.minecraft.server.v1_13_R2.PacketPlayOutTitle;
+import net.minecraft.server.v1_13_R2.PacketPlayOutTitle.EnumTitleAction;
 
 public class ChatUtils {
 	
