@@ -13,3 +13,5 @@ commands:
     stop:
     playertime:
     pt:
+    lastconnection:
+    lc:
