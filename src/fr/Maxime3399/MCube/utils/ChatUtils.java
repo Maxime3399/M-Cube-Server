@@ -23,6 +23,18 @@ public class ChatUtils {
 		
 	}
 	
+	public static void sendActionBar(Player p, String message, int in, int time, int out) {
+		
+		IChatBaseComponent chatMessage = ChatSerializer.a("{\"text\":\""+message+"\"}");
+		
+		PacketPlayOutTitle action = new PacketPlayOutTitle(EnumTitleAction.ACTIONBAR, chatMessage);
+		PacketPlayOutTitle Ptime = new PacketPlayOutTitle(in, time, out);
+		
+		((CraftPlayer) p).getHandle().playerConnection.sendPacket(action);
+		((CraftPlayer) p).getHandle().playerConnection.sendPacket(Ptime);
+		
+	}
+	
 	public static void sendMessage(Player p, String JSONMessage) {
 		
 		IChatBaseComponent comp = ChatSerializer.a(JSONMessage);

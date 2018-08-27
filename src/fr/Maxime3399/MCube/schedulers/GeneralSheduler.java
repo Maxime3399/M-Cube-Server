@@ -193,6 +193,10 @@ public class GeneralSheduler {
 						
 					}
 					
+					for(Player pls : Bukkit.getOnlinePlayers()) {
+						ChatUtils.sendActionBar(pls, "§b§lMAINTENANCE EN COURS", 2, 20, 2);
+					}
+					
 				}
 				
 				if(d) {
