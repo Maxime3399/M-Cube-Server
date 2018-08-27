@@ -180,20 +180,24 @@ public class MainClass extends JavaPlugin{
 								"  UNIQUE KEY `id` (`id`)\r\n" + 
 								") ENGINE=MyISAM DEFAULT CHARSET=latin1;", false)) {
 							
-							enable = true;
-							EventsManager.registerEvents();
-							SchedulersManager.registerSchedulers();
-							
-							Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+							if(MySQLUtils.execute("CREATE TABLE IF NOT EXISTS `chests` (\r\n" + 
+									"  `id` varchar(255) NOT NULL,\r\n" + 
+									"  `stars` int(255) NOT NULL DEFAULT '1',\r\n" + 
+									"  `bypass` varchar(255) NOT NULL DEFAULT 'false',\r\n" + 
+									"  `content_1` varchar(255) NOT NULL,\r\n" + 
+									"  `content_2` varchar(255) NOT NULL DEFAULT 'none',\r\n" + 
+									"  `content_3` varchar(255) NOT NULL DEFAULT 'none',\r\n" + 
+									"  `content_4` varchar(255) NOT NULL DEFAULT 'none',\r\n" + 
+									"  `content_5` varchar(255) NOT NULL DEFAULT '',\r\n" + 
+									"  PRIMARY KEY (`id`)\r\n" + 
+									") ENGINE=MyISAM DEFAULT CHARSET=latin1;", false)) {
 								
-								@Override
-								public void run() {
-									
-									CommandsManager.registerCommands();
-									
-								}
+								enable = true;
+								EventsManager.registerEvents();
+								SchedulersManager.registerSchedulers();
+								CommandsManager.registerCommands();
 								
-							}, 10);
+							}
 							
 						}else {
 							
