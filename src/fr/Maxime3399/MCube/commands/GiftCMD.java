@@ -30,9 +30,21 @@ public class GiftCMD implements CommandExecutor{
 				if(args.length == 3) {
 					
 					String name = args[0];
-					if(Bukkit.getPlayer(name) == null) {
+					String uuid = null;
+					
+					for(String ids : MySQLUtils.getValues("players")) {
 						
-						p.sendMessage("§cCe joueur n'est pas connecté !");
+						if(MySQLUtils.getString("players", "uuid", ""+ids, "name").equalsIgnoreCase(name)) {
+							
+							uuid = ids;
+							
+						}
+						
+					}
+					
+					if(uuid == null && (!name.equalsIgnoreCase("#ALL"))) {
+						
+						p.sendMessage("§cCe joueur n'éxiste pas !");
 						p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
 						
 					}else {
@@ -54,27 +66,82 @@ public class GiftCMD implements CommandExecutor{
 								
 							}else {
 								
-								int ran = 0;
-								
-								for(int it = 0; it <= 100; it++) {
+								if(name.equalsIgnoreCase("#ALL")) {
 									
-									Random r = new Random();
-									ran = r.nextInt(99999);
-									if(!MySQLUtils.getValues("gifts").contains(ran+"")) {
-										it = 101;
+									for(Player pls : Bukkit.getOnlinePlayers()) {
+										
+										PlayersManager.removePlayer(pls);
+										
 									}
 									
-								}
-								
-								CustomPlayer cp = PlayersManager.getCustomPlayer(target);
-								MySQLUtils.execute("INSERT INTO `gifts` (`id`, `item`, `description`, `content`) VALUES ('"+ran+"', '"+material+"', 'none', '"+content+"');", false);
-								if(cp.getGifts().equalsIgnoreCase("")) {
-									cp.setGifts(ran+"");
+									for(String ids : MySQLUtils.getValues("players")) {
+										
+										int ran = 0;
+										
+										for(int it = 0; it <= 100; it++) {
+											
+											Random r = new Random();
+											ran = r.nextInt(99999);
+											if(!MySQLUtils.getValues("gifts").contains(ran+"")) {
+												it = 101;
+											}
+											
+										}
+										
+										MySQLUtils.execute("INSERT INTO `gifts` (`id`, `item`, `description`, `content`) VALUES ('"+ran+"', '"+material+"', 'none', '"+content+"');", false);
+										
+										String g = MySQLUtils.getString("players", "uuid", ids, "gifts");
+										if(g.equalsIgnoreCase("")) {
+											MySQLUtils.setString("players", "uuid", ids, "gifts", ran+"");
+										}else {
+											MySQLUtils.setString("players", "uuid", ids, "gifts", g+","+ran);
+										}
+										
+									}
+									
+									p.sendMessage("§eLes cadeaux ont étés envoyés !");
+									p.playSound(p.getLocation(), Sound.BLOCK_PISTON_EXTEND, 100, 2);
+									
+									for(Player pls : Bukkit.getOnlinePlayers()) {
+										
+										PlayersManager.addPlayer(pls);
+										
+									}
+									
 								}else {
-									cp.setGifts(cp.getGifts()+","+ran);
+									
+									int ran = 0;
+									
+									for(int it = 0; it <= 100; it++) {
+										
+										Random r = new Random();
+										ran = r.nextInt(99999);
+										if(!MySQLUtils.getValues("gifts").contains(ran+"")) {
+											it = 101;
+										}
+										
+									}
+									
+									MySQLUtils.execute("INSERT INTO `gifts` (`id`, `item`, `description`, `content`) VALUES ('"+ran+"', '"+material+"', 'none', '"+content+"');", false);
+									if(target == null) {
+										String g = MySQLUtils.getString("players", "uuid", uuid, "gifts");
+										if(g.equalsIgnoreCase("")) {
+											MySQLUtils.setString("players", "uuid", uuid, "gifts", ran+"");
+										}else {
+											MySQLUtils.setString("players", "uuid", uuid, "gifts", g+","+ran);
+										}
+									}else {
+										CustomPlayer cp = PlayersManager.getCustomPlayer(target);
+										if(cp.getGifts().equalsIgnoreCase("")) {
+											cp.setGifts(ran+"");
+										}else {
+											cp.setGifts(cp.getGifts()+","+ran);
+										}
+									}
+									p.sendMessage("§eLe cadeau a été envoyé !");
+									p.playSound(p.getLocation(), Sound.BLOCK_PISTON_EXTEND, 100, 2);
+									
 								}
-								p.sendMessage("§eLe cadeau a été envoyé !");
-								p.playSound(p.getLocation(), Sound.BLOCK_PISTON_EXTEND, 100, 2);
 								
 							}
 							
@@ -85,9 +152,21 @@ public class GiftCMD implements CommandExecutor{
 				}else if(args.length == 4) {
 					
 					String name = args[0];
-					if(Bukkit.getPlayer(name) == null) {
+					String uuid = null;
+					
+					for(String ids : MySQLUtils.getValues("players")) {
 						
-						p.sendMessage("§cCe joueur n'est pas connecté !");
+						if(MySQLUtils.getString("players", "uuid", ""+ids, "name").equalsIgnoreCase(name)) {
+							
+							uuid = ids;
+							
+						}
+						
+					}
+					
+					if(uuid == null && (!name.equalsIgnoreCase("#ALL"))) {
+						
+						p.sendMessage("§cCe joueur n'éxiste pas !");
 						p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
 						
 					}else {
@@ -110,27 +189,83 @@ public class GiftCMD implements CommandExecutor{
 							}else {
 								
 								String desc = args[3].replaceAll("_", " ");
-								int ran = 0;
-								
-								for(int it = 0; it <= 100; it++) {
+
+								if(name.equalsIgnoreCase("#ALL")) {
 									
-									Random r = new Random();
-									ran = r.nextInt(99999);
-									if(!MySQLUtils.getValues("gifts").contains(ran+"")) {
-										it = 101;
+									for(Player pls : Bukkit.getOnlinePlayers()) {
+										
+										PlayersManager.removePlayer(pls);
+										
 									}
 									
-								}
-								
-								CustomPlayer cp = PlayersManager.getCustomPlayer(target);
-								MySQLUtils.execute("INSERT INTO `gifts` (`id`, `item`, `description`, `content`) VALUES ('"+ran+"', '"+material+"', '"+desc+"', '"+content+"');", false);
-								if(cp.getGifts().equalsIgnoreCase("")) {
-									cp.setGifts(ran+"");
+									for(String ids : MySQLUtils.getValues("players")) {
+										
+										int ran = 0;
+										
+										for(int it = 0; it <= 100; it++) {
+											
+											Random r = new Random();
+											ran = r.nextInt(99999);
+											if(!MySQLUtils.getValues("gifts").contains(ran+"")) {
+												it = 101;
+											}
+											
+										}
+										
+										MySQLUtils.execute("INSERT INTO `gifts` (`id`, `item`, `description`, `content`) VALUES ('"+ran+"', '"+material+"', '"+desc+"', '"+content+"');", false);
+										
+										String g = MySQLUtils.getString("players", "uuid", ids, "gifts");
+										if(g.equalsIgnoreCase("")) {
+											MySQLUtils.setString("players", "uuid", ids, "gifts", ran+"");
+										}else {
+											MySQLUtils.setString("players", "uuid", ids, "gifts", g+","+ran);
+										}
+										
+									}
+									
+									p.sendMessage("§eLes cadeaux ont étés envoyés !");
+									p.playSound(p.getLocation(), Sound.BLOCK_PISTON_EXTEND, 100, 2);
+									
+									for(Player pls : Bukkit.getOnlinePlayers()) {
+										
+										PlayersManager.addPlayer(pls);
+										
+									}
+									
 								}else {
-									cp.setGifts(cp.getGifts()+","+ran);
+									
+									int ran = 0;
+									
+									for(int it = 0; it <= 100; it++) {
+										
+										Random r = new Random();
+										ran = r.nextInt(99999);
+										if(!MySQLUtils.getValues("gifts").contains(ran+"")) {
+											it = 101;
+										}
+										
+									}
+									
+									MySQLUtils.execute("INSERT INTO `gifts` (`id`, `item`, `description`, `content`) VALUES ('"+ran+"', '"+material+"', 'none', '"+content+"');", false);
+									if(target == null) {
+										String g = MySQLUtils.getString("players", "uuid", uuid, "gifts");
+										if(g.equalsIgnoreCase("")) {
+											MySQLUtils.setString("players", "uuid", uuid, "gifts", ran+"");
+										}else {
+											MySQLUtils.setString("players", "uuid", uuid, "gifts", g+","+ran);
+										}
+									}else {
+										CustomPlayer cp = PlayersManager.getCustomPlayer(target);
+										if(cp.getGifts().equalsIgnoreCase("")) {
+											cp.setGifts(ran+"");
+										}else {
+											cp.setGifts(cp.getGifts()+","+ran);
+										}
+									}
+									p.sendMessage("§eLe cadeau a été envoyé !");
+									p.playSound(p.getLocation(), Sound.BLOCK_PISTON_EXTEND, 100, 2);
+									
 								}
-								p.sendMessage("§eLe cadeau a été envoyé !");
-								p.playSound(p.getLocation(), Sound.BLOCK_PISTON_EXTEND, 100, 2);
 								
 							}
 							
@@ -159,9 +294,21 @@ public class GiftCMD implements CommandExecutor{
 			if(args.length == 3) {
 				
 				String name = args[0];
-				if(Bukkit.getPlayer(name) == null) {
+				String uuid = null;
+				
+				for(String ids : MySQLUtils.getValues("players")) {
 					
-					sender.sendMessage("§cCe joueur n'est pas connecté !");
+					if(MySQLUtils.getString("players", "uuid", ""+ids, "name").equalsIgnoreCase(name)) {
+						
+						uuid = ids;
+						
+					}
+					
+				}
+				
+				if(uuid == null && (!name.equalsIgnoreCase("#ALL"))) {
+					
+					sender.sendMessage("§cCe joueur n'éxiste pas !");
 					
 				}else {
 					
@@ -180,26 +327,80 @@ public class GiftCMD implements CommandExecutor{
 							
 						}else {
 							
-							int ran = 0;
-							
-							for(int it = 0; it <= 100; it++) {
+							if(name.equalsIgnoreCase("#ALL")) {
 								
-								Random r = new Random();
-								ran = r.nextInt(99999);
-								if(!MySQLUtils.getValues("gifts").contains(ran+"")) {
-									it = 101;
+								for(Player pls : Bukkit.getOnlinePlayers()) {
+									
+									PlayersManager.removePlayer(pls);
+									
 								}
 								
-							}
-							
-							CustomPlayer cp = PlayersManager.getCustomPlayer(target);
-							MySQLUtils.execute("INSERT INTO `gifts` (`id`, `item`, `description`, `content`) VALUES ('"+ran+"', '"+material+"', 'none', '"+content+"');", false);
-							if(cp.getGifts().equalsIgnoreCase("")) {
-								cp.setGifts(ran+"");
+								for(String ids : MySQLUtils.getValues("players")) {
+									
+									int ran = 0;
+									
+									for(int it = 0; it <= 100; it++) {
+										
+										Random r = new Random();
+										ran = r.nextInt(99999);
+										if(!MySQLUtils.getValues("gifts").contains(ran+"")) {
+											it = 101;
+										}
+										
+									}
+									
+									MySQLUtils.execute("INSERT INTO `gifts` (`id`, `item`, `description`, `content`) VALUES ('"+ran+"', '"+material+"', 'none', '"+content+"');", false);
+									
+									String g = MySQLUtils.getString("players", "uuid", ids, "gifts");
+									if(g.equalsIgnoreCase("")) {
+										MySQLUtils.setString("players", "uuid", ids, "gifts", ran+"");
+									}else {
+										MySQLUtils.setString("players", "uuid", ids, "gifts", g+","+ran);
+									}
+									
+								}
+								
+								sender.sendMessage("§eLes cadeaux ont étés envoyés !");
+								
+								for(Player pls : Bukkit.getOnlinePlayers()) {
+									
+									PlayersManager.addPlayer(pls);
+									
+								}
+								
 							}else {
-								cp.setGifts(cp.getGifts()+","+ran);
+								
+								int ran = 0;
+								
+								for(int it = 0; it <= 100; it++) {
+									
+									Random r = new Random();
+									ran = r.nextInt(99999);
+									if(!MySQLUtils.getValues("gifts").contains(ran+"")) {
+										it = 101;
+									}
+									
+								}
+								
+								MySQLUtils.execute("INSERT INTO `gifts` (`id`, `item`, `description`, `content`) VALUES ('"+ran+"', '"+material+"', 'none', '"+content+"');", false);
+								if(target == null) {
+									String g = MySQLUtils.getString("players", "uuid", uuid, "gifts");
+									if(g.equalsIgnoreCase("")) {
+										MySQLUtils.setString("players", "uuid", uuid, "gifts", ran+"");
+									}else {
+										MySQLUtils.setString("players", "uuid", uuid, "gifts", g+","+ran);
+									}
+								}else {
+									CustomPlayer cp = PlayersManager.getCustomPlayer(target);
+									if(cp.getGifts().equalsIgnoreCase("")) {
+										cp.setGifts(ran+"");
+									}else {
+										cp.setGifts(cp.getGifts()+","+ran);
+									}
+								}
+								sender.sendMessage("§eLe cadeau a été envoyé !");
+								
 							}
-							sender.sendMessage("§eLe cadeau a été envoyé !");
 							
 						}
 						
@@ -210,9 +411,21 @@ public class GiftCMD implements CommandExecutor{
 			}else if(args.length == 4) {
 				
 				String name = args[0];
-				if(Bukkit.getPlayer(name) == null) {
+				String uuid = null;
+				
+				for(String ids : MySQLUtils.getValues("players")) {
 					
-					sender.sendMessage("§cCe joueur n'est pas connecté !");
+					if(MySQLUtils.getString("players", "uuid", ""+ids, "name").equalsIgnoreCase(name)) {
+						
+						uuid = ids;
+						
+					}
+					
+				}
+				
+				if(uuid == null && (!name.equalsIgnoreCase("#ALL"))) {
+					
+					sender.sendMessage("§cCe joueur n'éxiste pas !");
 					
 				}else {
 					
@@ -232,26 +445,81 @@ public class GiftCMD implements CommandExecutor{
 						}else {
 							
 							String desc = args[3].replaceAll("_", " ");
-							int ran = 0;
-							
-							for(int it = 0; it <= 100; it++) {
+
+							if(name.equalsIgnoreCase("#ALL")) {
 								
-								Random r = new Random();
-								ran = r.nextInt(99999);
-								if(!MySQLUtils.getValues("gifts").contains(ran+"")) {
-									it = 101;
+								for(Player pls : Bukkit.getOnlinePlayers()) {
+									
+									PlayersManager.removePlayer(pls);
+									
 								}
 								
-							}
-							
-							CustomPlayer cp = PlayersManager.getCustomPlayer(target);
-							MySQLUtils.execute("INSERT INTO `gifts` (`id`, `item`, `description`, `content`) VALUES ('"+ran+"', '"+material+"', '"+desc+"', '"+content+"');", false);
-							if(cp.getGifts().equalsIgnoreCase("")) {
-								cp.setGifts(ran+"");
+								for(String ids : MySQLUtils.getValues("players")) {
+									
+									int ran = 0;
+									
+									for(int it = 0; it <= 100; it++) {
+										
+										Random r = new Random();
+										ran = r.nextInt(99999);
+										if(!MySQLUtils.getValues("gifts").contains(ran+"")) {
+											it = 101;
+										}
+										
+									}
+									
+									MySQLUtils.execute("INSERT INTO `gifts` (`id`, `item`, `description`, `content`) VALUES ('"+ran+"', '"+material+"', '"+desc+"', '"+content+"');", false);
+									
+									String g = MySQLUtils.getString("players", "uuid", ids, "gifts");
+									if(g.equalsIgnoreCase("")) {
+										MySQLUtils.setString("players", "uuid", ids, "gifts", ran+"");
+									}else {
+										MySQLUtils.setString("players", "uuid", ids, "gifts", g+","+ran);
+									}
+									
+								}
+								
+								sender.sendMessage("§eLes cadeaux ont étés envoyés !");
+								
+								for(Player pls : Bukkit.getOnlinePlayers()) {
+									
+									PlayersManager.addPlayer(pls);
+									
+								}
+								
 							}else {
-								cp.setGifts(cp.getGifts()+","+ran);
+								
+								int ran = 0;
+								
+								for(int it = 0; it <= 100; it++) {
+									
+									Random r = new Random();
+									ran = r.nextInt(99999);
+									if(!MySQLUtils.getValues("gifts").contains(ran+"")) {
+										it = 101;
+									}
+									
+								}
+								
+								MySQLUtils.execute("INSERT INTO `gifts` (`id`, `item`, `description`, `content`) VALUES ('"+ran+"', '"+material+"', 'none', '"+content+"');", false);
+								if(target == null) {
+									String g = MySQLUtils.getString("players", "uuid", uuid, "gifts");
+									if(g.equalsIgnoreCase("")) {
+										MySQLUtils.setString("players", "uuid", uuid, "gifts", ran+"");
+									}else {
+										MySQLUtils.setString("players", "uuid", uuid, "gifts", g+","+ran);
+									}
+								}else {
+									CustomPlayer cp = PlayersManager.getCustomPlayer(target);
+									if(cp.getGifts().equalsIgnoreCase("")) {
+										cp.setGifts(ran+"");
+									}else {
+										cp.setGifts(cp.getGifts()+","+ran);
+									}
+								}
+								sender.sendMessage("§eLe cadeau a été envoyé !");
+								
 							}
-							sender.sendMessage("§eLe cadeau a été envoyé !");
 							
 						}
 						

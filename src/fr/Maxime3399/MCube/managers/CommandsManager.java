@@ -5,6 +5,7 @@ import org.bukkit.plugin.Plugin;
 
 import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.commands.CcmdCMD;
+import fr.Maxime3399.MCube.commands.ChestCMD;
 import fr.Maxime3399.MCube.commands.GiftCMD;
 import fr.Maxime3399.MCube.commands.LastconnectionCMD;
 import fr.Maxime3399.MCube.commands.LcCMD;
@@ -44,6 +45,8 @@ public class CommandsManager {
 		cmd10.setExecutor(new LastconnectionCMD());
 		PluginCommand cmd11 = p.getServer().getPluginCommand("lc");
 		cmd11.setExecutor(new LcCMD());
+		PluginCommand cmd12 = p.getServer().getPluginCommand("chest");
+		cmd12.setExecutor(new ChestCMD());
 		
 	}
 
