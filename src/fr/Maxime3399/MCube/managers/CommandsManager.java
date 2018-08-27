@@ -10,6 +10,8 @@ import fr.Maxime3399.MCube.commands.MaintenanceCMD;
 import fr.Maxime3399.MCube.commands.MenuCMD;
 import fr.Maxime3399.MCube.commands.PcCMD;
 import fr.Maxime3399.MCube.commands.PlayercountCMD;
+import fr.Maxime3399.MCube.commands.PlayertimeCMD;
+import fr.Maxime3399.MCube.commands.PtCMD;
 import fr.Maxime3399.MCube.commands.StopCMD;
 
 public class CommandsManager {
@@ -32,6 +34,10 @@ public class CommandsManager {
 		cmd6.setExecutor(new CcmdCMD());
 		PluginCommand cmd7 = p.getServer().getPluginCommand("stop");
 		cmd7.setExecutor(new StopCMD());
+		PluginCommand cmd8 = p.getServer().getPluginCommand("playertime");
+		cmd8.setExecutor(new PlayertimeCMD());
+		PluginCommand cmd9 = p.getServer().getPluginCommand("pt");
+		cmd9.setExecutor(new PtCMD());
 		
 	}
 

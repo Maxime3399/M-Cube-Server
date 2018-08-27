@@ -11,3 +11,5 @@ commands:
     gift:
     ccmd:
     stop:
+    playertime:
+    pt:
