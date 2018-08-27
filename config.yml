@@ -1,4 +1,12 @@
-#========== DATABASE ==========
+# ======== M-Cube Server ========
+#
+# Plugin verion: 1.0.0-a1.0
+# Spigot version : 1_13_R2
+# Plugin by Maxime3399
+#
+# ===============================
+
+# [= Database =]
 
 Adress: "localhost"
 User: "root"

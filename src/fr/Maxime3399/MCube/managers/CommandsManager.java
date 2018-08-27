@@ -1,89 +1,37 @@
 package fr.Maxime3399.MCube.managers;
 
-import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.Player;
+import org.bukkit.command.PluginCommand;
+import org.bukkit.plugin.Plugin;
 
+import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.commands.CcmdCMD;
 import fr.Maxime3399.MCube.commands.GiftCMD;
 import fr.Maxime3399.MCube.commands.MaintenanceCMD;
 import fr.Maxime3399.MCube.commands.MenuCMD;
+import fr.Maxime3399.MCube.commands.PcCMD;
 import fr.Maxime3399.MCube.commands.PlayercountCMD;
 import fr.Maxime3399.MCube.commands.StopCMD;
-import fr.Maxime3399.MCube.custom.CustomPlayer;
-import fr.Maxime3399.MCube.schedulers.GeneralSheduler;
-import fr.Maxime3399.MCube.utils.PointsUtils;
 
 public class CommandsManager {
 	
-	public static void execute(CommandSender sender, Command cmd, String label, String[] args) {
+	public static void registerCommands() {
 		
-		if(sender instanceof Player) {
-			
-			CustomPlayer cp = PlayersManager.getCustomPlayer((Player) sender);
-			cp.setR_commands(cp.getR_commands()+1);
-			PointsUtils.addPoints((Player) sender);
-			GeneralSheduler.action((Player) sender);
-			
-			if(cmd.getName().equalsIgnoreCase("menu")) {
-				
-				MenuCMD.command(sender, cmd, label, args);
-				
-			}else if(cmd.getName().equalsIgnoreCase("maintenance")) {
-				
-				MaintenanceCMD.commandPlayer(sender, cmd, label, args);
-				
-			}else if(cmd.getName().equalsIgnoreCase("playercount") || cmd.getName().equalsIgnoreCase("pc")) {
-				
-				PlayercountCMD.commandPlayer(sender, cmd, label, args);
-				
-			}else if(cmd.getName().equalsIgnoreCase("gift")) {
-				
-				GiftCMD.commandPlayer(sender, cmd, label, args);
-				
-			}else if(cmd.getName().equalsIgnoreCase("ccmd")) {
-				
-				CcmdCMD.commandPlayer(sender, cmd, label, args);
-				
-			}else if(cmd.getName().equalsIgnoreCase("stop")) {
-				
-				StopCMD.commandPlayer(sender, cmd, label, args);
-				
-			}
-			
-		}
+		Plugin p = MainClass.getInstance();
 		
-		if(sender instanceof ConsoleCommandSender) {
-			
-			if(cmd.getName().equalsIgnoreCase("menu")) {
-				
-				Bukkit.getConsoleSender().sendMessage("§6§l[§r§3M-Cube§6§l]§r §cCette commande n'est utilisable que par les joueurs !");
-				
-			}else if(cmd.getName().equalsIgnoreCase("maintenance")) {
-				
-				MaintenanceCMD.commandConsole(sender, cmd, label, args);
-				
-			}else if(cmd.getName().equalsIgnoreCase("playercount") || cmd.getName().equalsIgnoreCase("pc")) {
-				
-				PlayercountCMD.commandConsole(sender, cmd, label, args);
-				
-			}else if(cmd.getName().equalsIgnoreCase("gift")) {
-				
-				GiftCMD.commandConsole(sender, cmd, label, args);
-				
-			}else if(cmd.getName().equalsIgnoreCase("ccmd")) {
-				
-				Bukkit.getConsoleSender().sendMessage("§6§l[§r§3M-Cube§6§l]§r §cCette commande n'est utilisable que par les joueurs !");
-				
-			}else if(cmd.getName().equalsIgnoreCase("stop")) {
-				
-				StopCMD.commandConsole(sender, cmd, label, args);
-				
-			}
-			
-		}
+		PluginCommand cmd1 = p.getServer().getPluginCommand("menu");
+		cmd1.setExecutor(new MenuCMD());
+		PluginCommand cmd2 = p.getServer().getPluginCommand("maintenance");
+		cmd2.setExecutor(new MaintenanceCMD());
+		PluginCommand cmd3 = p.getServer().getPluginCommand("playercount");
+		cmd3.setExecutor(new PlayercountCMD());
+		PluginCommand cmd4 = p.getServer().getPluginCommand("pc");
+		cmd4.setExecutor(new PcCMD());
+		PluginCommand cmd5 = p.getServer().getPluginCommand("gift");
+		cmd5.setExecutor(new GiftCMD());
+		PluginCommand cmd6 = p.getServer().getPluginCommand("ccmd");
+		cmd6.setExecutor(new CcmdCMD());
+		PluginCommand cmd7 = p.getServer().getPluginCommand("stop");
+		cmd7.setExecutor(new StopCMD());
 		
 	}
 

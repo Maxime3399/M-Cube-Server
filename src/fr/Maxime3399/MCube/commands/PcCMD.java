@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 import fr.Maxime3399.MCube.utils.MySQLUtils;
 
-public class PlayercountCMD implements CommandExecutor{
+public class PcCMD implements CommandExecutor{
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		

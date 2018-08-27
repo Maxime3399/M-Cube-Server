@@ -3,7 +3,9 @@ package fr.Maxime3399.MCube.commands;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -12,9 +14,9 @@ import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
 import fr.Maxime3399.MCube.utils.ChatUtils;
 
-public class StopCMD {
+public class StopCMD implements CommandExecutor{
 	
-	public static void commandPlayer(CommandSender sender, Command cmd, String label, String[] args) {
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
 		Player p = (Player) sender;
 		
@@ -123,73 +125,75 @@ public class StopCMD {
 			
 		}
 		
-	}
-	
-	public static void commandConsole(CommandSender sender, Command cmd, String label, String[] args) {
-		
-		Bukkit.broadcastMessage("  §4§l§k|||§r §cArrêt du serveur dans 5 secondes §4§l§k|||");
-		for(Player pls : Bukkit.getOnlinePlayers()) {
-			pls.playSound(pls.getLocation(), Sound.ENTITY_BLAZE_DEATH, 100, 1);
+		if(sender instanceof ConsoleCommandSender) {
+			
+			Bukkit.broadcastMessage("  §4§l§k|||§r §cArrêt du serveur dans 5 secondes §4§l§k|||");
+			for(Player pls : Bukkit.getOnlinePlayers()) {
+				pls.playSound(pls.getLocation(), Sound.ENTITY_BLAZE_DEATH, 100, 1);
+			}
+			Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+				@Override
+				public void run() {
+					Bukkit.broadcastMessage("  §4§l§k|||§r §cArrêt du serveur dans 4 secondes §4§l§k|||");
+					for(Player pls : Bukkit.getOnlinePlayers()) {
+						pls.playSound(pls.getLocation(), Sound.ENTITY_BLAZE_DEATH, 100, 1);
+					}
+				}
+			}, 20);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+				@Override
+				public void run() {
+					Bukkit.broadcastMessage("  §4§l§k|||§r §cArrêt du serveur dans 3 secondes §4§l§k|||");
+					for(Player pls : Bukkit.getOnlinePlayers()) {
+						pls.playSound(pls.getLocation(), Sound.ENTITY_BLAZE_DEATH, 100, 1);
+					}
+				}
+			}, 40);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+				@Override
+				public void run() {
+					Bukkit.broadcastMessage("  §4§l§k|||§r §cArrêt du serveur dans 2 secondes §4§l§k|||");
+					for(Player pls : Bukkit.getOnlinePlayers()) {
+						pls.playSound(pls.getLocation(), Sound.ENTITY_BLAZE_DEATH, 100, 1);
+					}
+				}
+			}, 60);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+				@Override
+				public void run() {
+					Bukkit.broadcastMessage("  §4§l§k|||§r §cArrêt du serveur dans 1 secondes §4§l§k|||");
+					for(Player pls : Bukkit.getOnlinePlayers()) {
+						pls.playSound(pls.getLocation(), Sound.ENTITY_BLAZE_DEATH, 100, 1);
+					}
+				}
+			}, 80);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+				@Override
+				public void run() {
+					Bukkit.broadcastMessage("  §4§l§k|||§r §cArrêt du serveur §4§l§k|||");
+					for(Player pls : Bukkit.getOnlinePlayers()) {
+						pls.playSound(pls.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 100, 1);
+					}
+				}
+			}, 100);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+				@Override
+				public void run() {
+					for(Player pls : Bukkit.getOnlinePlayers()) {
+						pls.kickPlayer("§cArrêt du serveur");
+					}
+				}
+			}, 110);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+				@Override
+				public void run() {
+					Bukkit.getServer().shutdown();
+				}
+			}, 115);
+			
 		}
-		Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
-			@Override
-			public void run() {
-				Bukkit.broadcastMessage("  §4§l§k|||§r §cArrêt du serveur dans 4 secondes §4§l§k|||");
-				for(Player pls : Bukkit.getOnlinePlayers()) {
-					pls.playSound(pls.getLocation(), Sound.ENTITY_BLAZE_DEATH, 100, 1);
-				}
-			}
-		}, 20);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
-			@Override
-			public void run() {
-				Bukkit.broadcastMessage("  §4§l§k|||§r §cArrêt du serveur dans 3 secondes §4§l§k|||");
-				for(Player pls : Bukkit.getOnlinePlayers()) {
-					pls.playSound(pls.getLocation(), Sound.ENTITY_BLAZE_DEATH, 100, 1);
-				}
-			}
-		}, 40);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
-			@Override
-			public void run() {
-				Bukkit.broadcastMessage("  §4§l§k|||§r §cArrêt du serveur dans 2 secondes §4§l§k|||");
-				for(Player pls : Bukkit.getOnlinePlayers()) {
-					pls.playSound(pls.getLocation(), Sound.ENTITY_BLAZE_DEATH, 100, 1);
-				}
-			}
-		}, 60);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
-			@Override
-			public void run() {
-				Bukkit.broadcastMessage("  §4§l§k|||§r §cArrêt du serveur dans 1 secondes §4§l§k|||");
-				for(Player pls : Bukkit.getOnlinePlayers()) {
-					pls.playSound(pls.getLocation(), Sound.ENTITY_BLAZE_DEATH, 100, 1);
-				}
-			}
-		}, 80);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
-			@Override
-			public void run() {
-				Bukkit.broadcastMessage("  §4§l§k|||§r §cArrêt du serveur §4§l§k|||");
-				for(Player pls : Bukkit.getOnlinePlayers()) {
-					pls.playSound(pls.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 100, 1);
-				}
-			}
-		}, 100);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
-			@Override
-			public void run() {
-				for(Player pls : Bukkit.getOnlinePlayers()) {
-					pls.kickPlayer("§cArrêt du serveur");
-				}
-			}
-		}, 110);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
-			@Override
-			public void run() {
-				Bukkit.getServer().shutdown();
-			}
-		}, 115);
+		
+		return true;
 		
 	}
 

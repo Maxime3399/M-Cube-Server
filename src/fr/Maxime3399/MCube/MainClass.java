@@ -6,8 +6,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -183,6 +181,17 @@ public class MainClass extends JavaPlugin{
 						EventsManager.registerEvents();
 						SchedulersManager.registerSchedulers();
 						
+						Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+							
+							@Override
+							public void run() {
+								
+								CommandsManager.registerCommands();
+								
+							}
+							
+						}, 10);
+						
 					}else {
 						
 						Bukkit.getConsoleSender().sendMessage("§6§l[§r§3Bropocalypse§6§l]§r §cLa création de la table \"gifts\" a échouée.");
@@ -251,14 +260,6 @@ public class MainClass extends JavaPlugin{
 	private static void disable() {
 		
 		Bukkit.getPluginManager().disablePlugin(plugin);
-		
-	}
-	
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		
-		CommandsManager.execute(sender, cmd, label, args);
-		
-		return true;
 		
 	}
 
