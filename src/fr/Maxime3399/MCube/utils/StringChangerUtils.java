@@ -178,6 +178,12 @@ public class StringChangerUtils {
 				result = "Grade STAFF : Mod";
 			}else if(type.equalsIgnoreCase("help")) {
 				result = "Grade STAFF : Help";
+			}else if(type.equalsIgnoreCase("yt")) {
+				result = "Grade STAFF : YT";
+			}else if(type.equalsIgnoreCase("stream")) {
+				result = "Grade STAFF : Stream";
+			}else if(type.equalsIgnoreCase("part")) {
+				result = "Grade STAFF : Part";
 			}
 		}else if(type.startsWith("otherrank")) {
 			type = type.replaceAll("otherrank", "");
@@ -195,6 +201,12 @@ public class StringChangerUtils {
 				result = "Grade STAFF : Mod";
 			}else if(type.equalsIgnoreCase("help")) {
 				result = "Grade STAFF : Help";
+			}else if(type.equalsIgnoreCase("yt")) {
+				result = "Grade STAFF : YT";
+			}else if(type.equalsIgnoreCase("stream")) {
+				result = "Grade STAFF : Stream";
+			}else if(type.equalsIgnoreCase("part")) {
+				result = "Grade STAFF : Part";
 			}else if(type.equalsIgnoreCase("ultravipplus")) {
 				result = "Grade : UltraVIP+";
 			}else if(type.equalsIgnoreCase("ultravip")) {
