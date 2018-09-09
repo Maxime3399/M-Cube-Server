@@ -16,6 +16,7 @@ public class DataUtils {
 		try {
 			result = MySQLUtils.getInt("infos", "type", "currentSeason", "info_int");
 		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return result;
@@ -30,10 +31,11 @@ public class DataUtils {
 	
 	public static String getEndSeason() {
 		
+		int cs = getCurrentSeason();
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
 		Date dO = null;
 		try {
-			dO = sdf.parse(MySQLUtils.getString("infos", "type", "season_"+getCurrentSeason()+"_end", "info_string"));
+			dO = sdf.parse(MySQLUtils.getString("infos", "type", "season_"+cs+"_end", "info_string"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

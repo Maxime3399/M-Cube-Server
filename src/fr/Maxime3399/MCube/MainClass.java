@@ -188,7 +188,7 @@ public class MainClass extends JavaPlugin{
 									"  `content_2` varchar(255) NOT NULL DEFAULT 'none',\r\n" + 
 									"  `content_3` varchar(255) NOT NULL DEFAULT 'none',\r\n" + 
 									"  `content_4` varchar(255) NOT NULL DEFAULT 'none',\r\n" + 
-									"  `content_5` varchar(255) NOT NULL DEFAULT '',\r\n" + 
+									"  `content_5` varchar(255) NOT NULL DEFAULT 'none',\r\n" + 
 									"  PRIMARY KEY (`id`)\r\n" + 
 									") ENGINE=MyISAM DEFAULT CHARSET=latin1;", false)) {
 								

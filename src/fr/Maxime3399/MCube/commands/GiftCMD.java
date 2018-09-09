@@ -34,7 +34,7 @@ public class GiftCMD implements CommandExecutor{
 					
 					for(String ids : MySQLUtils.getValues("players")) {
 						
-						if(MySQLUtils.getString("players", "uuid", ""+ids, "name").equalsIgnoreCase(name)) {
+						if(MySQLUtils.getString("players", "uuid", ids, "name").equalsIgnoreCase(name)) {
 							
 							uuid = ids;
 							
