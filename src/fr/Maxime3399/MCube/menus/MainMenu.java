@@ -122,7 +122,20 @@ public class MainMenu {
 		ALchests.add("§7Ouvre des coffres et obtiens");
 		ALchests.add("§7de nouveaux cosmétiques !");
 		ALchests.add(" ");
-		ALchests.add("§7Tu as # coffres");
+		int chests = 0;
+		int chestC = 1;
+		if(!cp.getGifts().equalsIgnoreCase("")) {
+			String g[] = cp.getGifts().split(",");
+			chests = g.length;
+			IMchests.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+			IMchests.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+			if(chests > 64) {
+				chestC = 64;
+			}else {
+				chestC = chests;
+			}
+		}
+		ALchests.add("§7Tu as "+chestC+" coffres");
 		ALchests.add(" ");
 		ALchests.add("§3Clique §7pour ouvrir le");
 		ALchests.add("§7menu des coffres");
