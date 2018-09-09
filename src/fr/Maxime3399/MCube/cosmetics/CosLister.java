@@ -1,6 +1,7 @@
 package fr.Maxime3399.MCube.cosmetics;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class CosLister {
@@ -84,6 +85,41 @@ public class CosLister {
 		list.add("cosplus4");
 		
 		return list;
+		
+	}
+	
+	public static String getCosStr(String cos) {
+		
+		String result = null;
+		
+		result = cos().get(cos);
+		
+		return result;
+		
+	}
+	
+	private static HashMap<String, String> cos(){
+		
+		HashMap<String, String> result = new HashMap<>();
+		
+		result.put("cosplus2", "§aPréfixe UltraVIP+ : §2§l+");
+		result.put("cosplusa", "§aPréfixe UltraVIP+ : §a§l+");
+		result.put("cosplus5", "§3Préfixe UltraVIP+ : §5§l+");
+		result.put("cosplusd", "§dPréfixe UltraVIP+ : §d§l+");
+		result.put("cosplus4", "§ePréfixe UltraVIP+ : §4§l+");
+		result.put("cosplusc", "§aPréfixe UltraVIP+ : §c§l+");
+		result.put("cosplus6", "§aPréfixe UltraVIP+ : §6§l+");
+		result.put("cospluse", "§3Préfixe UltraVIP+ : §e§l+");
+		result.put("cosplus1", "§dPréfixe UltraVIP+ : §1§l+");
+		result.put("cosplus9", "§ePréfixe UltraVIP+ : §9§l+");
+		result.put("cosplus3", "§ePréfixe UltraVIP+ : §3§l+");
+		result.put("cosplusb", "§ePréfixe UltraVIP+ : §b§l+");
+		result.put("cosplus0", "§ePréfixe UltraVIP+ : §0§l+");
+		result.put("cosplus8", "§ePréfixe UltraVIP+ : §8§l+");
+		result.put("cosplus7", "§ePréfixe UltraVIP+ : §7§l+");
+		result.put("cosplusf", "§ePréfixe UltraVIP+ : §f§l+");
+		
+		return result;
 		
 	}
 

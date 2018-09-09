@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
+import fr.Maxime3399.MCube.menus.ChestsMenu;
 import fr.Maxime3399.MCube.menus.CosMainMenu;
 import fr.Maxime3399.MCube.menus.GiftsMenu;
 import fr.Maxime3399.MCube.menus.RankedMenu;
@@ -44,6 +45,11 @@ public class MainMenuEvents implements Listener {
 				}else if(item.equalsIgnoreCase("§eCosmétiques")) {
 					
 					CosMainMenu.openMenu(p);
+					p.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 100, 1);
+					
+				}else if(item.equalsIgnoreCase("§eCoffres")) {
+					
+					ChestsMenu.openMenu(p);
 					p.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 100, 1);
 					
 				}

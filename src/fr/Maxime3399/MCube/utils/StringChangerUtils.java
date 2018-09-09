@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import fr.Maxime3399.MCube.cosmetics.CosLister;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
 
@@ -85,9 +86,9 @@ public class StringChangerUtils {
 			int points = 0;
 			points = Integer.parseInt(content);
 			cp.setPoints(cp.getPoints()+points);
-		}else if(content.startsWith("+")) {
-			content = content.substring(1, content.length());
-			content = content.replaceAll("&", "§");
+		}else if(content.startsWith("cosplus")) {
+			content = content.replaceAll("cosplus", "");
+			content = "§"+content;
 			if(cp.getCos_plus_color().equalsIgnoreCase("")) {
 				cp.setCos_plus_color(content);
 			}else {
@@ -147,10 +148,9 @@ public class StringChangerUtils {
 		}else if(type.startsWith("points")) {
 			type = type.replaceAll("points", "");
 			result = type+" points";
-		}else if(type.startsWith("+")) {
-			type = type.substring(1, type.length());
-			type = type.replaceAll("&", "§");
-			result = "Préfixe : "+type+"§l+";
+		}else if(type.startsWith("cosplus")) {
+			type = type.replaceAll("cosplus", "");
+			result = CosLister.getCosStr(type);
 		}else if(type.startsWith("rank")) {
 			type = type.replaceAll("rank", "");
 			if(type.equalsIgnoreCase("ultravipplus")) {

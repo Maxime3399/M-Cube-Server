@@ -9,51 +9,52 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import fr.Maxime3399.MCube.cosmetics.CosLister;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
 import fr.Maxime3399.MCube.utils.MySQLUtils;
-import fr.Maxime3399.MCube.utils.StringChangerUtils;
 
-public class GiftsMenu {
+public class ChestsMenu {
 	
 	public static void openMenu(Player p) {
 		
-		Inventory i = Bukkit.createInventory(null, 45, "§8Cadeaux");
+		Inventory i = Bukkit.createInventory(null, 45, "§8Coffres");
 		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 		
-		if(!cp.getGifts().equalsIgnoreCase("")) {
+		if(!cp.getChests().equalsIgnoreCase("")) {
 			
-			String[] gifts = cp.getGifts().split(",");
+			String[] chests = cp.getChests().split(",");
 			int reap = 0;
 			
-			if(gifts.length > 43) {
+			if(chests.length > 43) {
 				
 				reap = 43;
 				
 			}else {
 				
-				reap = gifts.length;
+				reap = chests.length;
 				
 			}
 			
 			for(int it = 0; it < reap; it++) {
 				
-				ItemStack ISg = new ItemStack(Material.getMaterial(MySQLUtils.getString("gifts", "id", gifts[it], "item")));
+				String co1 = MySQLUtils.getString("chests", "id", chests[it], "content_1");
+				String co2 = MySQLUtils.getString("chests", "id", chests[it], "content_2");
+				String co3 = MySQLUtils.getString("chests", "id", chests[it], "content_3");
+				String co4 = MySQLUtils.getString("chests", "id", chests[it], "content_4");
+				String co5 = MySQLUtils.getString("chests", "id", chests[it], "content_5");
+				
+				ItemStack ISg = new ItemStack(Material.ENDER_CHEST);
 				ItemMeta IMg = ISg.getItemMeta();
 				ArrayList<String> ALg = new ArrayList<>();
-				IMg.setDisplayName("§8ID §7§l>§r §5"+gifts[it]);
+				IMg.setDisplayName("§8ID §7§l>§r §5"+chests[it]);
 				ALg.add(" ");
 				ALg.add("§eContenu :");
-				ALg.add("§b"+StringChangerUtils.getGift(MySQLUtils.getString("gifts", "id", gifts[it], "content")));
-				String desc = MySQLUtils.getString("gifts", "id", gifts[it], "description");
-				if(!desc.equalsIgnoreCase("none")) {
-					ALg.add(" ");
-					ALg.add("§eDescription :");
-					String[] de = desc.split("#");
-					for(String sd : de) {
-						ALg.add("  §f"+sd);
-					}
-				}
+				ALg.add("  §f§l-§r "+CosLister.getCosStr(co1));
+				ALg.add("  §f§l-§r "+CosLister.getCosStr(co2));
+				ALg.add("  §f§l-§r "+CosLister.getCosStr(co3));
+				ALg.add("  §f§l-§r "+CosLister.getCosStr(co4));
+				ALg.add("  §f§l-§r "+CosLister.getCosStr(co5));
 				ALg.add(" ");
 				ALg.add("§3Clique §7pour ouvrir");
 				IMg.setLore(ALg);
@@ -68,7 +69,7 @@ public class GiftsMenu {
 			ItemMeta IMn = ISn.getItemMeta();
 			ArrayList<String> ALn = new ArrayList<>();
 			IMn.setDisplayName("§cTu n'as pas");
-			ALn.add("§c§ode cadeaux !");
+			ALn.add("§c§ode coffres !");
 			IMn.setLore(ALn);
 			ISn.setItemMeta(IMn);
 			i.setItem(22, ISn);
