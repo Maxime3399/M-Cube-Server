@@ -87,13 +87,7 @@ public class StringChangerUtils {
 			points = Integer.parseInt(content);
 			cp.setPoints(cp.getPoints()+points);
 		}else if(content.startsWith("cosplus")) {
-			content = content.replaceAll("cosplus", "");
-			content = "§"+content;
-			if(cp.getCos_plus_color().equalsIgnoreCase("")) {
-				cp.setCos_plus_color(content);
-			}else {
-				cp.setCos_plus_color(cp.getCos_plus_color()+","+content);
-			}
+			CosLister.giveCos(p, content, false);
 		}else if(content.startsWith("legendarypass")) {
 			cp.setLegendary_steps(true);
 		}else if(content.startsWith("rank")) {

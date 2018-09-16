@@ -148,7 +148,7 @@ public class ChestCMD implements CommandExecutor{
 								
 							}else {
 								
-								p.sendMessage("§cLe grade ne peut être que \"true\" ou \"false\" !");
+								p.sendMessage("§cLe bypass ne peut être que \"true\" ou \"false\" !");
 								p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
 								
 							}
@@ -164,7 +164,7 @@ public class ChestCMD implements CommandExecutor{
 					
 				}else {
 					
-					p.sendMessage("§eAide : /chest [pseudo] [étoiles] [grade]");
+					p.sendMessage("§eAide : /chest [pseudo] [étoiles] [bypass grade]");
 					p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 2);
 					
 				}
@@ -299,7 +299,7 @@ public class ChestCMD implements CommandExecutor{
 							
 						}else {
 							
-							sender.sendMessage("§cLe grade ne peut être que \"true\" ou \"false\" !");
+							sender.sendMessage("§cLe bypass ne peut être que \"true\" ou \"false\" !");
 							
 						}
 						
@@ -313,7 +313,7 @@ public class ChestCMD implements CommandExecutor{
 				
 			}else {
 				
-				sender.sendMessage("§eAide : /chest [pseudo] [étoiles] [grade]");
+				sender.sendMessage("§eAide : /chest [pseudo] [étoiles] [bypass grade]");
 				
 			}
 			

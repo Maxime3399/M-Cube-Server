@@ -8,6 +8,7 @@ import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.events.JoinEvents;
 import fr.Maxime3399.MCube.events.QuitEvents;
 import fr.Maxime3399.MCube.events.SystemEvents;
+import fr.Maxime3399.MCube.events.menus.ChestMenuEvents;
 import fr.Maxime3399.MCube.events.menus.ConfirmMenu;
 import fr.Maxime3399.MCube.events.menus.CosMainMenuEvents;
 import fr.Maxime3399.MCube.events.menus.CosPlusMenuEvents;
@@ -31,6 +32,7 @@ public class EventsManager {
 		pm.registerEvents(new GiftMenuEvents(), p);
 		pm.registerEvents(new CosMainMenuEvents(), p);
 		pm.registerEvents(new CosPlusMenuEvents(), p);
+		pm.registerEvents(new ChestMenuEvents(), p);
 		
 		pm.registerEvents(new ConfirmMenu(), p);
 		

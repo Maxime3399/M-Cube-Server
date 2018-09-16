@@ -124,8 +124,8 @@ public class MainMenu {
 		ALchests.add(" ");
 		int chests = 0;
 		int chestC = 1;
-		if(!cp.getGifts().equalsIgnoreCase("")) {
-			String g[] = cp.getGifts().split(",");
+		if(!cp.getChests().equalsIgnoreCase("")) {
+			String g[] = cp.getChests().split(",");
 			chests = g.length;
 			IMchests.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
 			IMchests.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -135,12 +135,13 @@ public class MainMenu {
 				chestC = chests;
 			}
 		}
-		ALchests.add("§7Tu as "+chestC+" coffres");
+		ALchests.add("§7Tu as "+chests+" coffres");
 		ALchests.add(" ");
 		ALchests.add("§3Clique §7pour ouvrir le");
 		ALchests.add("§7menu des coffres");
 		IMchests.setLore(ALchests);
 		ISchests.setItemMeta(IMchests);
+		ISchests.setAmount(chestC);
 		i.addItem(ISchests);
 		
 		ItemStack ISgift = new ItemStack(Material.BOOK);

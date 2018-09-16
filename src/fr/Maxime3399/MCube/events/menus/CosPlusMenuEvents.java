@@ -10,6 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.Maxime3399.MCube.MainClass;
+import fr.Maxime3399.MCube.cosmetics.CosLister;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
 import fr.Maxime3399.MCube.menus.CosPlusMenu;
@@ -43,13 +44,13 @@ public class CosPlusMenuEvents implements Listener {
 					
 				}else if(item.contains("+")) {
 					
-					String color = item.substring(0, 2);
-					String equi = "§2";
+					String color = "cosplus"+item.substring(0, 2).replaceAll("§", "");
+					String equi = "cosplus2";
 					CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 					if(!cp.getCos_active().equalsIgnoreCase("")) {
 						String g[] = cp.getCos_active().split(",");
 						for(String ss : g) {
-							if(ss.startsWith("§")) {
+							if(ss.startsWith("cosplus")) {
 								equi = ss;
 							}
 						}
@@ -93,20 +94,16 @@ public class CosPlusMenuEvents implements Listener {
 												@Override
 												public void run() {
 													
-													String equi = "§2";
+													String equi = "cosplus2";
 													if(!cp.getCos_active().equalsIgnoreCase("")) {
 														String g[] = cp.getCos_active().split(",");
 														for(String ss : g) {
-															if(ss.startsWith("§")) {
+															if(ss.startsWith("cosplus")) {
 																equi = ss;
 															}
 														}
 													}
-													if(cp.getCos_plus_color().equalsIgnoreCase("")) {
-														cp.setCos_plus_color(cp.getCos_plus_color()+color);
-													}else {
-														cp.setCos_plus_color(cp.getCos_plus_color()+","+color);
-													}
+													CosLister.giveCos(p, color, false);
 													cp.setCos_active(cp.getCos_active().replaceAll(equi, color));
 													p.sendMessage("§aAchat effectué ! Le cosmétique a été équippé.");
 													cp.setCrystals(cp.getCrystals()-price);

@@ -19,16 +19,19 @@ public class CosPlusMenu {
 	public static void openMenu(Player p) {
 		
 		Inventory i = Bukkit.createInventory(null, 18, "§8Préfixe UltraVIP+");
-		String equi = "§2";
+		String equi = "cosplus2";
 		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 		if(!cp.getCos_active().equalsIgnoreCase("")) {
 			String g[] = cp.getCos_active().split(",");
 			for(String ss : g) {
-				if(ss.startsWith("§")) {
+				if(ss.startsWith("cosplus")) {
 					equi = ss;
 				}
 			}
 		}
+		equi = equi.replaceAll("cosplus", "§");
+		
+		String possess = cp.getCos_plus_color().replaceAll("cosplus", "§");
 		
 		ItemStack IS2 = new ItemStack(Material.GREEN_WOOL);
 		ItemMeta IM2 = IS2.getItemMeta();
@@ -61,7 +64,7 @@ public class CosPlusMenu {
 		ALa.add(" ");
 		ALa.add("§6Rareté : §aCommun");
 		ALa.add(" ");
-		if(cp.getCos_plus_color().contains("§a")) {
+		if(possess.contains("§a")) {
 			if(equi.equalsIgnoreCase("§a")) {
 				ALa.add("§eCosmétique actif");
 				ALa.add(" ");
@@ -99,7 +102,7 @@ public class CosPlusMenu {
 		AL5.add(" ");
 		AL5.add("§6Rareté : §3Rare");
 		AL5.add(" ");
-		if(cp.getCos_plus_color().contains("§5")) {
+		if(possess.contains("§5")) {
 			if(equi.equalsIgnoreCase("§5")) {
 				AL5.add("§eCosmétique actif");
 				AL5.add(" ");
@@ -137,7 +140,7 @@ public class CosPlusMenu {
 		ALd.add(" ");
 		ALd.add("§6Rareté : §dEpique");
 		ALd.add(" ");
-		if(cp.getCos_plus_color().contains("§d")) {
+		if(possess.contains("§d")) {
 			if(equi.equalsIgnoreCase("§d")) {
 				ALd.add("§eCosmétique actif");
 				ALd.add(" ");
@@ -175,7 +178,7 @@ public class CosPlusMenu {
 		AL4.add(" ");
 		AL4.add("§6Rareté : §eLégendaire");
 		AL4.add(" ");
-		if(cp.getCos_plus_color().contains("§4")) {
+		if(possess.contains("§4")) {
 			if(equi.equalsIgnoreCase("§4")) {
 				AL4.add("§eCosmétique actif");
 				AL4.add(" ");
@@ -213,7 +216,7 @@ public class CosPlusMenu {
 		ALc.add(" ");
 		ALc.add("§6Rareté : §aCommun");
 		ALc.add(" ");
-		if(cp.getCos_plus_color().contains("§c")) {
+		if(possess.contains("§c")) {
 			if(equi.equalsIgnoreCase("§c")) {
 				ALc.add("§eCosmétique actif");
 				ALc.add(" ");
@@ -245,7 +248,7 @@ public class CosPlusMenu {
 		AL6.add(" ");
 		AL6.add("§6Rareté : §aCommun");
 		AL6.add(" ");
-		if(cp.getCos_plus_color().contains("§6")) {
+		if(possess.contains("§6")) {
 			if(equi.equalsIgnoreCase("§6")) {
 				AL6.add("§eCosmétique actif");
 				AL6.add(" ");
@@ -277,7 +280,7 @@ public class CosPlusMenu {
 		ALe.add(" ");
 		ALe.add("§6Rareté : §3Rare");
 		ALe.add(" ");
-		if(cp.getCos_plus_color().contains("§e")) {
+		if(possess.contains("§e")) {
 			if(equi.equalsIgnoreCase("§e")) {
 				ALe.add("§eCosmétique actif");
 				ALe.add(" ");
@@ -291,9 +294,9 @@ public class CosPlusMenu {
 			ALe.add("§7Récompense de la");
 			ALe.add("§7ligue or");
 			ALe.add(" ");
-			ALe.add(" ");
 			ALe.add("§cTu n'as pas ce");
 			ALe.add("§ccosmétique !");
+			ALe.add(" ");
 			ALe.add("§8§mClique§7§m pour équipper");
 		}
 		IMe.setLore(ALe);
@@ -309,7 +312,7 @@ public class CosPlusMenu {
 		AL1.add(" ");
 		AL1.add("§6Rareté : §dEpique");
 		AL1.add(" ");
-		if(cp.getCos_plus_color().contains("§1")) {
+		if(possess.contains("§1")) {
 			if(equi.equalsIgnoreCase("§1")) {
 				AL1.add("§eCosmétique actif");
 				AL1.add(" ");
@@ -341,7 +344,7 @@ public class CosPlusMenu {
 		AL9.add(" ");
 		AL9.add("§6Rareté : §eLégendaire");
 		AL9.add(" ");
-		if(cp.getCos_plus_color().contains("§9")) {
+		if(possess.contains("§9")) {
 			if(equi.equalsIgnoreCase("§9")) {
 				AL9.add("§eCosmétique actif");
 				AL9.add(" ");
@@ -373,7 +376,7 @@ public class CosPlusMenu {
 		AL3.add(" ");
 		AL3.add("§6Rareté : §eLégendaire");
 		AL3.add(" ");
-		if(cp.getCos_plus_color().contains("§3")) {
+		if(possess.contains("§3")) {
 			if(equi.equalsIgnoreCase("§3")) {
 				AL3.add("§eCosmétique actif");
 				AL3.add(" ");
@@ -405,7 +408,7 @@ public class CosPlusMenu {
 		ALb.add(" ");
 		ALb.add("§6Rareté : §eLégendaire");
 		ALb.add(" ");
-		if(cp.getCos_plus_color().contains("§b")) {
+		if(possess.contains("§b")) {
 			if(equi.equalsIgnoreCase("§b")) {
 				ALb.add("§eCosmétique actif");
 				ALb.add(" ");
@@ -436,7 +439,7 @@ public class CosPlusMenu {
 		AL0.add(" ");
 		AL0.add("§6Rareté : §eLégendaire");
 		AL0.add(" ");
-		if(cp.getCos_plus_color().contains("§0")) {
+		if(possess.contains("§0")) {
 			if(equi.equalsIgnoreCase("§0")) {
 				AL0.add("§eCosmétique actif");
 				AL0.add(" ");
@@ -467,7 +470,7 @@ public class CosPlusMenu {
 		AL8.add(" ");
 		AL8.add("§6Rareté : §eLégendaire");
 		AL8.add(" ");
-		if(cp.getCos_plus_color().contains("§8")) {
+		if(possess.contains("§8")) {
 			if(equi.equalsIgnoreCase("§8")) {
 				AL8.add("§eCosmétique actif");
 				AL8.add(" ");
@@ -498,7 +501,7 @@ public class CosPlusMenu {
 		AL7.add(" ");
 		AL7.add("§6Rareté : §eLégendaire");
 		AL7.add(" ");
-		if(cp.getCos_plus_color().contains("§7")) {
+		if(possess.contains("§7")) {
 			if(equi.equalsIgnoreCase("§7")) {
 				AL7.add("§eCosmétique actif");
 				AL7.add(" ");
@@ -530,7 +533,7 @@ public class CosPlusMenu {
 		ALf.add(" ");
 		ALf.add("§6Rareté : §eLégendaire");
 		ALf.add(" ");
-		if(cp.getCos_plus_color().contains("§f")) {
+		if(possess.contains("§f")) {
 			if(equi.equalsIgnoreCase("§f")) {
 				ALf.add("§eCosmétique actif");
 				ALf.add(" ");

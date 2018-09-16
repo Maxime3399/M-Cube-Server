@@ -64,8 +64,8 @@ public class MainClass extends JavaPlugin{
 						"  `chests` varchar(255) NOT NULL DEFAULT '',\r\n" + 
 						"  `last_connection` varchar(255) NOT NULL DEFAULT 'none',\r\n" + 
 						"  `connection_streak` varchar(255) NOT NULL DEFAULT '0',\r\n" + 
-						"  `cos_active` varchar(255) NOT NULL DEFAULT '§2',\r\n" + 
-						"  `cos_plus_color` varchar(255) NOT NULL DEFAULT '',\r\n" + 
+						"  `cos_active` varchar(255) NOT NULL DEFAULT 'cosplus2',\r\n" + 
+						"  `cos_plus_color` varchar(255) NOT NULL DEFAULT 'cosplus2',\r\n" + 
 						"  `season_1_points` int(255) NOT NULL DEFAULT '-1',\r\n" + 
 						"  `season_2_points` int(255) NOT NULL DEFAULT '-1',\r\n" + 
 						"  `season_3_points` int(255) NOT NULL DEFAULT '-1',\r\n" + 

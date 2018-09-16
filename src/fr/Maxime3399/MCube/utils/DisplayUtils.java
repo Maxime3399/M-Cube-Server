@@ -18,15 +18,16 @@ public class DisplayUtils {
 		
 		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
 		String prefix = "";
-		String plco = "§2";
+		String plco = "cosplus2";
 		if(!cp.getCos_active().equalsIgnoreCase("")) {
 			String g[] = cp.getCos_active().split(",");
 			for(String ss : g) {
-				if(ss.startsWith("§")) {
+				if(ss.startsWith("cosplus")) {
 					plco = ss;
 				}
 			}
 		}
+		plco = plco.replaceAll("cosplus", "§");
 		if(getRank(p).equalsIgnoreCase("§2UltraVIP+")) {
 			prefix = "§2UltraVIP"+plco+"+"+"§r ";
 		}else if(!getRank(p).equalsIgnoreCase("§r")) {

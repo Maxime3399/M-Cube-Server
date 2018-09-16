@@ -4,7 +4,45 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
+
+import fr.Maxime3399.MCube.custom.CustomPlayer;
+import fr.Maxime3399.MCube.managers.PlayersManager;
+
 public class CosLister {
+	
+	public static void giveCos(Player p, String cos, boolean chest) {
+		
+		CustomPlayer cp = PlayersManager.getCustomPlayer(p);
+		
+		if(cos.startsWith("cosplus")) {
+			if(cp.getCos_plus_color().equalsIgnoreCase("")) {
+				cp.setCos_plus_color(cp.getCos_plus_color()+cos);
+			}else {
+				cp.setCos_plus_color(cp.getCos_plus_color()+","+cos);
+			}
+		}
+		
+		if(chest) {
+			String ca = getCosStr(cos);
+			if(ca.startsWith("§e")) {
+				
+				for(Player pls : Bukkit.getOnlinePlayers()) {
+					
+					pls.playSound(pls.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 100, 1);
+					pls.sendMessage(p.getDisplayName()+"§r §aa trouvé le cosmétique §r"+ca+"§r §adans un coffre !");
+					
+				}
+				
+			}else {
+				p.sendMessage("§aTu as trouvé le cosmétique "+ca+"§r §a!");
+				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 1);
+			}
+		}
+		
+	}
 	
 	public static String[] genChest(int stars) {
 		
