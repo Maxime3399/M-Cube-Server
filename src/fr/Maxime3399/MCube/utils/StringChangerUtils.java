@@ -1,5 +1,7 @@
 package fr.Maxime3399.MCube.utils;
 
+import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -112,6 +114,41 @@ public class StringChangerUtils {
 				}
 				//#PERMISSIONS#
 			}
+		}else if(content.startsWith("chest")) {
+			content = content.replaceAll("chest", "");
+			boolean by = false;
+			if(content.contains("true")) {
+				by = true;
+				content = content.replaceAll("true", "");
+			}else {
+				content = content.replaceAll("false", "");
+			}
+			int is = 1;
+			try {
+				is = Integer.parseInt(content);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			int ran = 0;
+			
+			for(int it = 0; it <= 100; it++) {
+				
+				Random r = new Random();
+				ran = r.nextInt(99999);
+				if(!MySQLUtils.getValues("chests").contains(ran+"")) {
+					it = 101;
+				}
+				
+			}
+			
+			String chg[] = CosLister.genChest(is);
+			MySQLUtils.execute("INSERT INTO `chests` (`id`, `stars`, `bypass`, `content_1`, `content_2`, `content_3`, `content_4`, `content_5`) VALUES ('"+ran+"', '"+is+"', '"+by+"', '"+chg[0]+"', '"+chg[1]+"', '"+chg[2]+"', '"+chg[3]+"', '"+chg[4]+"');", false);
+			if(cp.getChests().equalsIgnoreCase("")) {
+				cp.setChests(ran+"");
+			}else {
+				cp.setChests(cp.getChests()+","+ran);
+			}
 		}
 		
 	}
@@ -210,6 +247,20 @@ public class StringChangerUtils {
 			}else if(type.equalsIgnoreCase("minivip")) {
 				result = "Grade : MiniVIP";
 			}
+		}else if(type.startsWith("chest")){
+			
+			type = type.replaceAll("chest", "");
+			type = type.replaceAll("true", "");
+			type = type.replaceAll("false", "");
+			int is = 1;
+			try {
+				is = Integer.parseInt(type);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			result = "Coffre "+is+" étoiles";
+			
 		}else {
 			
 			result = null;

@@ -128,9 +128,11 @@ public class CosLister {
 	
 	public static String getCosStr(String cos) {
 		
-		String result = null;
+		String result = "";
 		
-		result = cos().get(cos);
+		if(cos().containsKey(cos)) {
+			result = cos().get(cos);
+		}
 		
 		return result;
 		
