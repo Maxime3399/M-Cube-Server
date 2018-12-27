@@ -16,3 +16,6 @@ commands:
     lastconnection:
     lc:
     chest:
+    home:
+    sethome:
+    delhome:

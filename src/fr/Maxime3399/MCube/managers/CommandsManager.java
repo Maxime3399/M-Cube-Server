@@ -6,7 +6,9 @@ import org.bukkit.plugin.Plugin;
 import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.commands.CcmdCMD;
 import fr.Maxime3399.MCube.commands.ChestCMD;
+import fr.Maxime3399.MCube.commands.DelhomeCMD;
 import fr.Maxime3399.MCube.commands.GiftCMD;
+import fr.Maxime3399.MCube.commands.HomeCMD;
 import fr.Maxime3399.MCube.commands.LastconnectionCMD;
 import fr.Maxime3399.MCube.commands.LcCMD;
 import fr.Maxime3399.MCube.commands.MaintenanceCMD;
@@ -15,6 +17,7 @@ import fr.Maxime3399.MCube.commands.PcCMD;
 import fr.Maxime3399.MCube.commands.PlayercountCMD;
 import fr.Maxime3399.MCube.commands.PlayertimeCMD;
 import fr.Maxime3399.MCube.commands.PtCMD;
+import fr.Maxime3399.MCube.commands.SethomeCMD;
 import fr.Maxime3399.MCube.commands.StopCMD;
 
 public class CommandsManager {
@@ -47,6 +50,12 @@ public class CommandsManager {
 		cmd11.setExecutor(new LcCMD());
 		PluginCommand cmd12 = p.getServer().getPluginCommand("chest");
 		cmd12.setExecutor(new ChestCMD());
+		PluginCommand cmd13 = p.getServer().getPluginCommand("home");
+		cmd13.setExecutor(new HomeCMD());
+		PluginCommand cmd14 = p.getServer().getPluginCommand("sethome");
+		cmd14.setExecutor(new SethomeCMD());
+		PluginCommand cmd15 = p.getServer().getPluginCommand("delhome");
+		cmd15.setExecutor(new DelhomeCMD());
 		
 	}
 

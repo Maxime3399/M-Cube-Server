@@ -153,13 +153,6 @@ public class StringChangerUtils {
 		
 	}
 	
-	/*else if(type.startsWith("chests")) {
-		type = type.replaceAll("chests", "");
-		type = type.replaceAll("true", "");
-		type = type.replaceAll("false", "");
-		result = "Coffre "+type+" étoiles";
-	}*/
-	
 	public static String getGift(String type) {
 		
 		String result = "";

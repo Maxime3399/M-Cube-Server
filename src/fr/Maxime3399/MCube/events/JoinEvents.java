@@ -36,7 +36,8 @@ public class JoinEvents implements Listener {
 				+ " `home15`, `home16`, `home17`, `home18`, `home19`, `home20`, `home21`, `home22`, `home23`, `home24`, `home25`, `home26`, `home27`, `home28`, `home29`, `home30`, `home31`, `home32`, `home33`,"
 				+ " `home34`, `home35`, `home36`, `home37`, `home38`, `home39`, `home40`) VALUES ('"+p.getUniqueId().toString()+"', '"+p.getName()+"', '"+DataUtils.getData()+"', 'default', 'default', '', '-1', '0', '0', '0', '0', 'false', 'none', '', '',"
 				+ " 'none', '0', '§2', '§2', '-1', '-1', '-1', '-1', '-1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',"
-				+ " '0', '0', '0', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');", true)) {
+				+ " '0', '0', '0', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none',"
+				+ " 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none');", true)) {
 			
 			for(Player pls : Bukkit.getOnlinePlayers()) {
 				

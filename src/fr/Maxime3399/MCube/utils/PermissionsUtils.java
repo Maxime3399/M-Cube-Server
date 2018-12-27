@@ -74,6 +74,9 @@ public class PermissionsUtils {
 		perms.add("mcube.chest.1");
 		perms.add("mcube.chest.2");
 		perms.add("mcube.chest.3");
+		perms.add("mcube.command.home");
+		perms.add("mcube.command.sethome");
+		perms.add("mcube.command.delhome");
 		
 		p.removeAttachment((PermissionAttachment) p.getEffectivePermissions());
 		PermissionAttachment att = p.addAttachment(MainClass.getInstance());
