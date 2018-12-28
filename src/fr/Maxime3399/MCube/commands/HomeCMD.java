@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.Maxime3399.MCube.homes.HomeActions;
+import fr.Maxime3399.MCube.utils.HomeUtils;
 
 public class HomeCMD implements CommandExecutor{
 	
@@ -23,13 +23,13 @@ public class HomeCMD implements CommandExecutor{
 					String message = "§eHomes : ";
 					int count = 0;
 					
-					for(int i = 0; i <= 39; i++) {
+					for(int i = 1; i <= 40; i++) {
 						
-						if(HomeActions.isHome(p, i)) {
-							if(i == 0) {
-								message = message+HomeActions.getHomeName(p, i);
+						if(HomeUtils.isHome(p, i)) {
+							if(i == 1) {
+								message = message+HomeUtils.getHomeName(p, i);
 							}else {
-								message = message+", "+HomeActions.getHome(p, i);
+								message = message+", "+HomeUtils.getHomeName(p, i);
 							}
 							count++;
 						}
@@ -40,11 +40,31 @@ public class HomeCMD implements CommandExecutor{
 						message = "§eVous n'avez définit aucun home !";
 						p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
 					}else {
-						message = message+" ("+count+"/"+HomeActions.getMaxHome(p)+")";
+						message = message+" ("+count+"/"+HomeUtils.getMaxHome(p)+")";
 						p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_EGG, 100, 1);
 					}
 					
 					p.sendMessage(message);
+					
+				}else if(args.length == 1) {
+					
+					String name = args[1];
+					
+					if(HomeUtils.isHome(p, name)) {
+						
+						//Teleport
+						
+					}else {
+						
+						p.sendMessage("§cCe home n'éxiste pas !");
+						p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
+						
+					}
+					
+				}else {
+					
+					p.sendMessage("§eAide : /home (home)");
+					p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 2);
 					
 				}
 				

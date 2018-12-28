@@ -1,4 +1,4 @@
-package fr.Maxime3399.MCube.homes;
+package fr.Maxime3399.MCube.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
 
-public class HomeActions {
+public class HomeUtils {
 	
 	public static Location getHomeLocation(Player p, int home) {
 		
@@ -20,20 +20,34 @@ public class HomeActions {
 		
 	}
 	
-	public static String getHomeName(Player p, int home) {
+	public static boolean isHome(Player p, int home) {
 		
-		String result = getHome(p, home).split(",")[0];
+		boolean result = false;
+		
+		if(!getHome(p, home).equalsIgnoreCase("none")) {
+			result = true;
+		}
 		
 		return result;
 		
 	}
 	
-	public static boolean isHome(Player p, int home) {
+	public static boolean isHome(Player p, String homeName) {
 		
-		boolean result = true;
+		boolean result = false;
 		
-		if(getHome(p, home).equalsIgnoreCase("none")) {
-			result = false;
+		for(int i = 1; i <= 40; i++) {
+			
+			if(isHome(p, i)) {
+				
+				if(getHomeName(p, i).equalsIgnoreCase(homeName)) {
+					
+					result = true;
+					
+				}
+				
+			}
+			
 		}
 		
 		return result;
@@ -43,7 +57,7 @@ public class HomeActions {
 	public static void defineHome(Player p, int home, String name) {
 		
 		Location l = p.getLocation();
-		String ls = name+","+l.getWorld()+","+l.getBlockX()+","+l.getBlockY()+","+l.getBlockZ()+","+l.getYaw()+","+l.getPitch();
+		String ls = name+","+l.getWorld().getName()+","+l.getX()+","+l.getY()+","+l.getZ()+","+l.getYaw()+","+l.getPitch();
 		
 		setHome(p, home, ls);
 		
@@ -405,6 +419,12 @@ public class HomeActions {
 		}
 		
 		return result;
+		
+	}
+	
+	public static String getHomeName(Player p, int home) {
+		
+		return getHome(p, home).split(",")[0]+getHome(p, home).split(",")[1];
 		
 	}
 
