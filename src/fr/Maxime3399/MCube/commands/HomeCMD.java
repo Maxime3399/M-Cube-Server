@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import fr.Maxime3399.MCube.actions.TeleportAction;
 import fr.Maxime3399.MCube.utils.HomeUtils;
 
 public class HomeCMD implements CommandExecutor{
@@ -48,11 +49,11 @@ public class HomeCMD implements CommandExecutor{
 					
 				}else if(args.length == 1) {
 					
-					String name = args[1];
+					String name = args[0];
 					
 					if(HomeUtils.isHome(p, name)) {
 						
-						//Teleport
+						TeleportAction.teleport(p, HomeUtils.getHomeLocation(p, HomeUtils.getHomeByName(p, name)));
 						
 					}else {
 						
@@ -63,7 +64,7 @@ public class HomeCMD implements CommandExecutor{
 					
 				}else {
 					
-					p.sendMessage("§eAide : /home (home)");
+					p.sendMessage("§eAide : /home {home}");
 					p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 2);
 					
 				}

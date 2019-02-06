@@ -424,7 +424,7 @@ public class HomeUtils {
 	
 	public static String getHomeName(Player p, int home) {
 		
-		return getHome(p, home).split(",")[0]+getHome(p, home).split(",")[1];
+		return getHome(p, home).split(",")[0];
 		
 	}
 

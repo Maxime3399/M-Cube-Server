@@ -38,7 +38,6 @@ public class StopCMD implements CommandExecutor{
 						}else {
 							if(cp.getConfirm() == null || !cp.getConfirm().contains("STOP")) {
 								this.cancel();
-								cp.setConfirm(null);
 							}else {
 								if(cp.getConfirm().equalsIgnoreCase("confirmSTOP")) {
 									

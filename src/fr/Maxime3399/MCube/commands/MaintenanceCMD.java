@@ -39,7 +39,6 @@ public class MaintenanceCMD implements CommandExecutor{
 						}else {
 							if(cp.getConfirm() == null || !cp.getConfirm().contains("MAINTENANCE")) {
 								this.cancel();
-								cp.setConfirm(null);
 							}else {
 								if(cp.getConfirm().equalsIgnoreCase("confirmMAINTENANCE")) {
 									

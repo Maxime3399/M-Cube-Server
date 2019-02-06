@@ -13,8 +13,8 @@ import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.cosmetics.CosLister;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
 import fr.Maxime3399.MCube.managers.PlayersManager;
+import fr.Maxime3399.MCube.menus.CosMainMenu;
 import fr.Maxime3399.MCube.menus.CosPlusMenu;
-import fr.Maxime3399.MCube.menus.MainMenu;
 import fr.Maxime3399.MCube.utils.DisplayUtils;
 
 public class CosPlusMenuEvents implements Listener {
@@ -39,7 +39,7 @@ public class CosPlusMenuEvents implements Listener {
 				
 				if(item.equalsIgnoreCase("§8§oRetour")) {
 					
-					MainMenu.openMenu(p);
+					CosMainMenu.openMenu(p);
 					p.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 100, 1);
 					
 				}else if(item.contains("+")) {
