@@ -6,6 +6,7 @@ import org.bukkit.plugin.PluginManager;
 
 import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.events.BlockBreakEvents;
+import fr.Maxime3399.MCube.events.BlockPlaceEvents;
 import fr.Maxime3399.MCube.events.JoinEvents;
 import fr.Maxime3399.MCube.events.QuitEvents;
 import fr.Maxime3399.MCube.events.SystemEvents;
@@ -28,6 +29,7 @@ public class EventsManager {
 		pm.registerEvents(new QuitEvents(), p);
 		pm.registerEvents(new SystemEvents(), p);
 		pm.registerEvents(new BlockBreakEvents(), p);
+		pm.registerEvents(new BlockPlaceEvents(), p);
 		
 		pm.registerEvents(new MainMenuEvents(), p);
 		pm.registerEvents(new RankedMenuEvents(), p);

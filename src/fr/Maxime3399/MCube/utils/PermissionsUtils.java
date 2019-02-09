@@ -62,6 +62,7 @@ public class PermissionsUtils {
 			perms.add("mcube.chest.5");
 			perms.add("mcube.chest.4");
 			perms.add("mcube.spawner.take");
+			perms.add("mcube.spawner.place");
 		}else if(cp.getRank().equalsIgnoreCase("ultravip") || cp.getOther_ranks().equalsIgnoreCase("ultravip")) {
 			perms.add("mcube.chest.5");
 			perms.add("mcube.chest.4");
