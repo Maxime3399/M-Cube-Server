@@ -18,6 +18,7 @@ import fr.Maxime3399.MCube.schedulers.GeneralSheduler;
 import fr.Maxime3399.MCube.utils.DataUtils;
 import fr.Maxime3399.MCube.utils.DisplayUtils;
 import fr.Maxime3399.MCube.utils.MySQLUtils;
+import fr.Maxime3399.MCube.utils.PermissionsUtils;
 import fr.Maxime3399.MCube.utils.PointsUtils;
 
 public class JoinEvents implements Listener {
@@ -49,6 +50,8 @@ public class JoinEvents implements Listener {
 		}
 		
 		CustomPlayer cp = PlayersManager.addPlayer(p);
+		PermissionsUtils.calculPermissions(p);
+		
 		boolean join = true;
 		String reason = "";
 		

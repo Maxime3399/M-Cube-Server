@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 
 import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.custom.CustomPlayer;
@@ -56,18 +57,19 @@ public class PermissionsUtils {
 			perms.add("mcube.command.playercount");
 		}else if(cp.getStaff().equalsIgnoreCase("stream") || cp.getOther_ranks().equalsIgnoreCase("stream")) {
 			perms.add("mcube.command.playercount");
-		}else if(cp.getStaff().equalsIgnoreCase("ultravipplus") || cp.getOther_ranks().equalsIgnoreCase("ultravipplus")) {
+		}else if(cp.getRank().equalsIgnoreCase("ultravipplus") || cp.getOther_ranks().equalsIgnoreCase("ultravipplus")) {
 			perms.add("mcube.menu.+");
 			perms.add("mcube.chest.5");
 			perms.add("mcube.chest.4");
-		}else if(cp.getStaff().equalsIgnoreCase("ultravip") || cp.getOther_ranks().equalsIgnoreCase("ultravip")) {
+			perms.add("mcube.spawner.take");
+		}else if(cp.getRank().equalsIgnoreCase("ultravip") || cp.getOther_ranks().equalsIgnoreCase("ultravip")) {
 			perms.add("mcube.chest.5");
 			perms.add("mcube.chest.4");
-		}else if(cp.getStaff().equalsIgnoreCase("vipplus") || cp.getOther_ranks().equalsIgnoreCase("vipplus")) {
+		}else if(cp.getRank().equalsIgnoreCase("vipplus") || cp.getOther_ranks().equalsIgnoreCase("vipplus")) {
 			perms.add("mcube.chest.4");
-		}else if(cp.getStaff().equalsIgnoreCase("vip") || cp.getOther_ranks().equalsIgnoreCase("vip")) {
+		}else if(cp.getRank().equalsIgnoreCase("vip") || cp.getOther_ranks().equalsIgnoreCase("vip")) {
 			
-		}else if(cp.getStaff().equalsIgnoreCase("minivip") || cp.getOther_ranks().equalsIgnoreCase("minivip")) {
+		}else if(cp.getRank().equalsIgnoreCase("minivip") || cp.getOther_ranks().equalsIgnoreCase("minivip")) {
 			
 		}
 		
@@ -78,7 +80,11 @@ public class PermissionsUtils {
 		perms.add("mcube.command.sethome");
 		perms.add("mcube.command.delhome");
 		
-		p.removeAttachment((PermissionAttachment) p.getEffectivePermissions());
+		for(PermissionAttachmentInfo pa : p.getEffectivePermissions()) {
+			if(pa.getAttachment() != null) {
+				p.removeAttachment(pa.getAttachment());
+			}
+		}
 		PermissionAttachment att = p.addAttachment(MainClass.getInstance());
 		for(String s : perms) {
 			att.setPermission(s, true);
