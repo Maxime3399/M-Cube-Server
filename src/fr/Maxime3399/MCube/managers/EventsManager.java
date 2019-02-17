@@ -30,6 +30,7 @@ public class EventsManager {
 		pm.registerEvents(new SystemEvents(), p);
 		pm.registerEvents(new BlockBreakEvents(), p);
 		pm.registerEvents(new BlockPlaceEvents(), p);
+		pm.registerEvents(new XPBankEvents(), p);
 		
 		pm.registerEvents(new MainMenuEvents(), p);
 		pm.registerEvents(new RankedMenuEvents(), p);
