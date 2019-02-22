@@ -10,6 +10,7 @@ import fr.Maxime3399.MCube.events.BlockPlaceEvents;
 import fr.Maxime3399.MCube.events.JoinEvents;
 import fr.Maxime3399.MCube.events.QuitEvents;
 import fr.Maxime3399.MCube.events.SystemEvents;
+import fr.Maxime3399.MCube.events.XPBankEvents;
 import fr.Maxime3399.MCube.events.menus.ChestMenuEvents;
 import fr.Maxime3399.MCube.events.menus.ConfirmMenu;
 import fr.Maxime3399.MCube.events.menus.CosMainMenuEvents;
