@@ -9,13 +9,13 @@ public class CosCount {
 	
 	public static int getGeneralMax() {
 		
-		return getCosPlusColorMax();
+		return getCosPlusColorMax()+getCosTrailMax()+getCosAmbientMax()+getCosConnectMax()+getCosDisconnectMax()+getCosDeathMax()+getCosRespawnMax();
 		
 	}
 	
 	public static int getGeneralCount(Player p) {
 		
-		return getPlusColorCount(p);
+		return getPlusColorCount(p)+getTrailCount(p)+getAmbientCount(p)+getConnectCount(p)+getDisconnectCount(p)+getDeathCount(p)+getRespawnCount(p);
 		
 	}
 	
@@ -39,6 +39,78 @@ public class CosCount {
 		}
 		
 		return result;
+		
+	}
+	
+	public static int getCosTrailMax() {
+		
+		return 0;
+		
+	}
+	
+	public static int getTrailCount(Player p) {
+		
+		return 0;
+		
+	}
+	
+	public static int getCosAmbientMax() {
+		
+		return 0;
+		
+	}
+	
+	public static int getAmbientCount(Player p) {
+		
+		return 0;
+		
+	}
+	
+	public static int getCosConnectMax() {
+		
+		return 0;
+		
+	}
+	
+	public static int getConnectCount(Player p) {
+		
+		return 0;
+		
+	}
+	
+	public static int getCosDisconnectMax() {
+		
+		return 0;
+		
+	}
+	
+	public static int getDisconnectCount(Player p) {
+		
+		return 0;
+		
+	}
+	
+	public static int getCosDeathMax() {
+		
+		return 0;
+		
+	}
+	
+	public static int getDeathCount(Player p) {
+		
+		return 0;
+		
+	}
+	
+	public static int getCosRespawnMax() {
+		
+		return 0;
+		
+	}
+	
+	public static int getRespawnCount(Player p) {
+		
+		return 0;
 		
 	}
 
