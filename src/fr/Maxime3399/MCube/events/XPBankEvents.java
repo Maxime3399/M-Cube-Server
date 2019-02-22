@@ -22,6 +22,32 @@ public class XPBankEvents implements Listener {
 	@EventHandler
 	public void onSignChange(SignChangeEvent e) {
 		
+		boolean color = false;
+		for(String li : e.getLines()) {
+			
+			if(li.contains("&")) {
+				
+				color = true;
+				
+			}
+			
+		}
+		
+		if(color == true) {
+			
+			Player p = e.getPlayer();
+			
+			if(p.hasPermission("mcube.sign")) {
+				
+				e.setLine(0, e.getLine(0).replaceAll("&", "§"));
+				e.setLine(1, e.getLine(1).replaceAll("&", "§"));
+				e.setLine(2, e.getLine(2).replaceAll("&", "§"));
+				e.setLine(3, e.getLine(3).replaceAll("&", "§"));
+				
+			}
+			
+		}
+		
 		if(e.getLine(0).equalsIgnoreCase("[xpbank]") || e.getLine(0).equalsIgnoreCase("[expbank]")) {
 			
 			Player p = e.getPlayer();
@@ -55,6 +81,14 @@ public class XPBankEvents implements Listener {
 				
 			}
 			
+		}else if(e.getLine(0).contains("XP Bank")) {
+			
+			Player p = e.getPlayer();
+			p.sendMessage("§cVous ne pouvez pas mettre le texte \"XP Bank\" dans la première ligne de votre pancarte !");
+			p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
+			e.setCancelled(true);
+			
+			
 		}
 		
 	}
@@ -71,65 +105,69 @@ public class XPBankEvents implements Listener {
 			Sign s = (Sign) e.getClickedBlock().getState();
 			Player p = e.getPlayer();
 			
-			if(s.getLine(1).equalsIgnoreCase(p.getName())) {
+			if(s.getLine(0).contains("XP Bank")) {
 				
-				int xp = 0;
-				try {
-					xp = Integer.parseInt(s.getLine(2));
-				}catch (Exception ex) {
-					ex.printStackTrace();
-				}
-				
-				if(e.getAction() == Action.LEFT_CLICK_BLOCK) {
+				if(s.getLine(1).equalsIgnoreCase(p.getName())) {
 					
-					if(xp == 0) {
-						
-						p.sendMessage("§cVous n'avez pas d'XP à récupérer !");
-						p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
-						
-					}else {
-						
-						xp = xp-5;
-						p.setLevel(p.getLevel()+5);
-						s.setLine(2, ""+xp);
-						s.update();
-						p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_EGG, 100, 2);
-						
+					int xp = 0;
+					try {
+						xp = Integer.parseInt(s.getLine(2));
+					}catch (Exception ex) {
+						ex.printStackTrace();
 					}
 					
-				}else if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-					
-					if(p.getLevel() < 5) {
+					if(e.getAction() == Action.LEFT_CLICK_BLOCK) {
 						
-						p.sendMessage("§cVous devez posséder 5 niveaux au minumum !");
-						p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
-						
-					}else {
-						
-						xp = xp+5;
-						
-						if(p.hasPermission("mcube.expbank."+xp)) {
+						if(xp == 0) {
 							
-							p.setLevel(p.getLevel()-5);
+							p.sendMessage("§cVous n'avez pas d'XP à récupérer !");
+							p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
+							
+						}else {
+							
+							xp = xp-5;
+							p.setLevel(p.getLevel()+5);
 							s.setLine(2, ""+xp);
 							s.update();
 							p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_EGG, 100, 2);
 							
+						}
+						
+					}else if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+						
+						if(p.getLevel() < 5) {
+							
+							p.sendMessage("§cVous devez posséder 5 niveaux au minumum !");
+							p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
+							
 						}else {
 							
-							p.sendMessage("§cVous ne pouvez pas stocker plus d'XP dans cette banque d'XP !");
-							p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
+							xp = xp+5;
+							
+							if(p.hasPermission("mcube.expbank."+xp)) {
+								
+								p.setLevel(p.getLevel()-5);
+								s.setLine(2, ""+xp);
+								s.update();
+								p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_EGG, 100, 2);
+								
+							}else {
+								
+								p.sendMessage("§cVous ne pouvez pas stocker plus d'XP dans cette banque d'XP !");
+								p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
+								
+							}
 							
 						}
 						
 					}
 					
+				}else {
+					
+					p.sendMessage("§cCe n'est pas votre banque d'XP !");
+					p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
+					
 				}
-				
-			}else {
-				
-				p.sendMessage("§cCe n'est pas votre banque d'XP !");
-				p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 100, 1);
 				
 			}
 			
