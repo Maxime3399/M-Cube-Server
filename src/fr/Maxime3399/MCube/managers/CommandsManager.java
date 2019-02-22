@@ -7,6 +7,7 @@ import fr.Maxime3399.MCube.MainClass;
 import fr.Maxime3399.MCube.commands.CcmdCMD;
 import fr.Maxime3399.MCube.commands.ChestCMD;
 import fr.Maxime3399.MCube.commands.DelhomeCMD;
+import fr.Maxime3399.MCube.commands.FlyCMD;
 import fr.Maxime3399.MCube.commands.GiftCMD;
 import fr.Maxime3399.MCube.commands.HomeCMD;
 import fr.Maxime3399.MCube.commands.LastconnectionCMD;
@@ -56,6 +57,8 @@ public class CommandsManager {
 		cmd14.setExecutor(new SethomeCMD());
 		PluginCommand cmd15 = p.getServer().getPluginCommand("delhome");
 		cmd15.setExecutor(new DelhomeCMD());
+		PluginCommand cmd16 = p.getServer().getPluginCommand("fly");
+		cmd16.setExecutor(new FlyCMD());
 		
 	}
 

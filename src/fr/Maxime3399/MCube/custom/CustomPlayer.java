@@ -27,6 +27,7 @@ public class CustomPlayer {
 	private String chests;
 	private String last_connection;
 	private int connection_streak;
+	private boolean fly;
 	private String cos_active;
 	private String cos_plus_color;
 	private int season_1_points;
@@ -129,6 +130,7 @@ public class CustomPlayer {
 		this.setConnection_streak(MySQLUtils.getInt("players", "uuid", uuid.toString(), "connection_streak"));
 		this.setCos_active(MySQLUtils.getString("players", "uuid", uuid.toString(), "cos_active"));
 		this.setCos_plus_color(MySQLUtils.getString("players", "uuid", uuid.toString(), "cos_plus_color"));
+		this.setFly(Boolean.parseBoolean(MySQLUtils.getString("players", "uuid", uuid.toString(), "fly")));
 		this.setSeason_1_points(MySQLUtils.getInt("players", "uuid", uuid.toString(), "season_1_points"));
 		this.setSeason_2_points(MySQLUtils.getInt("players", "uuid", uuid.toString(), "season_2_points"));
 		this.setSeason_3_points(MySQLUtils.getInt("players", "uuid", uuid.toString(), "season_3_points"));
@@ -226,6 +228,7 @@ public class CustomPlayer {
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "chests", chests);
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "last_connection", last_connection);
 		MySQLUtils.setInt("players", "uuid", uuid.toString(), "connection_streak", connection_streak);
+		MySQLUtils.setString("players", "uuid", uuid.toString(), "fly", String.valueOf(fly));
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "cos_active", cos_active);
 		MySQLUtils.setString("players", "uuid", uuid.toString(), "cos_plus_color", cos_plus_color);
 		MySQLUtils.setInt("players", "uuid", uuid.toString(), "season_1_points", season_1_points);
@@ -521,6 +524,14 @@ public class CustomPlayer {
 
 	public void setConnection_streak(int connection_streak) {
 		this.connection_streak = connection_streak;
+	}
+
+	public boolean isFly() {
+		return fly;
+	}
+
+	public void setFly(boolean fly) {
+		this.fly = fly;
 	}
 
 	public String getCos_active() {
