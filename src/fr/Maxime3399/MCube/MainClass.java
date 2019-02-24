@@ -170,6 +170,8 @@ public class MainClass extends JavaPlugin{
 									"('data', 0, ''),\r\n" + 
 									"('motd1', 0, '§6§lM-Cube§r      §dVersion 1.13.2'),\r\n" + 
 									"('motd2', 0, '§3Le serveur est en développement !'),\r\n" + 
+									"('slots', 8, ''),\r\n" + 
+									"('slots_vip', 6, ''),\r\n" + 
 									"('maintenance_start', 0, '');", false);
 							
 						}

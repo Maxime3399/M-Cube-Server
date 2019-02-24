@@ -43,7 +43,7 @@ public class MainMenu {
 		ALranked.add("§7de jeu classé");
 		IMranked.setLore(ALranked);
 		ISranked.setItemMeta(IMranked);
-		i.addItem(ISranked);
+		i.setItem(2, ISranked);
 		
 		ItemStack ISstep = new ItemStack(Material.LADDER);
 		ItemMeta IMstep = ISstep.getItemMeta();
@@ -70,7 +70,7 @@ public class MainMenu {
 		}
 		IMstep.setLore(ALstep);
 		ISstep.setItemMeta(IMstep);
-		i.addItem(ISstep);
+		i.setItem(3, ISstep);
 		
 		ItemStack ISsuccess = new ItemStack(Material.PAPER);
 		ItemMeta IMsuccess = ISsuccess.getItemMeta();
@@ -85,7 +85,7 @@ public class MainMenu {
 		ALsuccess.add("§7menu des succès");
 		IMsuccess.setLore(ALsuccess);
 		ISsuccess.setItemMeta(IMsuccess);
-		i.addItem(ISsuccess);
+		i.setItem(4, ISsuccess);
 		
 		ItemStack IScos = new ItemStack(Material.SLIME_BALL);
 		ItemMeta IMcos = IScos.getItemMeta();
@@ -100,7 +100,7 @@ public class MainMenu {
 		ALcos.add("§7des cosmétiques");
 		IMcos.setLore(ALcos);
 		IScos.setItemMeta(IMcos);
-		i.addItem(IScos);
+		i.setItem(5, IScos);
 		
 		ItemStack ISitems = new ItemStack(Material.CHEST);
 		ItemMeta IMitems = ISitems.getItemMeta();
@@ -113,7 +113,7 @@ public class MainMenu {
 		ALitems.add("§7menu des objets");
 		IMitems.setLore(ALitems);
 		ISitems.setItemMeta(IMitems);
-		i.addItem(ISitems);
+		i.setItem(6, ISitems);
 		
 		ItemStack ISchests = new ItemStack(Material.ENDER_CHEST);
 		ItemMeta IMchests = ISchests.getItemMeta();
@@ -137,12 +137,14 @@ public class MainMenu {
 		}
 		ALchests.add("§7Tu as "+chests+" coffres");
 		ALchests.add(" ");
-		ALchests.add("§3Clique §7pour ouvrir le");
-		ALchests.add("§7menu des coffres");
+		ALchests.add("§6Clique gauche §7pour ouvrir");
+		ALchests.add("§7le menu des coffres");
+		ALchests.add("§eClique droit §7pour acheter");
+		ALchests.add("§7des coffres");
 		IMchests.setLore(ALchests);
 		ISchests.setItemMeta(IMchests);
 		ISchests.setAmount(chestC);
-		i.addItem(ISchests);
+		i.setItem(11, ISchests);
 		
 		ItemStack ISgift = new ItemStack(Material.BOOK);
 		ItemMeta IMgift = ISgift.getItemMeta();
@@ -171,7 +173,20 @@ public class MainMenu {
 		IMgift.setLore(ALgift);
 		ISgift.setItemMeta(IMgift);
 		ISgift.setAmount(giftC);
-		i.addItem(ISgift);
+		i.setItem(12, ISgift);
+		
+		ItemStack ISset = new ItemStack(Material.COMPARATOR);
+		ItemMeta IMset = ISset.getItemMeta();
+		ArrayList<String> ALset = new ArrayList<>();
+		IMset.setDisplayName("§eParamètres");
+		ALset.add("§7Modifie ton expérience");
+		ALset.add("§7de jeu");
+		ALset.add(" ");
+		ALset.add("§3Clique§7 pour ouvrir");
+		ALset.add("§7les paramètres");
+		IMset.setLore(ALset);
+		ISset.setItemMeta(IMset);
+		i.setItem(13, ISset);
 		
 		ItemStack ISshop = new ItemStack(Material.GOLD_INGOT);
 		ItemMeta IMshop = ISshop.getItemMeta();
@@ -187,7 +202,23 @@ public class MainMenu {
 		ALshop.add("§7lien de la boutique en ligne");
 		IMshop.setLore(ALshop);
 		ISshop.setItemMeta(IMshop);
-		i.addItem(ISshop);
+		i.setItem(14, ISshop);
+		
+		ItemStack ISb = new ItemStack(Material.EXPERIENCE_BOTTLE);
+		ItemMeta IMb = ISb.getItemMeta();
+		ArrayList<String> ALb = new ArrayList<>();
+		IMb.setDisplayName("§eBoosters");
+		ALb.add("§7Utilise tes boosters !");
+		ALb.add(" ");
+		ALb.add("§7Tu as # boosters !");
+		ALb.add(" ");
+		ALb.add("§6Clique gauche§7 pour ouvrir");
+		ALb.add("§7le menu des boosters");
+		ALb.add("§eClique droit§7 pour acheter");
+		ALb.add("§7des boosters");
+		IMb.setLore(ALb);
+		ISb.setItemMeta(IMb);
+		i.setItem(15, ISb);
 		
 		p.openInventory(i);
 		

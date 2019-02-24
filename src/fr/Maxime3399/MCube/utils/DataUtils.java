@@ -62,5 +62,17 @@ public class DataUtils {
 		return MySQLUtils.getString("infos", "type", "motd"+line, "info_string");
 		
 	}
+	
+	public static int getSlots() {
+		
+		return MySQLUtils.getInt("infos", "type", "slots", "info_int");
+		
+	}
+	
+	public static int getSlotsVIP() {
+		
+		return MySQLUtils.getInt("infos", "type", "slots_vip", "info_int");
+		
+	}
 
 }

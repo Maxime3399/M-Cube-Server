@@ -68,6 +68,30 @@ public class JoinEvents implements Listener {
 				
 			}
 			
+		}else {
+			
+			int slots = DataUtils.getSlots();
+			
+			if(Bukkit.getOnlinePlayers().size() >= slots) {
+				
+				if(Bukkit.getOnlinePlayers().size() >= slots+DataUtils.getSlotsVIP()) {
+					
+					if(p.hasPermission("mcube.join")) {
+						
+						join = false;
+						reason = "§c§lLe serveur est entièrement pleins !";
+						
+					}
+					
+				}else {
+					
+					join = false;
+					reason = "§cSeveur pleins ! L'accès est réservé aux gradés !";
+					
+				}
+				
+			}
+			
 		}
 		
 		if(!join) {
