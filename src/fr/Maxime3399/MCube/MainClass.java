@@ -168,6 +168,8 @@ public class MainClass extends JavaPlugin{
 									"('season_1_end', 0, '"+nd+"'),\r\n" + 
 									"('maintenance', 0, 'false'),\r\n" + 
 									"('data', 0, ''),\r\n" + 
+									"('motd1', 0, '§6§lM-Cube§r      §dVersion 1.13.2'),\r\n" + 
+									"('motd2', 0, '§3Le serveur est en développement !'),\r\n" + 
 									"('maintenance_start', 0, '');", false);
 							
 						}
@@ -202,21 +204,21 @@ public class MainClass extends JavaPlugin{
 							
 						}else {
 							
-							Bukkit.getConsoleSender().sendMessage("§6§l[§r§3Bropocalypse§6§l]§r §cLa création de la table \"gifts\" a échouée.");
+							Bukkit.getConsoleSender().sendMessage("§6§l[§r§3M-Cube§6§l]§r §cLa création de la table \"gifts\" a échouée.");
 							disable();
 							
 						}
 						
 					}else {
 						
-						Bukkit.getConsoleSender().sendMessage("§6§l[§r§3Bropocalypse§6§l]§r §cLa création de la table \"infos\" a échouée.");
+						Bukkit.getConsoleSender().sendMessage("§6§l[§r§3M-Cube§6§l]§r §cLa création de la table \"infos\" a échouée.");
 						disable();
 						
 					}
 					
 				}else {
 					
-					Bukkit.getConsoleSender().sendMessage("§6§l[§r§3Bropocalypse§6§l]§r §cLa création de la table \"players\" a échouée.");
+					Bukkit.getConsoleSender().sendMessage("§6§l[§r§3M-Cube§6§l]§r §cLa création de la table \"players\" a échouée.");
 					disable();
 					
 				}

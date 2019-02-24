@@ -56,5 +56,11 @@ public class DataUtils {
 		return Boolean.parseBoolean(MySQLUtils.getString("infos", "type", "maintenance", "info_string"));
 		
 	}
+	
+	public static String getMotd(int line) {
+		
+		return MySQLUtils.getString("infos", "type", "motd"+line, "info_string");
+		
+	}
 
 }

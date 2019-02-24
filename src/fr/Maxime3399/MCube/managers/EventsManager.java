@@ -9,6 +9,7 @@ import fr.Maxime3399.MCube.events.BlockBreakEvents;
 import fr.Maxime3399.MCube.events.BlockPlaceEvents;
 import fr.Maxime3399.MCube.events.JoinEvents;
 import fr.Maxime3399.MCube.events.QuitEvents;
+import fr.Maxime3399.MCube.events.ServerPingEvents;
 import fr.Maxime3399.MCube.events.SystemEvents;
 import fr.Maxime3399.MCube.events.XPBankEvents;
 import fr.Maxime3399.MCube.events.menus.ChestMenuEvents;
@@ -32,6 +33,7 @@ public class EventsManager {
 		pm.registerEvents(new BlockBreakEvents(), p);
 		pm.registerEvents(new BlockPlaceEvents(), p);
 		pm.registerEvents(new XPBankEvents(), p);
+		pm.registerEvents(new ServerPingEvents(), p);
 		
 		pm.registerEvents(new MainMenuEvents(), p);
 		pm.registerEvents(new RankedMenuEvents(), p);
