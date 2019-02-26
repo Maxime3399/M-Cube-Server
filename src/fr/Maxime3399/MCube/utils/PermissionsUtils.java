@@ -63,15 +63,25 @@ public class PermissionsUtils {
 			perms.add("mcube.chest.4");
 			perms.add("mcube.spawner.take");
 			perms.add("mcube.spawner.place");
+			perms.add("mcube.command.fly");
+			perms.add("mcube.fly");
+			perms.add("mcube.sign");
+			perms.add("mcube.join");
 		}else if(cp.getRank().equalsIgnoreCase("ultravip") || cp.getOther_ranks().equalsIgnoreCase("ultravip")) {
 			perms.add("mcube.chest.5");
 			perms.add("mcube.chest.4");
+			perms.add("mcube.sign");
+			perms.add("mcube.join");
 		}else if(cp.getRank().equalsIgnoreCase("vipplus") || cp.getOther_ranks().equalsIgnoreCase("vipplus")) {
 			perms.add("mcube.chest.4");
+			perms.add("mcube.sign");
+			perms.add("mcube.join");
 		}else if(cp.getRank().equalsIgnoreCase("vip") || cp.getOther_ranks().equalsIgnoreCase("vip")) {
-			
+			perms.add("mcube.sign");
+			perms.add("mcube.join");
 		}else if(cp.getRank().equalsIgnoreCase("minivip") || cp.getOther_ranks().equalsIgnoreCase("minivip")) {
-			
+			perms.add("mcube.sign");
+			perms.add("mcube.join");
 		}
 		
 		perms.add("mcube.chest.1");

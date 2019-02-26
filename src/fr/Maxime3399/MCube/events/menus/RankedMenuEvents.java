@@ -84,7 +84,8 @@ public class RankedMenuEvents implements Listener {
 														Calendar cal = Calendar.getInstance();
 														Date dC = new Date();
 														cal.setTime(dC);
-														cal.add(Calendar.DAY_OF_MONTH, 3);
+														//cal.add(Calendar.DAY_OF_MONTH, 3);
+														cal.add(Calendar.MINUTE, 10);
 														dC.setTime(cal.getTimeInMillis());
 														cp.setPlacement_end(sdf.format(dC));
 														
