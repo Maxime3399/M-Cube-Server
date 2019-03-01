@@ -67,7 +67,7 @@ public class GiftsMenu {
 			ItemStack ISn = new ItemStack(Material.BARRIER);
 			ItemMeta IMn = ISn.getItemMeta();
 			ArrayList<String> ALn = new ArrayList<>();
-			IMn.setDisplayName("§cTu n'as pas");
+			IMn.setDisplayName("§c§oTu n'as pas");
 			ALn.add("§c§ode cadeaux !");
 			IMn.setLore(ALn);
 			ISn.setItemMeta(IMn);

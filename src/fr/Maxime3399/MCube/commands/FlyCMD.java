@@ -29,7 +29,7 @@ public class FlyCMD implements CommandExecutor{
 					p.setAllowFlight(false);
 					cp.setFly(false);
 					
-					p.sendMessage("§eLe vol est activé !");
+					p.sendMessage("§eLe vol est désactivé !");
 					p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_EGG, 100, 2);
 					
 				}else {
@@ -37,7 +37,7 @@ public class FlyCMD implements CommandExecutor{
 					p.setAllowFlight(true);
 					cp.setFly(true);
 					
-					p.sendMessage("§eLe vol est désactivé !");
+					p.sendMessage("§eLe vol est activé !");
 					p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_EGG, 100, 2);
 					
 				}

@@ -143,8 +143,18 @@ public class XPBankEvents implements Listener {
 						}else {
 							
 							xp = xp+5;
+							int max = 0;
+							if(p.hasPermission("mcube.expbank.300")) {
+								max = 300;
+							}else if(p.hasPermission("mcube.expbank.200")) {
+								max = 200;
+							}else if(p.hasPermission("mcube.expbank.100")) {
+								max = 100;
+							}else if(p.hasPermission("mcube.expbank.50")) {
+								max = 50;
+							}
 							
-							if(p.hasPermission("mcube.expbank."+xp)) {
+							if(xp <= max) {
 								
 								p.setLevel(p.getLevel()-5);
 								s.setLine(2, ""+xp);

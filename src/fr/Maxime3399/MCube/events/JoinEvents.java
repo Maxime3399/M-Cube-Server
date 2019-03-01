@@ -128,10 +128,16 @@ public class JoinEvents implements Listener {
 				
 			}
 			
+			int co = 1;
 			for(Player pls : Bukkit.getOnlinePlayers()) {
-				
-				DisplayUtils.setDisplay(pls);
-				
+				co++;
+				Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), new Runnable() {
+					
+					@Override
+					public void run() {
+						DisplayUtils.setDisplay(pls);
+					}
+				}, co);
 			}
 			
 			e.setJoinMessage("§a§l+§r "+p.getDisplayName());

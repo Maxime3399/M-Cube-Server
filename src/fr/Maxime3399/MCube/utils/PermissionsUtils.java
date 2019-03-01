@@ -57,7 +57,8 @@ public class PermissionsUtils {
 			perms.add("mcube.command.playercount");
 		}else if(cp.getStaff().equalsIgnoreCase("stream") || cp.getOther_ranks().equalsIgnoreCase("stream")) {
 			perms.add("mcube.command.playercount");
-		}else if(cp.getRank().equalsIgnoreCase("ultravipplus") || cp.getOther_ranks().equalsIgnoreCase("ultravipplus")) {
+		}
+		if(cp.getRank().equalsIgnoreCase("ultravipplus") || cp.getOther_ranks().equalsIgnoreCase("ultravipplus")) {
 			perms.add("mcube.menu.+");
 			perms.add("mcube.chest.5");
 			perms.add("mcube.chest.4");
@@ -67,21 +68,38 @@ public class PermissionsUtils {
 			perms.add("mcube.fly");
 			perms.add("mcube.sign");
 			perms.add("mcube.join");
+			perms.add("mcube.expbank.create");
+			perms.add("mcube.expbank.300");
+			perms.add("mcube.afk");
 		}else if(cp.getRank().equalsIgnoreCase("ultravip") || cp.getOther_ranks().equalsIgnoreCase("ultravip")) {
 			perms.add("mcube.chest.5");
 			perms.add("mcube.chest.4");
+			perms.add("mcube.spawner.take");
+			perms.add("mcube.spawner.place");
 			perms.add("mcube.sign");
 			perms.add("mcube.join");
+			perms.add("mcube.expbank.create");
+			perms.add("mcube.expbank.200");
+			perms.add("mcube.afk");
 		}else if(cp.getRank().equalsIgnoreCase("vipplus") || cp.getOther_ranks().equalsIgnoreCase("vipplus")) {
 			perms.add("mcube.chest.4");
 			perms.add("mcube.sign");
 			perms.add("mcube.join");
+			perms.add("mcube.spawner.place");
+			perms.add("mcube.expbank.create");
+			perms.add("mcube.expbank.100");
+			perms.add("mcube.afk");
 		}else if(cp.getRank().equalsIgnoreCase("vip") || cp.getOther_ranks().equalsIgnoreCase("vip")) {
 			perms.add("mcube.sign");
 			perms.add("mcube.join");
+			perms.add("mcube.spawner.place");
+			perms.add("mcube.expbank.create");
+			perms.add("mcube.expbank.50");
+			perms.add("mcube.afk");
 		}else if(cp.getRank().equalsIgnoreCase("minivip") || cp.getOther_ranks().equalsIgnoreCase("minivip")) {
 			perms.add("mcube.sign");
 			perms.add("mcube.join");
+			perms.add("mcube.afk");
 		}
 		
 		perms.add("mcube.chest.1");

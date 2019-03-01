@@ -321,6 +321,8 @@ public class CustomPlayer {
 		save();
 		
 		ArrayList<String> list = MySQLUtils.getSortValues("players", "season_"+season+"_points", "ASC");
+		ArrayList<String> rml = new ArrayList<>();
+		
 		
 		if(list.size() != 0) {
 			
@@ -328,9 +330,16 @@ public class CustomPlayer {
 				
 				if(MySQLUtils.getInt("players", "uuid", pla, "points") == -1) {
 					
-					list.remove(pla);
+					//list.remove(pla);
+					rml.add(pla);
 					
 				}
+				
+			}
+			
+			for(String al : rml) {
+				
+				list.remove(al);
 				
 			}
 			
